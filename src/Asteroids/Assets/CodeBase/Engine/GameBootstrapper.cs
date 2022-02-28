@@ -8,12 +8,11 @@ namespace CodeBase.Engine
     public class GameBootstrapper : MonoBehaviour
     {
         public UnityInput Input;
-        public GameFactory Factory;
-        
+
         private Game _game;
         
         private void Awake() => 
-            _game = new Game(Input, Factory);
+            _game = new Game(Input, new GameFactory(new Assets()));
 
         private void Start() => 
             _game.Start();

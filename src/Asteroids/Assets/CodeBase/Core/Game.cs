@@ -2,6 +2,9 @@
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems;
+using CodeBase.Core.Gameplay.Systems.InputSystems;
+using CodeBase.Core.Gameplay.Systems.MovementSystems;
+using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
 using Leopotam.Ecs;
 
 namespace CodeBase.Core
@@ -30,6 +33,7 @@ namespace CodeBase.Core
 
             _systems
                 .Add(InputSystems(_world, _input))
+                .Add(MovementSystems(_world))
                 .Add(SpawnSystems(_world, _factory))
                 .Init();
         }
@@ -43,7 +47,13 @@ namespace CodeBase.Core
             new EcsSystems(world, "Input Systems")
                 .OneFrame<FireButtonPressedTag>()
                 .Inject(input)
-                .Add(new InputSystem());
+                .Add(new KeyboardInputSystem())
+                .Add(new MouseInputSystem());
+
+        private EcsSystems MovementSystems(EcsWorld world) =>
+            new EcsSystems(world, "Movement Systems")
+                .Add(new MoveSystem())
+                .Add(new UpdateBodySystem());
 
         private EcsSystems SpawnSystems(EcsWorld world, IFactory factory) =>
             new EcsSystems(world, "Spawn Systems")

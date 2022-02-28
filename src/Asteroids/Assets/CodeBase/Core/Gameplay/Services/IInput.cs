@@ -6,6 +6,7 @@ namespace CodeBase.Core.Gameplay.Services
     {
         Vector2Data MousePosition { get; }
         Vector2Data MovementDirection { get; }
+        Vector2Data WorldMousePosition { get; }
         bool IsFireButtonPressed();
     }
 }

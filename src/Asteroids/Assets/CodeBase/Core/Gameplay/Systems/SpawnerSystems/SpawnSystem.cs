@@ -2,7 +2,7 @@ using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.Ecs;
 
-namespace CodeBase.Core.Gameplay.Systems
+namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnSystem : IEcsRunSystem
     {
