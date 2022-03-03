@@ -6,7 +6,7 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class UpdateBodySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Position, Rotation, MovingBody> _bodies = default;
+        private readonly EcsFilter<Position, Rotation, EngineBody> _bodies = default;
         
         public void Run()
         {

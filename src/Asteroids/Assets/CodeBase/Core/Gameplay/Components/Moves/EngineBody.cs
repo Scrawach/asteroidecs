@@ -1,6 +1,6 @@
 namespace CodeBase.Core.Gameplay.Components.Moves
 {
-    public struct MovingBody
+    public struct EngineBody
     {
         public IBody Body;
     }

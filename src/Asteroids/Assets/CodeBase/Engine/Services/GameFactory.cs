@@ -1,4 +1,3 @@
-using CodeBase.Core.Common;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Services;
@@ -15,28 +14,17 @@ namespace CodeBase.Engine.Services
 
         public GameFactory(IAssets assets) => 
             _assets = assets;
-
-        public async void Create(ObjectId objectId, Vector2Data at, EcsWorld world)
-        {
-            var spawnPosition = new Vector3(at.X, at.Y, 0f);
-            var address = objectId.ToString();
-            var result = await _assets.Instantiate(address, at: spawnPosition);
-
-            if (result.TryGetComponent<MonoEntity>(out var monoEntity))
-            {
-                var entity = world.NewEntity();
-                entity.Get<Position>() = new Position { Value = at };
-                monoEntity.Resolve(ref entity);
-            }
-        }
-
+        
         public async void Create(SpawnInfo info, EcsWorld world)
         {
             var spawnPoint = info.Position.ToVector3();
             var rotation = info.Direction.ToQuaternion();
             var objectAddress = info.Id.ToString();
-            var instance = await _assets.Instantiate(objectAddress, spawnPoint, rotation);
-            
+
+            var startTime = Time.time;
+            var prefab = await _assets.Load<GameObject>(objectAddress);
+            var instance = UnityEngine.Object.Instantiate(prefab, spawnPoint, rotation);
+            Debug.Log($"LOADING TIME: {Time.time - startTime}");
             if (instance.TryGetComponent<MonoEntity>(out var monoEntity))
             {
                 var entity = world.NewEntity();

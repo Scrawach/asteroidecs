@@ -1,10 +1,11 @@
 using System;
+using CodeBase.Core.Common;
 
 namespace CodeBase.Core.Gameplay.Components
 {
     [Serializable]
-    public struct Lifetime
+    public struct Object
     {
-        public float Time;
+        public ObjectId Id;
     }
 }

@@ -1,21 +1,38 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace CodeBase.Engine.Services
 {
     public class Assets : IAssets
     {
-        public void Initialize() => 
-            Addressables.InitializeAsync();
+        private readonly Dictionary<string, AsyncOperationHandle> _cache = 
+            new Dictionary<string, AsyncOperationHandle>();
+        
+        public async void Initialize() => 
+            await Addressables.InitializeAsync().Task;
 
-        public Task<GameObject> Instantiate(string address) =>
-            Instantiate(address, Vector3.zero, Quaternion.identity);
+        public async Task<TAsset> Load<TAsset>(string address) where TAsset : Object
+        {
+            if (_cache.TryGetValue(address, out var cachedHandle))
+                return cachedHandle.Result as TAsset;
+            return await ResourceLoading<TAsset>(address);
+        }
 
-        public Task<GameObject> Instantiate(string address, Vector3 at) =>
-            Instantiate(address, at, Quaternion.identity);
+        public void Cleanup()
+        {
+            foreach (var pair in _cache) 
+                Addressables.Release(pair.Value);
+            _cache.Clear();
+        }
 
-        public Task<GameObject> Instantiate(string address, Vector3 position, Quaternion rotation) => 
-            Addressables.InstantiateAsync(address, position, rotation).Task;
+        private async Task<TResource> ResourceLoading<TResource>(string address)
+        {
+            var handle = Addressables.LoadAssetAsync<TResource>(address);
+            handle.Completed += operationHandle => _cache[address] = operationHandle;
+            return await handle.Task;
+        }
     }
 }

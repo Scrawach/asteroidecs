@@ -7,11 +7,11 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace CodeBase.Engine.MonoLinks
 {
-    public class MonoMovingBody : MonoLink<MovingBody>, IBody
+    public class MonoEngineBody : MonoLink<EngineBody>, IBody
     {
         public override void Resolve(ref EcsEntity entity)
         {
-            Value = new MovingBody { Body = this };
+            Value = new EngineBody { Body = this };
             base.Resolve(ref entity);
         }
 
@@ -25,5 +25,8 @@ namespace CodeBase.Engine.MonoLinks
 
         public void Rotate(Vector2Data direction) => 
             transform.rotation = direction.ToQuaternion();
+
+        public void Destroy() => 
+            Destroy(gameObject);
     }
 }

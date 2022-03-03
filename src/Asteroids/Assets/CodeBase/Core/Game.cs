@@ -3,6 +3,7 @@ using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
+using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
@@ -39,6 +40,7 @@ namespace CodeBase.Core
                 .Add(MovementSystems(_world, _time))
                 .Add(SpawnSystems(_world, _factory))
                 .Add(ShootSystems(_world))
+                .Add(LifecycleSystems(_world, _time))
                 .Init();
         }
 
@@ -72,5 +74,11 @@ namespace CodeBase.Core
             new EcsSystems(world, "Shoot Systems")
                 .OneFrame<ShootPoint>()
                 .Add(new PlayerShoot());
+
+        private EcsSystems LifecycleSystems(EcsWorld world, ITime time) =>
+            new EcsSystems(world, "Lifecycle Systems")
+                .Inject(time)
+                .Add(new LifecycleSystem())
+                .Add(new DestroySystem());
     }
 }
