@@ -22,13 +22,8 @@ namespace CodeBase.Core.Common
 
         public static Vector2Data operator *(Vector2Data left, float value) =>
             new Vector2Data(left.X * value, left.Y * value);
-
+        
         public static Vector2Data operator /(Vector2Data left, float value) =>
             new Vector2Data(left.X / value, left.Y / value);
-    }
-
-    public struct QuaternionData
-    {
-        
     }
 }

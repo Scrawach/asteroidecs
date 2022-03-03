@@ -10,9 +10,12 @@ namespace CodeBase.Engine.Services
             Addressables.InitializeAsync();
 
         public Task<GameObject> Instantiate(string address) =>
-            Instantiate(address, Vector3.zero);
-        
-        public Task<GameObject> Instantiate(string address, Vector3 at) => 
-            Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;
+            Instantiate(address, Vector3.zero, Quaternion.identity);
+
+        public Task<GameObject> Instantiate(string address, Vector3 at) =>
+            Instantiate(address, at, Quaternion.identity);
+
+        public Task<GameObject> Instantiate(string address, Vector3 position, Quaternion rotation) => 
+            Addressables.InstantiateAsync(address, position, rotation).Task;
     }
 }

@@ -30,6 +30,6 @@ namespace CodeBase.Engine.Services
         }
         
         public bool IsFireButtonPressed() => 
-            Input.GetKeyDown(KeyCode.A);
+            Input.GetKeyDown(KeyCode.Mouse0);
     }
 }

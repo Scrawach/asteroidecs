@@ -1,7 +1,9 @@
-namespace CodeBase.Core.Gameplay.Components
+using CodeBase.Core.Common;
+
+namespace CodeBase.Core.Gameplay.Components.Moves
 {
     public struct Rotation
     {
-        public float Angle;
+        public Vector2Data Direction;
     }
 }

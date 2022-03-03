@@ -1,11 +1,10 @@
 using System;
-using CodeBase.Core.Common;
 
 namespace CodeBase.Core.Gameplay.Components.Moves
 {
     [Serializable]
-    public struct Movement
+    public struct MovementSpeed
     {
-        public Vector2Data Direction;
+        public float Value;
     }
 }

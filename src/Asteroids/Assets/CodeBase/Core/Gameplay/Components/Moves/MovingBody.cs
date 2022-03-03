@@ -1,4 +1,4 @@
-namespace CodeBase.Core.Gameplay.Components
+namespace CodeBase.Core.Gameplay.Components.Moves
 {
     public struct MovingBody
     {

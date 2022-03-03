@@ -1,12 +1,13 @@
-using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Moves;
+using CodeBase.Core.Gameplay.Services;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class MoveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<Movement> _movables = default;
+        private readonly ITime _timeService = default;
         
         public void Run()
         {
@@ -14,8 +15,10 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
             {
                 ref var entity = ref _movables.GetEntity(index);
                 ref var position = ref entity.Get<Position>();
-                var movement = entity.Get<Movement>();
-                position.Value += movement.Direction * movement.Speed * Time.deltaTime;
+                var direction = entity.Get<Movement>().Direction;
+                var speed = entity.Get<MovementSpeed>().Value;
+                var velocity = direction * speed;
+                position.Value += velocity * _timeService.DeltaFrame;
             }
         }
     }

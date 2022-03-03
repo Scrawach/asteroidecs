@@ -2,6 +2,7 @@ namespace CodeBase.Core.Common
 {
     public enum ObjectId
     {
-        Player
+        Player = 0,
+        PlayerBullet
     }
 }

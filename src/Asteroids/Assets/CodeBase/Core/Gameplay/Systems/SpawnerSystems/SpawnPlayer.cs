@@ -11,7 +11,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
         public void Init()
         {
             var newEntity = _world.NewEntity();
-            newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0));
+            newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0), new Vector2Data(0, 1));
         }
     }
 }

@@ -17,14 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 8afdd4ab728d588bd99113522377e7ab
   m_SerializeEntries:
+  - m_GUID: 113b655b900050ae2bddfe5e08d785e5
+    m_Address: PlayerBullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: bc400a5b9173539349821a82c7b60af5
     m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 5589345601090368556, guid: bc400a5b9173539349821a82c7b60af5,
-      type: 3}
-    m_TargetAsset: {fileID: 5589345601090368556, guid: bc400a5b9173539349821a82c7b60af5,
-      type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c490040a4779bd3b69c0d6971aa4437d, type: 2}
   m_SchemaSet:

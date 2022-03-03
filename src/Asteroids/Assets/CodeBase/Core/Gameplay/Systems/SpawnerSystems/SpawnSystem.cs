@@ -20,7 +20,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
             {
                 ref var entity = ref _spawnFilter.GetEntity(index);
                 var info = entity.Get<SpawnInfo>();
-                _factory.Create(info.Id, at: info.Position, _world);
+                _factory.Create(info, _world);
                 entity.Del<SpawnInfo>();
             }
         }

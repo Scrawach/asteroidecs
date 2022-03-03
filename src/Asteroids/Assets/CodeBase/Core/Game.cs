@@ -4,6 +4,7 @@ using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
+using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
 using Leopotam.Ecs;
 
@@ -13,13 +14,15 @@ namespace CodeBase.Core
     {
         private readonly IInput _input;
         private readonly IFactory _factory;
+        private readonly ITime _time;
         private readonly EcsWorld _world;
         private readonly EcsSystems _systems;
         
-        public Game(IInput input, IFactory factory)
+        public Game(IInput input, IFactory factory, ITime time)
         {
             _input = input;
             _factory = factory;
+            _time = time;
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
         }
@@ -33,8 +36,9 @@ namespace CodeBase.Core
 
             _systems
                 .Add(InputSystems(_world, _input))
-                .Add(MovementSystems(_world))
+                .Add(MovementSystems(_world, _time))
                 .Add(SpawnSystems(_world, _factory))
+                .Add(ShootSystems(_world))
                 .Init();
         }
 
@@ -42,7 +46,7 @@ namespace CodeBase.Core
         {
             _systems.Run();
         }
-        
+
         private EcsSystems InputSystems(EcsWorld world, IInput input) =>
             new EcsSystems(world, "Input Systems")
                 .OneFrame<FireButtonPressedTag>()
@@ -50,8 +54,10 @@ namespace CodeBase.Core
                 .Add(new KeyboardInputSystem())
                 .Add(new MouseInputSystem());
 
-        private EcsSystems MovementSystems(EcsWorld world) =>
+        private EcsSystems MovementSystems(EcsWorld world, ITime time) =>
             new EcsSystems(world, "Movement Systems")
+                .Inject(time)
+                .Add(new ForwardMovementSystem())
                 .Add(new MoveSystem())
                 .Add(new UpdateBodySystem());
 
@@ -59,6 +65,12 @@ namespace CodeBase.Core
             new EcsSystems(world, "Spawn Systems")
                 .Inject(factory)
                 .Add(new SpawnPlayer())
+                .Add(new SpawnBullet())
                 .Add(new SpawnSystem());
+
+        private EcsSystems ShootSystems(EcsWorld world) =>
+            new EcsSystems(world, "Shoot Systems")
+                .OneFrame<ShootPoint>()
+                .Add(new PlayerShoot());
     }
 }

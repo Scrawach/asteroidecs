@@ -1,9 +1,8 @@
 using CodeBase.Core.Common;
-using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Moves;
+using CodeBase.Engine.Common;
 using CodeBase.Engine.MonoLinks.Base;
 using Leopotam.Ecs;
-using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 namespace CodeBase.Engine.MonoLinks
@@ -16,9 +15,6 @@ namespace CodeBase.Engine.MonoLinks
             base.Resolve(ref entity);
         }
 
-        public Vector2Data Position =>
-            new Vector2Data(transform.position.x, transform.position.y);
-
         public void Move(Vector2Data movement)
         {
             var worldPoint = new Vector3(movement.X, movement.Y, 0f);
@@ -27,7 +23,7 @@ namespace CodeBase.Engine.MonoLinks
             //transform.Translate(direction);
         }
 
-        public void Rotate(float angle) => 
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        public void Rotate(Vector2Data direction) => 
+            transform.rotation = direction.ToQuaternion();
     }
 }

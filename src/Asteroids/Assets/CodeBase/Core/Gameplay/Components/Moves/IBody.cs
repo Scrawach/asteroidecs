@@ -1,10 +1,10 @@
 using CodeBase.Core.Common;
 
-namespace CodeBase.Core.Gameplay.Components
+namespace CodeBase.Core.Gameplay.Components.Moves
 {
     public interface IBody
     {
         void Move(Vector2Data movement);
-        void Rotate(float angle);
+        void Rotate(Vector2Data direction);
     }
 }

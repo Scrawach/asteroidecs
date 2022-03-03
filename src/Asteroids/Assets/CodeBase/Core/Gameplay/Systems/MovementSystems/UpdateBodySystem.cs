@@ -1,4 +1,5 @@
 using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Moves;
 using Leopotam.Ecs;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
@@ -16,7 +17,7 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
                 var body = _bodies.Get3(index);
                 
                 body.Body.Move(position.Value);
-                body.Body.Rotate(rotation.Angle);
+                body.Body.Rotate(rotation.Direction);
             }
         }
     }
