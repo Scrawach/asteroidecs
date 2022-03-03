@@ -3,6 +3,7 @@ using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Engine.Common;
 using CodeBase.Engine.MonoLinks.Base;
+using CodeBase.Engine.Services.AssetManagement;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -20,11 +21,10 @@ namespace CodeBase.Engine.Services
             var spawnPoint = info.Position.ToVector3();
             var rotation = info.Direction.ToQuaternion();
             var objectAddress = info.Id.ToString();
-
-            var startTime = Time.time;
+            
             var prefab = await _assets.Load<GameObject>(objectAddress);
             var instance = UnityEngine.Object.Instantiate(prefab, spawnPoint, rotation);
-            Debug.Log($"LOADING TIME: {Time.time - startTime}");
+
             if (instance.TryGetComponent<MonoEntity>(out var monoEntity))
             {
                 var entity = world.NewEntity();

@@ -7,6 +7,14 @@ namespace CodeBase.Engine.Services
 {
     public class UnityInput : MonoBehaviour, IInput
     {
+        private const string HorizontalAxis = "Horizontal";
+        private const string VerticalAxis = "Vertical";
+        
+        private Camera _camera;
+        
+        private void Awake() => 
+            _camera = Camera.main;
+
         public Vector2Data MousePosition => 
             new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -14,7 +22,7 @@ namespace CodeBase.Engine.Services
         {
             get
             {
-                var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var position = _camera.ScreenToWorldPoint(Input.mousePosition);
                 return new Vector2Data(position.x, position.y);
             }
         }
@@ -23,8 +31,8 @@ namespace CodeBase.Engine.Services
         {
             get
             {
-                var xDirection = Input.GetAxis("Horizontal");
-                var yDirection = Input.GetAxis("Vertical");
+                var xDirection = Input.GetAxis(HorizontalAxis);
+                var yDirection = Input.GetAxis(VerticalAxis);
                 return new Vector2Data(xDirection, yDirection);
             }
         }

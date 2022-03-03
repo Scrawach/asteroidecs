@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace CodeBase.Engine.Services
+namespace CodeBase.Engine.Services.AssetManagement
 {
     public interface IAssets
     {

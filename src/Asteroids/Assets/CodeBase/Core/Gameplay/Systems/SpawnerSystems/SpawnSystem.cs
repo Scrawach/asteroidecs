@@ -8,9 +8,11 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
     {
         private readonly EcsWorld _world = default;
         private readonly EcsFilter<SpawnInfo> _spawnFilter = default;
-        
-        private readonly IFactory _factory = default;
-        
+        private readonly IFactory _factory;
+
+        public SpawnSystem(IFactory factory) => 
+            _factory = factory;
+
         public void Run()
         {
             if (_spawnFilter.IsEmpty())

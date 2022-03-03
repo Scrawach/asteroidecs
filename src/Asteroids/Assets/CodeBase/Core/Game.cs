@@ -13,72 +13,34 @@ namespace CodeBase.Core
 {
     public class Game
     {
-        private readonly IInput _input;
-        private readonly IFactory _factory;
-        private readonly ITime _time;
+        private readonly IDebug _debug;
         private readonly EcsWorld _world;
         private readonly EcsSystems _systems;
+        private readonly SystemBuilder _builder;
         
-        public Game(IInput input, IFactory factory, ITime time)
+        public Game(IInput input, IFactory factory, ITime time, IDebug debug)
         {
-            _input = input;
-            _factory = factory;
-            _time = time;
+            _debug = debug;
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
+            _builder = new SystemBuilder(_world, input, factory, time);
         }
         
         public void Start()
         {
-#if UNITY_EDITOR
-            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
-            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
-#endif
+            _debug.Register(_world);
+            _debug.Register(_systems);
 
             _systems
-                .Add(InputSystems(_world, _input))
-                .Add(MovementSystems(_world, _time))
-                .Add(SpawnSystems(_world, _factory))
-                .Add(ShootSystems(_world))
-                .Add(LifecycleSystems(_world, _time))
+                .Add(_builder.Input())
+                .Add(_builder.Movement())
+                .Add(_builder.Spawn())
+                .Add(_builder.Shoot())
+                .Add(_builder.Lifecycle())
                 .Init();
         }
 
-        public void Update()
-        {
+        public void Update() => 
             _systems.Run();
-        }
-
-        private EcsSystems InputSystems(EcsWorld world, IInput input) =>
-            new EcsSystems(world, "Input Systems")
-                .OneFrame<FireButtonPressedTag>()
-                .Inject(input)
-                .Add(new KeyboardInputSystem())
-                .Add(new MouseInputSystem());
-
-        private EcsSystems MovementSystems(EcsWorld world, ITime time) =>
-            new EcsSystems(world, "Movement Systems")
-                .Inject(time)
-                .Add(new ForwardMovementSystem())
-                .Add(new MoveSystem())
-                .Add(new UpdateBodySystem());
-
-        private EcsSystems SpawnSystems(EcsWorld world, IFactory factory) =>
-            new EcsSystems(world, "Spawn Systems")
-                .Inject(factory)
-                .Add(new SpawnPlayer())
-                .Add(new SpawnBullet())
-                .Add(new SpawnSystem());
-
-        private EcsSystems ShootSystems(EcsWorld world) =>
-            new EcsSystems(world, "Shoot Systems")
-                .OneFrame<ShootPoint>()
-                .Add(new PlayerShoot());
-
-        private EcsSystems LifecycleSystems(EcsWorld world, ITime time) =>
-            new EcsSystems(world, "Lifecycle Systems")
-                .Inject(time)
-                .Add(new LifecycleSystem())
-                .Add(new DestroySystem());
     }
 }

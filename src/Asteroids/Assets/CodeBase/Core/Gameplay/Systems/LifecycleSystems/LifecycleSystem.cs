@@ -8,8 +8,11 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
     public class LifecycleSystem : IEcsRunSystem
     {
         private readonly EcsFilter<Lifetime> _lives = default;
-        private readonly ITime _time = default;
-        
+        private readonly ITime _time;
+
+        public LifecycleSystem(ITime time) => 
+            _time = time;
+
         public void Run()
         {
             foreach (var index in _lives)
