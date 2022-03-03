@@ -29,9 +29,8 @@ namespace CodeBase.Core
         public EcsSystems Input() =>
             new EcsSystems(_world, "Input Systems")
                 .OneFrame<FireButtonPressedTag>()
-                .Inject(_input)
-                .Add(new KeyboardInputSystem())
-                .Add(new MouseInputSystem());
+                .Add(new KeyboardInputSystem(_input))
+                .Add(new MouseInputSystem(_input));
         
         public EcsSystems Movement() =>
             new EcsSystems(_world, "Movement Systems")

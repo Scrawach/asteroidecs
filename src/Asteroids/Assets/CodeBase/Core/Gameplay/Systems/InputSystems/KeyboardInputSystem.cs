@@ -11,7 +11,10 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
     {
         private readonly EcsWorld _world = default;
         private readonly EcsFilter<PlayerTag> _players = default;
-        private readonly IInput _input = default;
+        private readonly IInput _input;
+
+        public KeyboardInputSystem(IInput input) => 
+            _input = input;
 
         public void Run()
         {

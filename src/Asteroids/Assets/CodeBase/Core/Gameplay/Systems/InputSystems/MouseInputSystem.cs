@@ -13,6 +13,9 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
         private readonly EcsFilter<PlayerTag> _players = default;
         private readonly IInput _input = default;
 
+        public MouseInputSystem(IInput input) => 
+            _input = input;
+
         public void Run()
         {
             if (_players.IsEmpty())
