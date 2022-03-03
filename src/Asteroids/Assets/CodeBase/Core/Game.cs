@@ -1,10 +1,12 @@
 ﻿using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
+using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
 using Leopotam.Ecs;
@@ -30,13 +32,13 @@ namespace CodeBase.Core
         {
             _debug.Register(_world);
             _debug.Register(_systems);
-
             _systems
                 .Add(_builder.Input())
                 .Add(_builder.Movement())
                 .Add(_builder.Spawn())
                 .Add(_builder.Shoot())
                 .Add(_builder.Lifecycle())
+                .Add(_builder.Physics())
                 .Init();
         }
 

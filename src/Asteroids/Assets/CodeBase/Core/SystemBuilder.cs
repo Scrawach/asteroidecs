@@ -1,9 +1,11 @@
 using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
+using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
 using Leopotam.Ecs;
@@ -53,5 +55,10 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
                 .Add(new DestroySystem());
+
+        public IEcsSystem Physics() =>
+            new EcsSystems(_world, "Physics Systems")
+                .Add(new TriggerSystem())
+                .OneFrame<OnTriggerEnter>();
     }
 }
