@@ -14,5 +14,11 @@ namespace CodeBase.Engine.Services
         }
 
         public Vector2Data Size { get; }
+        
+        public bool IsOutOfBorder(Vector2Data point) =>
+            point.X > Size.X ||
+            point.X < -Size.X ||
+            point.Y > Size.Y ||
+            point.Y < -Size.Y;
     }
 }

@@ -62,7 +62,7 @@ namespace CodeBase.Core
         public EcsSystems Lifecycle() =>
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
-                .Add(new KillObjectsOutboundsScreen(_gameScreen))
+                .Add(new KillOutOfBorderObjects(_gameScreen))
                 .Add(new DestroySystem())
                 .OneFrame<DestroyTag>();
 
