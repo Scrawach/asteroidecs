@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: d07100d83070f62ec899c80784e50017
+    m_Address: Asteroid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c490040a4779bd3b69c0d6971aa4437d, type: 2}
   m_SchemaSet:

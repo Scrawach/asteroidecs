@@ -43,6 +43,7 @@ namespace CodeBase.Core
         public EcsSystems Spawn() =>
             new EcsSystems(_world, "Spawn Systems")
                 .Add(new SpawnPlayer())
+                .Add(new SpawnAsteroids())
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
 
