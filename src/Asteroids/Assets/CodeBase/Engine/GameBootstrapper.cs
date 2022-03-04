@@ -8,12 +8,22 @@ namespace CodeBase.Engine
 {
     public class GameBootstrapper : MonoBehaviour
     {
-        public UnityInput Input;
-
         private Game _game;
         
-        private void Awake() => 
-            _game = new Game(Input, new GameFactory(new Assets()), new UnityTime(), new UnityDebug());
+        private void Awake()
+        {
+            var mainCamera = Camera.main;
+            
+            _game = new Game
+            (
+                new UnityInput(mainCamera), 
+                new GameFactory(new Assets()), 
+                new UnityTime(), 
+                new UnityDebug(), 
+                new CameraGameScreen(mainCamera),
+                new UnityRandom()
+            );
+        }
 
         private void Start() => 
             _game.Start();

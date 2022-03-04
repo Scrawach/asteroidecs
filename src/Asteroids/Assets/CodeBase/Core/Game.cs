@@ -1,14 +1,4 @@
-﻿using CodeBase.Core.Gameplay.Components;
-using CodeBase.Core.Gameplay.Components.Events;
-using CodeBase.Core.Gameplay.Components.Tags;
-using CodeBase.Core.Gameplay.Services;
-using CodeBase.Core.Gameplay.Systems;
-using CodeBase.Core.Gameplay.Systems.InputSystems;
-using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
-using CodeBase.Core.Gameplay.Systems.MovementSystems;
-using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
-using CodeBase.Core.Gameplay.Systems.ShootSystems;
-using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
+﻿using CodeBase.Core.Gameplay.Services;
 using Leopotam.Ecs;
 
 namespace CodeBase.Core
@@ -20,12 +10,12 @@ namespace CodeBase.Core
         private readonly EcsSystems _systems;
         private readonly SystemBuilder _builder;
         
-        public Game(IInput input, IFactory factory, ITime time, IDebug debug)
+        public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, IRandom random)
         {
             _debug = debug;
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
-            _builder = new SystemBuilder(_world, input, factory, time);
+            _builder = new SystemBuilder(_world, input, factory, time, gameScreen, random);
         }
         
         public void Start()

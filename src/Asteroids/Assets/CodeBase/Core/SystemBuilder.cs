@@ -19,13 +19,18 @@ namespace CodeBase.Core
         private readonly IInput _input;
         private readonly IFactory _factory;
         private readonly ITime _time;
+        private readonly IGameScreen _gameScreen;
+        private readonly IRandom _random;
 
-        public SystemBuilder(EcsWorld world, IInput input, IFactory factory, ITime time)
+        public SystemBuilder(EcsWorld world, IInput input, IFactory factory, 
+            ITime time, IGameScreen gameScreen, IRandom random)
         {
             _world = world;
             _input = input;
             _factory = factory;
             _time = time;
+            _gameScreen = gameScreen;
+            _random = random;
         }
         
         public EcsSystems Input() =>
@@ -43,7 +48,7 @@ namespace CodeBase.Core
         public EcsSystems Spawn() =>
             new EcsSystems(_world, "Spawn Systems")
                 .Add(new SpawnPlayer())
-                .Add(new SpawnAsteroids())
+                .Add(new SpawnAsteroids(_time, _gameScreen, _random))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
 

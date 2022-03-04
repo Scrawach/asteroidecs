@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace CodeBase.Engine.Services
 {
-    public class UnityInput : MonoBehaviour, IInput
+    public class UnityInput : IInput
     {
         private const string HorizontalAxis = "Horizontal";
         private const string VerticalAxis = "Vertical";
         
-        private Camera _camera;
-        
-        private void Awake() => 
-            _camera = Camera.main;
+        private readonly Camera _camera;
+
+        public UnityInput(Camera camera) => 
+            _camera = camera;
 
         public Vector2Data MousePosition => 
             new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
