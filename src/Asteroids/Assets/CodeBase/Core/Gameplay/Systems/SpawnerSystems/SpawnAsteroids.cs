@@ -2,7 +2,6 @@ using CodeBase.Core.Common;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
@@ -42,7 +41,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
             newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Asteroid, spawnPoint, new Vector2Data(0, 0));
         }
 
-        public Vector2Data RandomOnRectangle(float width, float height)
+        private Vector2Data RandomOnRectangle(float width, float height)
         {
             var perimeter = (width + height) * 2f;
             var randomPointOnPerimeter = _random.Range(0, perimeter);

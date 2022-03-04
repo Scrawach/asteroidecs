@@ -42,13 +42,14 @@ namespace CodeBase.Core
         public EcsSystems Movement() =>
             new EcsSystems(_world, "Movement Systems")
                 .Add(new ForwardMovementSystem())
+                .Add(new BlockPlayerMovementOutsideScreen(_gameScreen))
                 .Add(new MoveSystem(_time))
                 .Add(new UpdateBodySystem());
 
         public EcsSystems Spawn() =>
             new EcsSystems(_world, "Spawn Systems")
                 .Add(new SpawnPlayer())
-                .Add(new SpawnAsteroids(_time, _gameScreen, _random))
+                //.Add(new SpawnAsteroids(_time, _gameScreen, _random))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
 
@@ -60,6 +61,7 @@ namespace CodeBase.Core
         public EcsSystems Lifecycle() =>
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
+                .Add(new KillObjectsOutboundsScreen(_gameScreen))
                 .Add(new DestroySystem());
 
         public IEcsSystem Physics() =>
