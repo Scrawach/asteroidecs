@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
-    public class SpawnAsteroids : IEcsRunSystem
+    public class SpawnAsteroids : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsWorld _world = default;
 
@@ -23,6 +23,12 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
             _gameScreen = gameScreen;
         }
         
+        public void Init()
+        {
+            for (var i = 0; i < 10; i++)
+                SpawnAsteroid();
+        }
+        
         public void Run()
         {
             _elapsedTime += _time.DeltaFrame;
@@ -37,9 +43,14 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
         private void SpawnAsteroid()
         {
             var spawnPoint = RandomOnRectangle(_gameScreen.Size.X, _gameScreen.Size.Y) - _gameScreen.Size / 2f;
+            var direction = TargetPoint(1f) - spawnPoint;
             var newEntity = _world.NewEntity();
-            newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Asteroid, spawnPoint, new Vector2Data(0, 0));
+            newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Asteroid, spawnPoint, direction.Normalize());
         }
+
+        private Vector2Data TargetPoint(float withOffset) =>
+            RandomOnRectangle(_gameScreen.Size.X - withOffset, _gameScreen.Size.Y - withOffset) -
+            new Vector2Data(_gameScreen.Size.X - withOffset, _gameScreen.Size.Y - withOffset) / 2f;
 
         private Vector2Data RandomOnRectangle(float width, float height)
         {

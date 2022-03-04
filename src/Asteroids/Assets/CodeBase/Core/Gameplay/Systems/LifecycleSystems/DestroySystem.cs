@@ -14,8 +14,8 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
             {
                 ref var entity = ref _objects.GetEntity(index);
                 var body = _objects.Get2(index);
-                entity.Destroy();
                 body.Body.Destroy();
+                entity.Destroy();
             }
         }
     }

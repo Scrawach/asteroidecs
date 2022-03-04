@@ -6,6 +6,7 @@ using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
+using CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
 using Leopotam.Ecs;
@@ -49,7 +50,7 @@ namespace CodeBase.Core
         public EcsSystems Spawn() =>
             new EcsSystems(_world, "Spawn Systems")
                 .Add(new SpawnPlayer())
-                //.Add(new SpawnAsteroids(_time, _gameScreen, _random))
+                .Add(new SpawnAsteroids(_time, _gameScreen, _random))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
 
@@ -62,11 +63,14 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillObjectsOutboundsScreen(_gameScreen))
-                .Add(new DestroySystem());
+                .Add(new DestroySystem())
+                .OneFrame<DestroyTag>();
 
         public IEcsSystem Physics() =>
             new EcsSystems(_world, "Physics Systems")
-                .Add(new TriggerSystem())
+                .Add(new TriggerSystemBetween<PlayerTag, AsteroidTag>(new DestroyTriggeredEntities()))
+                .Add(new TriggerSystemBetween<AsteroidTag, BulletTag>(new DestroyTriggeredEntities()))
+                .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new InverseMovementDirection()))
                 .OneFrame<OnTriggerEnter>();
     }
 }
