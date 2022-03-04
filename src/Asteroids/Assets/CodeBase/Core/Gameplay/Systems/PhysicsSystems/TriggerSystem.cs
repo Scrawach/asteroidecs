@@ -13,13 +13,26 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
             foreach (var index in _triggers)
             {
                 ref var entity = ref _triggers.GetEntity(index);
-                var trigger = entity.Get<OnTriggerEnter>();
+                var enter = entity.Get<OnTriggerEnter>();
 
-                if (trigger.Sender.Has<PlayerTag>())
-                {
-                    /* TODO: player trigger with something */
-                }
+                if (IsCollideBetween<AsteroidTag, BulletTag>(enter) ||
+                    IsCollideBetween<PlayerTag, AsteroidTag>(enter)) 
+                    DestroyBoth(enter);
             }
         }
+
+        private bool IsCollideBetween<TSender, TTrigger>(OnTriggerEnter enter)
+            where TSender : struct where TTrigger : struct =>
+            enter.Sender.Has<TSender>() && 
+            enter.Trigger.Has<TTrigger>();
+
+        private void DestroyBoth(OnTriggerEnter enter)
+        {
+            Destroy(enter.Sender);
+            Destroy(enter.Trigger);
+        }
+
+        private void Destroy(EcsEntity entity) => 
+            entity.Get<DestroyTag>() = new DestroyTag();
     }
 }

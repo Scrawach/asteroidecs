@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
-    public class SpawnAsteroids : IEcsInitSystem
+    public class SpawnAsteroids : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsWorld _world = default;
         
@@ -12,6 +12,11 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
         {
             var newEntity = _world.NewEntity();
             newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Asteroid, new Vector2Data(5, 0), new Vector2Data(0, 0));
+        }
+
+        public void Run()
+        {
+            
         }
     }
 }
