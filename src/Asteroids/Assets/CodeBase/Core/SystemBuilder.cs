@@ -67,7 +67,7 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
-                .Add(new AsteroidsDropScoreSystems(_wallet))
+                .Add(new DestructionBonusSystem(_wallet))
                 .Add(new DestroySystem())
                 .OneFrame<DestroyTag>();
 
