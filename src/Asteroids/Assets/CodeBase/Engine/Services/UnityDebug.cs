@@ -5,18 +5,20 @@ namespace CodeBase.Engine.Services
 {
     public class UnityDebug : IDebug
     {
-        public void Register(EcsWorld world)
+        public IDebug Register(EcsWorld world)
         {
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (world);
 #endif
+            return this;
         }
 
-        public void Register(EcsSystems systems)
+        public IDebug Register(EcsSystems systems)
         {
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (systems);
 #endif
+            return this;
         }
     }
 }

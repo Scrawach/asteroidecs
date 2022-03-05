@@ -24,8 +24,10 @@ namespace CodeBase.Core
 
         public void Start()
         {
-            _debug.Register(_world);
-            _debug.Register(_systems);
+            _debug
+                .Register(_world)
+                .Register(_systems);
+            
             _systems
                 .Add(_builder.Input())
                 .Add(_builder.Movement())

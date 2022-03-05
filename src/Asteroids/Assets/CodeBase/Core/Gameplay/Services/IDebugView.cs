@@ -4,7 +4,7 @@ namespace CodeBase.Core.Gameplay.Services
 {
     public interface IDebug
     {
-        void Register(EcsWorld world);
-        void Register(EcsSystems systems);
+        IDebug Register(EcsWorld world);
+        IDebug Register(EcsSystems systems);
     }
 }
