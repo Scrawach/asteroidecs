@@ -1,5 +1,6 @@
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Events;
+using CodeBase.Core.Gameplay.Components.Meta;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Services.Meta;
@@ -67,9 +68,13 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
-                .Add(new DestructionBonusSystem(_wallet))
                 .Add(new DestroySystem())
                 .OneFrame<DestroyTag>();
+
+        public EcsSystems Meta() =>
+            new EcsSystems(_world, "Meta Systems")
+                .Add(new DestructionBonusSystem(_wallet))
+                .Add(new GameOverSystem());
 
         public IEcsSystem Physics() =>
             new EcsSystems(_world, "Physics Systems")
