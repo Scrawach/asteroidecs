@@ -70,7 +70,7 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Physics Systems")
                 .Add(new TriggerSystemBetween<PlayerTag, AsteroidTag>(new DestroyTriggeredEntities()))
                 .Add(new TriggerSystemBetween<AsteroidTag, BulletTag>(new DestroyTriggeredEntities()))
-                .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new InverseMovementDirection()))
+                .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new SumAndInverseMovementDirection()))
                 .OneFrame<OnTriggerEnter>();
     }
 }
