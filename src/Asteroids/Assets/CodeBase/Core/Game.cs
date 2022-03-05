@@ -33,8 +33,8 @@ namespace CodeBase.Core
                 .Add(_builder.Movement())
                 .Add(_builder.Spawn())
                 .Add(_builder.Shoot())
-                .Add(_builder.Lifecycle())
                 .Add(_builder.Physics())
+                .Add(_builder.Lifecycle())
                 .Init();
         }
 

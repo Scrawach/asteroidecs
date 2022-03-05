@@ -1,15 +1,14 @@
 using CodeBase.Core.Common;
 using CodeBase.Core.Gameplay.Services;
-using UnityEngine;
 
-namespace CodeBase.Engine.Services
+namespace CodeBase.Engine.Services.CameraLogic
 {
     public class CameraGameScreen : IGameScreen
     {
-        public CameraGameScreen(Camera camera)
+        public CameraGameScreen(UnityEngine.Camera camera)
         {
             var verticalSize = camera.orthographicSize;
-            var horizontalSize = Camera.VerticalToHorizontalFieldOfView(verticalSize, camera.aspect);
+            var horizontalSize = UnityEngine.Camera.VerticalToHorizontalFieldOfView(verticalSize, camera.aspect);
             Size = new Vector2Data(horizontalSize * 2, verticalSize * 2);
         }
 

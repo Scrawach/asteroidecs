@@ -13,7 +13,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
         private readonly IGameScreen _gameScreen;
         private readonly IRandom _random;
 
-        private float _respawnTime = 1f;
+        private float _respawnTime = 0.2f;
         private float _elapsedTime;
 
         public SpawnAsteroids(ITime time, IGameScreen gameScreen, IRandom random)
