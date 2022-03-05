@@ -1,4 +1,5 @@
 ﻿using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Meta;
 using Leopotam.Ecs;
 
 namespace CodeBase.Core
@@ -9,15 +10,18 @@ namespace CodeBase.Core
         private readonly EcsWorld _world;
         private readonly EcsSystems _systems;
         private readonly SystemBuilder _builder;
-        
+
         public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, IRandom random)
         {
             _debug = debug;
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
-            _builder = new SystemBuilder(_world, input, factory, time, gameScreen, random);
+            Wallet = new WalletService();
+            _builder = new SystemBuilder(_world, input, factory, time, gameScreen, random, Wallet);
         }
-        
+
+        public IWallet Wallet { get; }
+
         public void Start()
         {
             _debug.Register(_world);

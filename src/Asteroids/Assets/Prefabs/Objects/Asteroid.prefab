@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5247037196033349963}
   - component: {fileID: 4166473372570092038}
   - component: {fileID: 8629472745571385938}
+  - component: {fileID: 4353389514805062539}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -146,6 +147,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 494a18ab4c244af9acdbd2dadc281b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value: 1
+--- !u!114 &4353389514805062539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362733579654351516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b95f873e6b4b7ab9a32af412c5c24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Value:

@@ -2,8 +2,10 @@ using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
+using CodeBase.Core.Gameplay.Systems.MetaSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies;
@@ -22,9 +24,10 @@ namespace CodeBase.Core
         private readonly ITime _time;
         private readonly IGameScreen _gameScreen;
         private readonly IRandom _random;
+        private readonly IWallet _wallet;
 
         public SystemBuilder(EcsWorld world, IInput input, IFactory factory, 
-            ITime time, IGameScreen gameScreen, IRandom random)
+            ITime time, IGameScreen gameScreen, IRandom random, IWallet wallet)
         {
             _world = world;
             _input = input;
@@ -32,6 +35,7 @@ namespace CodeBase.Core
             _time = time;
             _gameScreen = gameScreen;
             _random = random;
+            _wallet = wallet;
         }
         
         public EcsSystems Input() =>
@@ -63,13 +67,14 @@ namespace CodeBase.Core
             new EcsSystems(_world, "Lifecycle Systems")
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
+                .Add(new AsteroidsDropScoreSystems(_wallet))
                 .Add(new DestroySystem())
                 .OneFrame<DestroyTag>();
 
         public IEcsSystem Physics() =>
             new EcsSystems(_world, "Physics Systems")
                 .Add(new TriggerSystemBetween<PlayerTag, AsteroidTag>(new DestroyTriggeredEntities()))
-                .Add(new TriggerSystemBetween<AsteroidTag, BulletTag>(new DestroyTriggeredEntities()))
+                .Add(new TriggerSystemBetween<AsteroidTag, BulletTag>(new PlayerDestroyTriggeredEntities()))
                 .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new SumAndInverseMovementDirection()))
                 .OneFrame<OnTriggerEnter>();
     }
