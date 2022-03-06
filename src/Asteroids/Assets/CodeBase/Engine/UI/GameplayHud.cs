@@ -1,4 +1,4 @@
-using CodeBase.Core;
+using CodeBase.Core.Gameplay.Services.Meta;
 using UnityEngine;
 
 namespace CodeBase.Engine.UI
@@ -8,7 +8,7 @@ namespace CodeBase.Engine.UI
         [SerializeField] 
         private ScoreCounter _scoreCounter;
         
-        public void Construct(Game game) => 
-            _scoreCounter.Construct(game.Wallet);
+        public void Construct(IWallet wallet) => 
+            _scoreCounter.Register(wallet);
     }
 }

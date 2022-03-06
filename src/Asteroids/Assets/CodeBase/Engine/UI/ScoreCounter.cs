@@ -11,14 +11,11 @@ namespace CodeBase.Engine.UI
 
         private IWallet _wallet;
         
-        public void Construct(IWallet wallet) => 
+        public void Register(IWallet wallet)
+        {
             _wallet = wallet;
-
-        private void OnEnable() => 
             _wallet.Changed += OnScoreChanged;
-
-        private void OnDisable() => 
-            _wallet.Changed -= OnScoreChanged;
+        }
 
         private void OnScoreChanged() => 
             _label.text = $"{_wallet.Score.ToString()}";

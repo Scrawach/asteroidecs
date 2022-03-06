@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core;
+using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.CameraLogic;
@@ -19,16 +20,23 @@ namespace CodeBase
             await GameLoop(NewGame(Camera.main));
         }
 
-        private static Game NewGame(Camera mainCamera) =>
-            new Game
+        private static Game NewGame(Camera mainCamera)
+        {
+            var wallet = new WalletService();
+            var factory = new GameFactory(new Assets(), wallet);
+            factory.CreateHud();
+            
+            return new Game
             (
-                new UnityInput(mainCamera), 
-                new GameFactory(new Assets()), 
-                new UnityTime(), 
-                new UnityDebug(), 
+                new UnityInput(mainCamera),
+                factory,
+                new UnityTime(),
+                new UnityDebug(),
                 new CameraGameScreen(mainCamera),
-                new UnityRandom()
+                new UnityRandom(),
+                wallet
             );
+        }
 
         private static async Task GameLoop(Game game)
         {

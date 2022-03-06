@@ -12,12 +12,12 @@ namespace CodeBase.Core
         private readonly EcsSystems _systems;
         private readonly ISystemBuilder[] _builders;
 
-        public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, IRandom random)
+        public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, 
+            IRandom random, IWallet wallet)
         {
             _debug = debug;
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
-            Wallet = new WalletService();
 
             _builders = new ISystemBuilder[]
             {
@@ -26,13 +26,11 @@ namespace CodeBase.Core
                 new SpawnSystems(factory, gameScreen, time, random),
                 new ShootSystems(),
                 new PhysicSystems(),
-                new MetaSystems(Wallet),
+                new MetaSystems(wallet),
                 new LifecycleSystems(time, gameScreen)
             };
         }
         
-        public IWallet Wallet { get; }
-
         public void Start()
         {
             _debug
