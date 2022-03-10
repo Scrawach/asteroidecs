@@ -1,49 +1,50 @@
-﻿using CodeBase.Core.Gameplay.Services;
-using CodeBase.Core.Gameplay.Services.Meta;
+﻿using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Infrastructure.Systems;
 using Leopotam.Ecs;
+using UnityEngine;
 
 namespace CodeBase.Core
 {
     public class Game
     {
-        private readonly IDebug _debug;
         private readonly EcsWorld _world;
-        private readonly EcsSystems _systems;
         private readonly ISystemBuilder[] _builders;
+        private EcsSystems _systems;
 
-        public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, 
-            IRandom random, IWallet wallet, IUiFactory uiFactory)
+        public Game(EcsWorld world, params ISystemBuilder[] systemBuilders)
         {
-            _debug = debug;
-            _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
-
-            _builders = new ISystemBuilder[]
-            {
-                new InputSystems(input),
-                new MovementSystems(gameScreen, time),
-                new SpawnSystems(factory, gameScreen, time, random),
-                new ShootSystems(),
-                new PhysicSystems(),
-                new MetaSystems(wallet, uiFactory),
-                new LifecycleSystems(time, gameScreen)
-            };
+            _world = world;
+            _builders = systemBuilders;
         }
         
+        public bool IsPlaying { get; private set; }
+
         public void Start()
         {
-            _debug
-                .Register(_world)
-                .Register(_systems);
-
-            foreach (var builder in _builders) 
-                _systems.Add(builder.Build(_world));
-
-            _systems.Init();
+            InitWorld();
+            IsPlaying = true;
+            Application.quitting += () => IsPlaying = false;
         }
 
         public void Update() => 
             _systems.Run();
+
+        public void Restart()
+        {
+            _systems.Destroy();
+            InitWorld();
+        }
+        
+        private void InitWorld()
+        {
+            _systems = new EcsSystems(_world);
+
+            foreach (var builder in _builders)
+                _systems.Add(builder.Build(_world));
+
+            _systems.Add(new GameCleanUpSystem(this, _world));
+            
+            _systems.Init();
+        }
     }
 }

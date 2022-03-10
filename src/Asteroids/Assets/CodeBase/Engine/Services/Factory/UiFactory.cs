@@ -11,25 +11,39 @@ namespace CodeBase.Engine.Services.Factory
     {
         private readonly IAssets _assets;
         private readonly IWallet _wallet;
+        private readonly IRestartService _restartService;
 
-        public UiFactory(IAssets assets, IWallet wallet)
+        private GameplayHud _gameplayHud;
+        private GameOverWindow _gameOverWindow;
+
+        public UiFactory(IAssets assets, IWallet wallet, IRestartService restartService)
         {
             _assets = assets;
             _wallet = wallet;
+            _restartService = restartService;
         }
         
-        public async void CreateHud()
+        public async void OpenGameplayHud()
         {
             const string address = "GameplayHud";
             var instance = await InstantiateAsync(address);
-            instance.GetComponent<GameplayHud>().Construct(_wallet);
+            _gameplayHud = instance.GetComponent<GameplayHud>();
+            _gameplayHud.Construct(_wallet);
         }
 
-        public async void CreateGameOverWindow()
+        public void CloseGameplayHud() => 
+            Object.Destroy(_gameplayHud.gameObject);
+
+        public async void OpenGameOverWindow()
         {
             const string address = "GameOverWindow";
             var instance = await InstantiateAsync(address);
+            _gameOverWindow = instance.GetComponent<GameOverWindow>();
+            _gameOverWindow.Construct(_restartService);
         }
+
+        public void CloseGameOverWindow() => 
+            Object.Destroy(_gameOverWindow.gameObject);
 
         private async Task<GameObject> InstantiateAsync(string address)
         {

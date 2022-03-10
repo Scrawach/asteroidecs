@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace CodeBase.Core.Gameplay.Systems.MetaSystems
 {
-    public class GameOverSystem : IEcsRunSystem
+    public class GameOverSystem : IEcsRunSystem, IEcsDestroySystem
     {
         private readonly EcsFilter<GameOverEvent> _gameOver = default;
         private readonly IUiFactory _uiFactory;
@@ -17,7 +17,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
             if (_gameOver.IsEmpty())
                 return;
             
-            _uiFactory.CreateGameOverWindow();
+            _uiFactory.OpenGameOverWindow();
 
             foreach (var index in _gameOver)
             {
@@ -25,5 +25,8 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
                 entity.Del<GameOverEvent>();
             }
         }
+
+        public void Destroy() => 
+            _uiFactory.CloseGameOverWindow();
     }
 }

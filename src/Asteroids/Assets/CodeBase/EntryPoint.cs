@@ -1,52 +1,58 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core;
 using CodeBase.Core.Gameplay.Services.Meta;
+using CodeBase.Core.Infrastructure.Systems;
 using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace CodeBase
 {
     public static class EntryPoint
     {
-        private static bool _playing = true;
-        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        public static async void Main()
-        {
-            Application.quitting += () => _playing = false;
+        public static async void Main() => 
             await GameLoop(NewGame(Camera.main));
-        }
-
-        private static Game NewGame(Camera mainCamera)
-        {
-            var assets = new Assets();
-            var wallet = new WalletService();
-            var uiFactory = new UiFactory(assets, wallet);
-
-            return new Game
-            (
-                new UnityInput(mainCamera),
-                new GameFactory(assets),
-                new UnityTime(),
-                new UnityDebug(),
-                new CameraGameScreen(mainCamera),
-                new UnityRandom(0),
-                wallet,
-                uiFactory
-            );
-        }
 
         private static async Task GameLoop(Game game)
         {
             game.Start();
-            while (_playing)
+            
+            while (game.IsPlaying)
             {
                 game.Update();
                 await Task.Yield();
             }
+        }
+
+        private static Game NewGame(Camera mainCamera)
+        {
+            var ecsWorld = new EcsWorld();
+            var assets = new Assets();
+            var wallet = new WalletService();
+            var time = new UnityTime();
+            var random = new UnityRandom(0);
+
+            var gameScreen = new CameraGameScreen(mainCamera);
+            
+            var factory = new GameFactory(assets);
+            var restartService = new RestartService(ecsWorld);
+            var uiFactory = new UiFactory(assets, wallet, restartService);
+            
+            return new Game
+            (
+                ecsWorld,
+                new InputSystems(new UnityInput(mainCamera)),
+                new MovementSystems(gameScreen, time),
+                new SpawnSystems(factory, gameScreen, time, random),
+                new ShootSystems(),
+                new PhysicSystems(),
+                new MetaSystems(wallet, uiFactory),
+                new LifecycleSystems(time, gameScreen)
+            );
         }
     }
 }

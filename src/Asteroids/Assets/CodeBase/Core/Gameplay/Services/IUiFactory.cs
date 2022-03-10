@@ -2,7 +2,9 @@ namespace CodeBase.Core.Gameplay.Services
 {
     public interface IUiFactory
     {
-        void CreateHud();
-        void CreateGameOverWindow();
+        void OpenGameplayHud();
+        void CloseGameplayHud();
+        void OpenGameOverWindow();
+        void CloseGameOverWindow();
     }
 }
