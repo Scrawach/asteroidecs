@@ -36,6 +36,7 @@ namespace CodeBase
             var time = new UnityTime();
             var random = new UnityRandom(0);
 
+            var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
             
             var factory = new GameFactory(assets);
@@ -45,7 +46,7 @@ namespace CodeBase
             var game = new Game
             (
                 ecsWorld,
-                new InputSystems(new UnityInput(mainCamera)),
+                new InputSystems(input),
                 new MovementSystems(gameScreen, time),
                 new SpawnSystems(factory, gameScreen, time, random),
                 new ShootSystems(),
