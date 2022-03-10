@@ -11,6 +11,9 @@ namespace CodeBase.Engine.UI
         private ScoreCounter _scoreCounter;
         
         public void Construct(IWallet wallet) => 
-            _scoreCounter.Register(wallet);
+            _scoreCounter.Subscribe(wallet);
+
+        private void OnDestroy() => 
+            _scoreCounter.UnSubscribe();
     }
 }
