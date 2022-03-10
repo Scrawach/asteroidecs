@@ -18,6 +18,7 @@ namespace CodeBase.Core.Infrastructure.Systems
 
         public EcsSystems Build(EcsWorld world) =>
             new EcsSystems(world, nameof(MetaSystems))
+                .Add(new EraseWalletOnStartSystem(_wallet))
                 .Add(new GameplayHudLifecycleSystem(_uiFactory))
                 .Add(new DestructionBonusSystem(_wallet))
                 .Add(new GameOverSystem(_uiFactory));
