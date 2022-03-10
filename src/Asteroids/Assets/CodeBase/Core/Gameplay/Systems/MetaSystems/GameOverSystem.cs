@@ -16,7 +16,14 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
         {
             if (_gameOver.IsEmpty())
                 return;
+            
             _uiFactory.CreateGameOverWindow();
+
+            foreach (var index in _gameOver)
+            {
+                ref var entity = ref _gameOver.GetEntity(index);
+                entity.Del<GameOverEvent>();
+            }
         }
     }
 }
