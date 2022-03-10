@@ -1,7 +1,6 @@
 ﻿using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Infrastructure.Systems;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace CodeBase.Core
 {
@@ -23,18 +22,20 @@ namespace CodeBase.Core
         {
             InitWorld();
             IsPlaying = true;
-            Application.quitting += () => IsPlaying = false;
         }
 
         public void Update() => 
             _systems.Run();
+
+        public void Quit() => 
+            IsPlaying = false;
 
         public void Restart()
         {
             _systems.Destroy();
             InitWorld();
         }
-        
+
         private void InitWorld()
         {
             _systems = new EcsSystems(_world);

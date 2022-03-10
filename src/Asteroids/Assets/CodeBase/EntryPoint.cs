@@ -42,7 +42,7 @@ namespace CodeBase
             var restartService = new RestartService(ecsWorld);
             var uiFactory = new UiFactory(assets, wallet, restartService);
             
-            return new Game
+            var game = new Game
             (
                 ecsWorld,
                 new InputSystems(new UnityInput(mainCamera)),
@@ -53,6 +53,10 @@ namespace CodeBase
                 new MetaSystems(wallet, uiFactory),
                 new LifecycleSystems(time, gameScreen)
             );
+
+            Application.quitting += () => game.Quit();
+            
+            return game;
         }
     }
 }
