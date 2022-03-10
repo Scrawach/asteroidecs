@@ -14,13 +14,9 @@ namespace CodeBase.Engine.Services.Factory
     public class GameFactory : IFactory
     {
         private readonly IAssets _assets;
-        private readonly IWallet _wallet;
 
-        public GameFactory(IAssets assets, IWallet wallet)
-        {
+        public GameFactory(IAssets assets) => 
             _assets = assets;
-            _wallet = wallet;
-        }
 
         public async void Create(SpawnInfo info, EcsWorld world)
         {
@@ -30,14 +26,6 @@ namespace CodeBase.Engine.Services.Factory
 
             if (instance.TryGetComponent<MonoEntity>(out var monoEntity)) 
                 CreateEntity(info, world, monoEntity);
-        }
-
-        public async void CreateHud()
-        {
-            const string address = "GameplayHud";
-            var prefab = await _assets.Load<GameObject>(address);
-            var instance = Object.Instantiate(prefab);
-            instance.GetComponent<GameplayHud>().Construct(_wallet);
         }
 
         private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) => 

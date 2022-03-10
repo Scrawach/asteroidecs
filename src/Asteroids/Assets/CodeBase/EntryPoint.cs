@@ -22,14 +22,15 @@ namespace CodeBase
 
         private static Game NewGame(Camera mainCamera)
         {
+            var assets = new Assets();
             var wallet = new WalletService();
-            var factory = new GameFactory(new Assets(), wallet);
-            factory.CreateHud();
+            var uiFactory = new UiFactory(assets, wallet);
+            uiFactory.CreateHud();
             
             return new Game
             (
                 new UnityInput(mainCamera),
-                factory,
+                new GameFactory(assets),
                 new UnityTime(),
                 new UnityDebug(),
                 new CameraGameScreen(mainCamera),
