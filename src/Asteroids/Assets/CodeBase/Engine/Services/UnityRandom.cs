@@ -4,6 +4,9 @@ namespace CodeBase.Engine.Services
 {
     public class UnityRandom : IRandom
     {
+        public UnityRandom(int seed) => 
+            UnityEngine.Random.InitState(seed);
+
         public int Range(int @from, int to) => 
             UnityEngine.Random.Range(@from, to);
 

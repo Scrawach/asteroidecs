@@ -33,7 +33,7 @@ namespace CodeBase
                 new UnityTime(),
                 new UnityDebug(),
                 new CameraGameScreen(mainCamera),
-                new UnityRandom(),
+                new UnityRandom(0),
                 wallet
             );
         }
