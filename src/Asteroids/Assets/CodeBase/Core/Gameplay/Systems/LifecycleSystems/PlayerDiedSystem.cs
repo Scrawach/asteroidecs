@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
-    public class GameOverSystem : IEcsRunSystem
+    public class PlayerDiedSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world = default;
         private readonly EcsFilter<PlayerTag, DestroyTag> _playerDeath = default;

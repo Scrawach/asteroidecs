@@ -25,8 +25,7 @@ namespace CodeBase
             var assets = new Assets();
             var wallet = new WalletService();
             var uiFactory = new UiFactory(assets, wallet);
-            uiFactory.CreateHud();
-            
+
             return new Game
             (
                 new UnityInput(mainCamera),
@@ -35,7 +34,8 @@ namespace CodeBase
                 new UnityDebug(),
                 new CameraGameScreen(mainCamera),
                 new UnityRandom(0),
-                wallet
+                wallet,
+                uiFactory
             );
         }
 

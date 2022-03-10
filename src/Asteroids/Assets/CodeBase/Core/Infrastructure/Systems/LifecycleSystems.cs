@@ -21,6 +21,7 @@ namespace CodeBase.Core.Infrastructure.Systems
             new EcsSystems(world, nameof(LifecycleSystems))
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
+                .Add(new PlayerDiedSystem())
                 .Add(new DestroySystem())
                 .OneFrame<DestroyTag>();
     }

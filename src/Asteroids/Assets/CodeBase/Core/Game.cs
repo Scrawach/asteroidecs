@@ -13,7 +13,7 @@ namespace CodeBase.Core
         private readonly ISystemBuilder[] _builders;
 
         public Game(IInput input, IFactory factory, ITime time, IDebug debug, IGameScreen gameScreen, 
-            IRandom random, IWallet wallet)
+            IRandom random, IWallet wallet, IUiFactory uiFactory)
         {
             _debug = debug;
             _world = new EcsWorld();
@@ -26,7 +26,7 @@ namespace CodeBase.Core
                 new SpawnSystems(factory, gameScreen, time, random),
                 new ShootSystems(),
                 new PhysicSystems(),
-                new MetaSystems(wallet),
+                new MetaSystems(wallet, uiFactory),
                 new LifecycleSystems(time, gameScreen)
             };
         }
