@@ -1,4 +1,3 @@
-using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
 using Leopotam.Ecs;
 

@@ -1,5 +1,3 @@
-using System;
-
 namespace CodeBase.Core.Gameplay.Services.Meta
 {
     public interface IRestartService

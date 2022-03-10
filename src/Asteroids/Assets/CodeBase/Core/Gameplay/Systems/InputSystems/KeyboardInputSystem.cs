@@ -1,5 +1,4 @@
 using CodeBase.Core.Common;
-using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;

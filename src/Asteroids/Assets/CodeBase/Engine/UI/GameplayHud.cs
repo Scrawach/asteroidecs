@@ -1,6 +1,4 @@
-using System;
 using CodeBase.Core.Gameplay.Services.Meta;
-using Leopotam.Ecs;
 using UnityEngine;
 
 namespace CodeBase.Engine.UI

@@ -1,6 +1,5 @@
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace CodeBase.Core.Gameplay.Systems.MetaSystems
 {
