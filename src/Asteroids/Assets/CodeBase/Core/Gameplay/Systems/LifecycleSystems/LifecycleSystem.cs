@@ -1,27 +1,30 @@
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
     public class LifecycleSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Lifetime> _lives = default;
         private readonly ITime _time;
 
-        public LifecycleSystem(ITime time) => 
-            _time = time;
+        public LifecycleSystem(ITime time) => _time = time;
 
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _lives)
+            var world = systems.GetWorld();
+            var filter = world.Filter<Lifetime>().End();
+
+            var lifetimes = world.GetPool<Lifetime>();
+            var dead = world.GetPool<DestroyTag>();
+
+            foreach (var index in filter)
             {
-                ref var life = ref _lives.Get1(index);
+                ref var life = ref lifetimes.Get(index);
                 life.Time -= _time.DeltaFrame;
 
-                if (life.Time <= 0) 
-                    _lives.GetEntity(index).Get<DestroyTag>();
+                if (life.Time <= 0) dead.Add(index);
             }
         }
     }

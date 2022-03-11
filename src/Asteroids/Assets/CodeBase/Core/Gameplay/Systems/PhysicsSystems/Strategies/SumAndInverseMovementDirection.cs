@@ -1,19 +1,20 @@
-using CodeBase.Core.Common;
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Moves;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
 {
     public class SumAndInverseMovementDirection : IEnterTriggerStrategy
     {
-        public void OnEnter(OnTriggerEnter enter)
+        public void OnEnter(EcsWorld world, OnTriggerEnter enter)
         {
-            ref var first = ref enter.Sender.Get<Movement>();
-            ref var second = ref enter.Trigger.Get<Movement>();
+            var movements = world.GetPool<Movement>();
+            ref var senderMovement = ref movements.Get(enter.Sender);
+            ref var triggerMovement = ref movements.Get(enter.Trigger);
 
-            first.Direction = (first.Direction + second.Direction).Normalize();
-            second.Direction = first.Direction * -1f;
+            senderMovement.Direction = (senderMovement.Direction + triggerMovement.Direction).Normalize();
+            triggerMovement.Direction = senderMovement.Direction * -1f;
         }
     }
 }

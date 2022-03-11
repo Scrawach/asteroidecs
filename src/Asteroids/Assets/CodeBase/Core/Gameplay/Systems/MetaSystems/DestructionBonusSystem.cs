@@ -1,27 +1,32 @@
 using CodeBase.Core.Gameplay.Components.Meta;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services.Meta;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MetaSystems
 {
     public class DestructionBonusSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BonusForDestruction, KilledByPlayer> _destroyingAsteroids = default;
         private readonly IWallet _wallet;
 
-        public DestructionBonusSystem(IWallet wallet) => 
-            _wallet = wallet;
+        public DestructionBonusSystem(IWallet wallet) => _wallet = wallet;
 
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            var bonus = 0;
-            
-            foreach (var index in _destroyingAsteroids) 
-                bonus += _destroyingAsteroids.Get1(index).Value;
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<BonusForDestruction>()
+                .Inc<KilledByPlayer>()
+                .End();
 
-            if (bonus > 0)
-                _wallet.Add(bonus);
+            var resultBonus = 0;
+            var bonuses = world.GetPool<BonusForDestruction>();
+
+            foreach (var index in filter)
+                resultBonus += bonuses.Get(index).Value;
+
+            if (resultBonus > 0)
+                _wallet.Add(resultBonus);
         }
     }
 }

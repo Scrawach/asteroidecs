@@ -1,33 +1,39 @@
 using CodeBase.Core.Common;
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.ShootSystems
 {
     public class PlayerShoot : IEcsRunSystem
     {
-        private readonly EcsFilter<FireButtonPressedTag> _shootFilter = default;
-        private readonly EcsFilter<PlayerTag, Position, Rotation> _players = default;
-        
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            if (_shootFilter.IsEmpty())
+            var world = systems.GetWorld();
+            var buttonPressed = world.Filter<FireButtonPressedTag>().End();
+            if (buttonPressed.GetEntitiesCount() < 1)
                 return;
 
-            foreach (var index in _players)
+            var players = world.Filter<PlayerTag>()
+                .Inc<Position>()
+                .Inc<Rotation>()
+                .End();
+
+            var positions = world.GetPool<Position>();
+            var rotations = world.GetPool<Rotation>();
+            foreach (var index in players)
             {
-                ref var entity = ref _players.GetEntity(index);
-                var position = _players.Get2(index);
-                var rotation = _players.Get3(index);
-                
-                entity.Get<ShootPoint>() = new ShootPoint
+                ref var position = ref positions.Get(index);
+                ref var rotation = ref rotations.Get(index);
+
+                world.NewEntityWith(new ShootPoint
                 {
                     Bullet = ObjectId.PlayerBullet,
                     Position = position.Value,
                     Direction = rotation.Direction
-                };
+                });
             }
         }
     }

@@ -1,15 +1,16 @@
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class SpawnSystems : ISystemBuilder
+    public class SpawnSystems : ISystemConnect
     {
         private readonly IFactory _factory;
         private readonly IGameScreen _gameScreen;
-        private readonly ITime _time;
         private readonly IRandom _random;
+        private readonly ITime _time;
 
         public SpawnSystems(IFactory factory, IGameScreen gameScreen, ITime time, IRandom random)
         {
@@ -19,8 +20,8 @@ namespace CodeBase.Core.Infrastructure.Systems
             _random = random;
         }
 
-        public EcsSystems Build(EcsWorld world) =>
-            new EcsSystems(world, nameof(SpawnSystems))
+        public EcsSystems ConnectTo(EcsSystems systems) =>
+            systems
                 .Add(new SpawnPlayer())
                 .Add(new SpawnAsteroids(_time, _gameScreen, _random))
                 .Add(new SpawnBullet())

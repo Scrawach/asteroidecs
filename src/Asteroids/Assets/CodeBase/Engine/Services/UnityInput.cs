@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Core.Common;
+﻿using CodeBase.Core.Common;
 using CodeBase.Core.Gameplay.Services;
 using UnityEngine;
 
@@ -9,13 +8,12 @@ namespace CodeBase.Engine.Services
     {
         private const string HorizontalAxis = "Horizontal";
         private const string VerticalAxis = "Vertical";
-        
+
         private readonly Camera _camera;
 
-        public UnityInput(Camera camera) => 
-            _camera = camera;
+        public UnityInput(Camera camera) => _camera = camera;
 
-        public Vector2Data MousePosition => 
+        public Vector2Data MousePosition =>
             new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
 
         public Vector2Data WorldMousePosition
@@ -36,8 +34,7 @@ namespace CodeBase.Engine.Services
                 return new Vector2Data(xDirection, yDirection);
             }
         }
-        
-        public bool IsFireButtonPressed() => 
-            Input.GetKeyDown(KeyCode.Mouse0);
+
+        public bool IsFireButtonPressed() => Input.GetKeyDown(KeyCode.Mouse0);
     }
 }

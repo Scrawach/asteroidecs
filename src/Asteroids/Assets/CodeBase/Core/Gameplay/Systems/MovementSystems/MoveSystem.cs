@@ -1,29 +1,37 @@
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class MoveSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Movement> _movables = default;
         private readonly ITime _time;
 
-        public MoveSystem(ITime time) => 
-            _time = time;
+        public MoveSystem(ITime time) => _time = time;
 
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _movables)
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<Position>()
+                .Inc<Movement>()
+                .Inc<MovementSpeed>()
+                .End();
+
+            var positions = world.GetPool<Position>();
+            var movements = world.GetPool<Movement>();
+            var speeds = world.GetPool<MovementSpeed>();
+
+            foreach (var index in filter)
             {
-                ref var entity = ref _movables.GetEntity(index);
-                ref var position = ref entity.Get<Position>();
-                
-                var direction = entity.Get<Movement>().Direction;
-                var speed = entity.Get<MovementSpeed>().Value;
-                
-                var velocity = direction * speed;
-                position.Value += velocity * _time.DeltaFrame;
+                ref var position = ref positions.Get(index);
+                ref var movement = ref movements.Get(index);
+                ref var speed = ref speeds.Get(index);
+
+                var step = speed.Value * _time.DeltaFrame;
+                var velocity = movement.Direction * step;
+                position.Value += velocity;
             }
         }
     }

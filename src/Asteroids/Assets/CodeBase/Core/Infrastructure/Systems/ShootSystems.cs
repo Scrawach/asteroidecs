@@ -1,14 +1,16 @@
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class ShootSystems : ISystemBuilder
+    public class ShootSystems : ISystemConnect
     {
-        public EcsSystems Build(EcsWorld world) =>
-            new EcsSystems(world, nameof(ShootSystems))
-                .OneFrame<ShootPoint>()
+        public EcsSystems ConnectTo(EcsSystems systems) =>
+            systems
+                .DeleteHere<ShootPoint>()
                 .Add(new PlayerShoot());
     }
 }

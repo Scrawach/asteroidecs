@@ -1,5 +1,5 @@
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MetaSystems
 {
@@ -7,13 +7,10 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
     {
         private readonly IUiFactory _uiFactory;
 
-        public GameplayHudLifecycleSystem(IUiFactory uiFactory) => 
-            _uiFactory = uiFactory;
-        
-        public void Init() => 
-            _uiFactory.OpenGameplayHud();
+        public GameplayHudLifecycleSystem(IUiFactory uiFactory) => _uiFactory = uiFactory;
 
-        public void Destroy() => 
-            _uiFactory.CloseGameplayHud();
+        public void Destroy(EcsSystems systems) => _uiFactory.CloseGameplayHud();
+
+        public void Init(EcsSystems systems) => _uiFactory.OpenGameplayHud();
     }
 }

@@ -6,21 +6,18 @@ namespace CodeBase.Engine.UI
 {
     public class ScoreCounter : MonoBehaviour
     {
-        [SerializeField] 
-        private Text _label;
+        [SerializeField] private Text _label;
 
         private IWallet _wallet;
-        
+
         public void Subscribe(IWallet wallet)
         {
             _wallet = wallet;
             _wallet.Changed += OnScoreChanged;
         }
 
-        public void UnSubscribe() => 
-            _wallet.Changed -= OnScoreChanged;
+        public void UnSubscribe() => _wallet.Changed -= OnScoreChanged;
 
-        private void OnScoreChanged() => 
-            _label.text = $"{_wallet.Score.ToString()}";
+        private void OnScoreChanged() => _label.text = $"{_wallet.Score.ToString()}";
     }
 }

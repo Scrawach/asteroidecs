@@ -1,17 +1,16 @@
 using CodeBase.Core.Common;
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnPlayer : IEcsInitSystem
     {
-        private readonly EcsWorld _world = default;
-        
-        public void Init()
+        public void Init(EcsSystems systems)
         {
-            var newEntity = _world.NewEntity();
-            newEntity.Get<SpawnInfo>() = new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0), new Vector2Data(0, 1));
+            var world = systems.GetWorld();
+            world.NewEntityWith(new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0), new Vector2Data(0, 1)));
         }
     }
 }

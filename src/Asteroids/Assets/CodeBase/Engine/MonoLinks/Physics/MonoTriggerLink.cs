@@ -1,6 +1,5 @@
-using System;
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Events;
-using Leopotam.Ecs;
 using UnityEngine;
 
 namespace CodeBase.Engine.MonoLinks.Physics
@@ -10,8 +9,7 @@ namespace CodeBase.Engine.MonoLinks.Physics
     {
         private bool _alwaysRegistered;
 
-        private void FixedUpdate() => 
-            _alwaysRegistered = false;
+        private void FixedUpdate() => _alwaysRegistered = false;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -21,11 +19,13 @@ namespace CodeBase.Engine.MonoLinks.Physics
                     return;
 
                 _alwaysRegistered = true;
-                Entity.Get<OnTriggerEnter>() = new OnTriggerEnter
+
+
+                World.NewEntityWith(new OnTriggerEnter
                 {
                     Sender = Entity,
                     Trigger = link.Entity
-                };
+                });
             }
         }
     }

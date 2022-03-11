@@ -1,21 +1,26 @@
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
     public class DestroySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<DestroyTag, EngineBody> _objects = default;
-        
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _objects)
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<DestroyTag>()
+                .Inc<EngineBody>()
+                .End();
+
+            var bodies = world.GetPool<EngineBody>();
+
+            foreach (var index in filter)
             {
-                ref var entity = ref _objects.GetEntity(index);
-                var body = _objects.Get2(index);
+                ref var body = ref bodies.Get(index);
                 body.Body.Destroy();
-                entity.Destroy();
+                world.DelEntity(index);
             }
         }
     }

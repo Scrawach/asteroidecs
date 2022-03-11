@@ -6,7 +6,7 @@ using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CodeBase
@@ -14,13 +14,12 @@ namespace CodeBase
     public static class EntryPoint
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        public static async void Main() => 
-            await GameLoop(NewGame(Camera.main));
+        public static async void Main() => await GameLoop(NewGame(Camera.main));
 
         private static async Task GameLoop(Game game)
         {
             game.Start();
-            
+
             while (game.IsPlaying)
             {
                 game.Update();
@@ -38,11 +37,11 @@ namespace CodeBase
 
             var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
-            
+
             var factory = new GameFactory(assets);
             var restartService = new RestartService(ecsWorld);
             var uiFactory = new UiFactory(assets, wallet, restartService);
-            
+
             var game = new Game
             (
                 ecsWorld,
@@ -56,7 +55,7 @@ namespace CodeBase
             );
 
             Application.quitting += () => game.Quit();
-            
+
             return game;
         }
     }

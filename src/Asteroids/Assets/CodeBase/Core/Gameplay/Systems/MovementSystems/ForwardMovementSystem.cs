@@ -1,21 +1,30 @@
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class ForwardMovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ForwardMovementTag, Rotation> _bullets = default;
-        
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _bullets)
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<ForwardMovementTag>()
+                .Inc<Rotation>()
+                .Inc<Movement>()
+                .End();
+
+            var rotations = world.GetPool<Rotation>();
+            var movements = world.GetPool<Movement>();
+            var forwards = world.GetPool<ForwardMovementTag>();
+
+            foreach (var index in filter)
             {
-                ref var entity = ref _bullets.GetEntity(index);
-                var rotation = _bullets.Get2(index);
-                entity.Get<Movement>() = new Movement {Direction = rotation.Direction};
-                entity.Del<ForwardMovementTag>();
+                ref var rotation = ref rotations.Get(index);
+                ref var movement = ref movements.Get(index);
+                movement.Direction = rotation.Direction;
+                forwards.Del(index);
             }
         }
     }

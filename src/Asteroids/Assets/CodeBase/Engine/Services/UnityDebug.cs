@@ -1,5 +1,5 @@
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Engine.Services
 {
@@ -8,7 +8,7 @@ namespace CodeBase.Engine.Services
         public IDebug Register(EcsWorld world)
         {
 #if UNITY_EDITOR
-            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (world);
+            //Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (world);
 #endif
             return this;
         }
@@ -16,7 +16,7 @@ namespace CodeBase.Engine.Services
         public IDebug Register(EcsSystems systems)
         {
 #if UNITY_EDITOR
-            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (systems);
+            //Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (systems);
 #endif
             return this;
         }

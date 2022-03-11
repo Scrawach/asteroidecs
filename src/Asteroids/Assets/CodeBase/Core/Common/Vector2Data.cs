@@ -13,16 +13,16 @@ namespace CodeBase.Core.Common
             X = x;
             Y = y;
         }
-        
-        public static Vector2Data operator +(Vector2Data left, Vector2Data right) => 
+
+        public static Vector2Data operator +(Vector2Data left, Vector2Data right) =>
             new Vector2Data(left.X + right.X, left.Y + right.Y);
-        
-        public static Vector2Data operator -(Vector2Data left, Vector2Data right) => 
+
+        public static Vector2Data operator -(Vector2Data left, Vector2Data right) =>
             new Vector2Data(left.X - right.X, left.Y - right.Y);
 
         public static Vector2Data operator *(Vector2Data left, float value) =>
             new Vector2Data(left.X * value, left.Y * value);
-        
+
         public static Vector2Data operator /(Vector2Data left, float value) =>
             new Vector2Data(left.X / value, left.Y / value);
     }

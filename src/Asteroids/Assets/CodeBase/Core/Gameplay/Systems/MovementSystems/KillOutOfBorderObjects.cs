@@ -1,27 +1,30 @@
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class KillOutOfBorderObjects : IEcsRunSystem
     {
-        private readonly EcsFilter<Position> _objects = default;
         private readonly IGameScreen _screen;
 
-        public KillOutOfBorderObjects(IGameScreen screen) => 
-            _screen = screen;
-        
-        public void Run()
-        {
-            foreach (var index in _objects)
-            {
-                ref var entity = ref _objects.GetEntity(index);
-                var position = _objects.Get1(index);
+        public KillOutOfBorderObjects(IGameScreen screen) => _screen = screen;
 
-                if (_screen.IsOutOfBorder(position.Value)) 
-                    entity.Get<DestroyTag>() = new DestroyTag();
+        public void Run(EcsSystems systems)
+        {
+            var world = systems.GetWorld();
+            var filter = world.Filter<Position>().End();
+
+            var positions = world.GetPool<Position>();
+            var dead = world.GetPool<DestroyTag>();
+
+            foreach (var index in filter)
+            {
+                ref var position = ref positions.Get(index);
+
+                if (_screen.IsOutOfBorder(position.Value))
+                    dead.Add(index);
             }
         }
     }

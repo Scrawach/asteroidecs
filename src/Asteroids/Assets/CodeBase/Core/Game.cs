@@ -1,21 +1,22 @@
 ﻿using CodeBase.Core.Gameplay.Systems;
-using CodeBase.Core.Infrastructure.Systems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core
 {
     public class Game
     {
+        private readonly ISystemConnect[] _externalSystems;
         private readonly EcsWorld _world;
-        private readonly ISystemBuilder[] _builders;
+
         private EcsSystems _systems;
 
-        public Game(EcsWorld world, params ISystemBuilder[] systemBuilders)
+        public Game(EcsWorld world, params ISystemConnect[] externalSystems)
         {
             _world = world;
-            _builders = systemBuilders;
+            _externalSystems = externalSystems;
         }
-        
+
         public bool IsPlaying { get; private set; }
 
         public void Start()
@@ -24,10 +25,10 @@ namespace CodeBase.Core
             IsPlaying = true;
         }
 
-        public void Update() => 
+        public void Update() =>
             _systems.Run();
 
-        public void Quit() => 
+        public void Quit() =>
             IsPlaying = false;
 
         public void Restart()
@@ -40,11 +41,10 @@ namespace CodeBase.Core
         {
             _systems = new EcsSystems(_world);
 
-            foreach (var builder in _builders)
-                _systems.Add(builder.Build(_world));
+            foreach (var system in _externalSystems)
+                system.ConnectTo(_systems);
 
-            _systems.Add(new GameCleanUpSystem(this, _world));
-            
+            _systems.Add(new GameRestartSystem(this));
             _systems.Init();
         }
     }

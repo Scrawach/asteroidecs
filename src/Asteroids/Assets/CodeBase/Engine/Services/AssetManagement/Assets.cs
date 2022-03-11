@@ -8,11 +8,10 @@ namespace CodeBase.Engine.Services.AssetManagement
 {
     public class Assets : IAssets
     {
-        private readonly Dictionary<string, AsyncOperationHandle> _cache = 
+        private readonly Dictionary<string, AsyncOperationHandle> _cache =
             new Dictionary<string, AsyncOperationHandle>();
-        
-        public async void Initialize() => 
-            await Addressables.InitializeAsync().Task;
+
+        public async void Initialize() => await Addressables.InitializeAsync().Task;
 
         public async Task<TAsset> Load<TAsset>(string address) where TAsset : Object
         {
@@ -23,7 +22,7 @@ namespace CodeBase.Engine.Services.AssetManagement
 
         public void Cleanup()
         {
-            foreach (var pair in _cache) 
+            foreach (var pair in _cache)
                 Addressables.Release(pair.Value);
             _cache.Clear();
         }

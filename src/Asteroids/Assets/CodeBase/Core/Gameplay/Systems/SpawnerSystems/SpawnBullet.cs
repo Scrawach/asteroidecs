@@ -1,20 +1,21 @@
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnBullet : IEcsRunSystem
     {
-        private readonly EcsWorld _ecsWorld = default;
-        private readonly EcsFilter<ShootPoint> _shootPoints = default;
-
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _shootPoints)
+            var world = systems.GetWorld();
+            var filter = world.Filter<ShootPoint>().End();
+
+            var shootPoints = world.GetPool<ShootPoint>();
+            foreach (var index in filter)
             {
-                var point = _shootPoints.Get1(index);
-                var spawnBullet = _ecsWorld.NewEntity();
-                spawnBullet.Get<SpawnInfo>() = new SpawnInfo(point.Bullet, point.Position, point.Direction);
+                ref var point = ref shootPoints.Get(index);
+                world.NewEntityWith(new SpawnInfo(point.Bullet, point.Position, point.Direction));
             }
         }
     }

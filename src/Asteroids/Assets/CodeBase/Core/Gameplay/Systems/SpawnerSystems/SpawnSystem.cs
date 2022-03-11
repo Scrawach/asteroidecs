@@ -1,29 +1,27 @@
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnSystem : IEcsRunSystem
     {
-        private readonly EcsWorld _world = default;
-        private readonly EcsFilter<SpawnInfo> _spawnFilter = default;
         private readonly IFactory _factory;
 
-        public SpawnSystem(IFactory factory) => 
-            _factory = factory;
+        public SpawnSystem(IFactory factory) => _factory = factory;
 
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            if (_spawnFilter.IsEmpty())
-                return;
+            var world = systems.GetWorld();
+            var filter = world.Filter<SpawnInfo>().End();
 
-            foreach (var index in _spawnFilter)
+            var infos = world.GetPool<SpawnInfo>();
+            foreach (var index in filter)
             {
-                ref var entity = ref _spawnFilter.GetEntity(index);
-                var info = entity.Get<SpawnInfo>();
-                _factory.Create(info, _world);
-                entity.Del<SpawnInfo>();
+                ref var info = ref infos.Get(index);
+                _factory.Create(info, world);
+                world.DelEntity(index);
+                //infos.Del(index);
             }
         }
     }

@@ -1,14 +1,15 @@
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Systems.MetaSystems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class MetaSystems : ISystemBuilder
+    public class MetaSystems : ISystemConnect
     {
-        private readonly IWallet _wallet;
         private readonly IUiFactory _uiFactory;
+        private readonly IWallet _wallet;
 
         public MetaSystems(IWallet wallet, IUiFactory uiFactory)
         {
@@ -16,8 +17,8 @@ namespace CodeBase.Core.Infrastructure.Systems
             _uiFactory = uiFactory;
         }
 
-        public EcsSystems Build(EcsWorld world) =>
-            new EcsSystems(world, nameof(MetaSystems))
+        public EcsSystems ConnectTo(EcsSystems systems) =>
+            systems
                 .Add(new EraseWalletOnStartSystem(_wallet))
                 .Add(new GameplayHudLifecycleSystem(_uiFactory))
                 .Add(new DestructionBonusSystem(_wallet))

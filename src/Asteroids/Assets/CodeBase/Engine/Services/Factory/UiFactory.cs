@@ -10,11 +10,11 @@ namespace CodeBase.Engine.Services.Factory
     public class UiFactory : IUiFactory
     {
         private readonly IAssets _assets;
-        private readonly IWallet _wallet;
         private readonly IRestartService _restartService;
+        private readonly IWallet _wallet;
+        private GameOverWindow _gameOverWindow;
 
         private GameplayHud _gameplayHud;
-        private GameOverWindow _gameOverWindow;
 
         public UiFactory(IAssets assets, IWallet wallet, IRestartService restartService)
         {
@@ -22,7 +22,7 @@ namespace CodeBase.Engine.Services.Factory
             _wallet = wallet;
             _restartService = restartService;
         }
-        
+
         public async void OpenGameplayHud()
         {
             const string address = "GameplayHud";
@@ -31,8 +31,7 @@ namespace CodeBase.Engine.Services.Factory
             _gameplayHud.Construct(_wallet);
         }
 
-        public void CloseGameplayHud() => 
-            Object.Destroy(_gameplayHud.gameObject);
+        public void CloseGameplayHud() => Object.Destroy(_gameplayHud.gameObject);
 
         public async void OpenGameOverWindow()
         {
@@ -42,8 +41,7 @@ namespace CodeBase.Engine.Services.Factory
             _gameOverWindow.Construct(_restartService);
         }
 
-        public void CloseGameOverWindow() => 
-            Object.Destroy(_gameOverWindow.gameObject);
+        public void CloseGameOverWindow() => Object.Destroy(_gameOverWindow.gameObject);
 
         private async Task<GameObject> InstantiateAsync(string address)
         {

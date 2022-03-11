@@ -1,5 +1,5 @@
 using CodeBase.Core.Gameplay.Services.Meta;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MetaSystems
 {
@@ -7,10 +7,8 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
     {
         private readonly IWallet _wallet;
 
-        public EraseWalletOnStartSystem(IWallet wallet) => 
-            _wallet = wallet;
-        
-        public void Init() => 
-            _wallet.Reset();
+        public EraseWalletOnStartSystem(IWallet wallet) => _wallet = wallet;
+
+        public void Init(EcsSystems systems) => _wallet.Reset();
     }
 }

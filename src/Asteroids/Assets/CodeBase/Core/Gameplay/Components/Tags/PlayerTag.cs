@@ -1,6 +1,6 @@
-﻿using Leopotam.Ecs;
-
-namespace CodeBase.Core.Gameplay.Components.Tags
+﻿namespace CodeBase.Core.Gameplay.Components.Tags
 {
-    public struct PlayerTag : IEcsIgnoreInFilter { }
+    public struct PlayerTag
+    {
+    }
 }

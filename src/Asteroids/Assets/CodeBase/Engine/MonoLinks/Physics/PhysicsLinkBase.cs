@@ -1,13 +1,17 @@
 using CodeBase.Engine.MonoLinks.Base;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Engine.MonoLinks.Physics
 {
     public abstract class PhysicsLinkBase : MonoLinkBase
     {
-        protected EcsEntity Entity { get; private set; }
+        protected EcsWorld World { get; private set; }
+        protected int Entity { get; private set; }
 
-        public override void Resolve(ref EcsEntity entity) => 
+        public override void Resolve(EcsWorld world, int entity)
+        {
+            World = world;
             Entity = entity;
+        }
     }
 }

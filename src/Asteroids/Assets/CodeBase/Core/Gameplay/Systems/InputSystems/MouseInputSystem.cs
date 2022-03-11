@@ -1,29 +1,33 @@
-using CodeBase.Core.Common;
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.InputSystems
 {
     public class MouseInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerTag> _players = default;
-        private readonly IInput _input = default;
+        private readonly IInput _input;
 
-        public MouseInputSystem(IInput input) => 
-            _input = input;
+        public MouseInputSystem(IInput input) => _input = input;
 
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            if (_players.IsEmpty())
-                return;
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<PlayerTag>()
+                .Inc<Rotation>()
+                .Inc<Position>()
+                .End();
 
-            foreach (var index in _players)
+            var positions = world.GetPool<Position>();
+            var rotations = world.GetPool<Rotation>();
+
+            foreach (var index in filter)
             {
-                ref var entity = ref _players.GetEntity(index);
-                ref var rotation = ref entity.Get<Rotation>();
-                ref var position = ref entity.Get<Position>();
+                ref var position = ref positions.Get(index);
+                ref var rotation = ref rotations.Get(index);
                 rotation.Direction = (_input.WorldMousePosition - position.Value).Normalize();
             }
         }

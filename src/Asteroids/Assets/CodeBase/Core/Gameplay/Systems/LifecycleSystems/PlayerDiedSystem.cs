@@ -1,20 +1,22 @@
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Meta;
 using CodeBase.Core.Gameplay.Components.Tags;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
     public class PlayerDiedSystem : IEcsRunSystem
     {
-        private readonly EcsWorld _world = default;
-        private readonly EcsFilter<PlayerTag, DestroyTag> _playerDeath = default;
-        
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            if (_playerDeath.IsEmpty())
-                return;
-            var newEntity = _world.NewEntity();
-            newEntity.Get<GameOverEvent>();
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<PlayerTag>()
+                .Inc<DestroyTag>()
+                .End();
+
+            if (filter.GetEntitiesCount() > 0)
+                world.NewEntityWith<GameOverEvent>();
         }
     }
 }

@@ -1,10 +1,11 @@
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class MovementSystems : ISystemBuilder
+    public class MovementSystems : ISystemConnect
     {
         private readonly IGameScreen _gameScreen;
         private readonly ITime _time;
@@ -14,9 +15,9 @@ namespace CodeBase.Core.Infrastructure.Systems
             _gameScreen = gameScreen;
             _time = time;
         }
-        
-        public EcsSystems Build(EcsWorld world) =>
-            new EcsSystems(world, nameof(MovementSystems))
+
+        public EcsSystems ConnectTo(EcsSystems systems) =>
+            systems
                 .Add(new ForwardMovementSystem())
                 .Add(new BlockPlayerMovementOutsideScreen(_gameScreen))
                 .Add(new MoveSystem(_time))

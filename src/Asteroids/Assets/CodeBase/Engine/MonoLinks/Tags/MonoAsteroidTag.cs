@@ -3,5 +3,7 @@ using CodeBase.Engine.MonoLinks.Base;
 
 namespace CodeBase.Engine.MonoLinks.Tags
 {
-    public class MonoAsteroidTag : MonoLink<AsteroidTag> { }
+    public class MonoAsteroidTag : MonoLink<AsteroidTag>
+    {
+    }
 }

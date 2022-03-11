@@ -1,20 +1,29 @@
 using CodeBase.Core.Gameplay.Components.Moves;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class UpdateBodySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Position, Rotation, EngineBody> _bodies = default;
-        
-        public void Run()
+        public void Run(EcsSystems systems)
         {
-            foreach (var index in _bodies)
+            var world = systems.GetWorld();
+            var filter = world
+                .Filter<EngineBody>()
+                .Inc<Position>()
+                .Inc<Rotation>()
+                .End();
+
+            var positions = world.GetPool<Position>();
+            var rotations = world.GetPool<Rotation>();
+            var bodies = world.GetPool<EngineBody>();
+
+            foreach (var index in filter)
             {
-                var position = _bodies.Get1(index);
-                var rotation = _bodies.Get2(index);
-                var body = _bodies.Get3(index);
-                
+                ref var body = ref bodies.Get(index);
+                ref var position = ref positions.Get(index);
+                ref var rotation = ref rotations.Get(index);
+
                 body.Body.Move(position.Value);
                 body.Body.Rotate(rotation.Direction);
             }

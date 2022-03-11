@@ -1,28 +1,27 @@
-using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Gameplay.Systems.MovementSystems;
-using Leopotam.Ecs;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class LifecycleSystems : ISystemBuilder
+    public class LifecycleSystems : ISystemConnect
     {
-        private readonly ITime _time;
         private readonly IGameScreen _gameScreen;
+        private readonly ITime _time;
 
         public LifecycleSystems(ITime time, IGameScreen gameScreen)
         {
             _time = time;
             _gameScreen = gameScreen;
         }
-        
-        public EcsSystems Build(EcsWorld world) =>
-            new EcsSystems(world, nameof(LifecycleSystems))
+
+        public EcsSystems ConnectTo(EcsSystems systems) =>
+            systems
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
                 .Add(new PlayerDiedSystem())
-                .Add(new DestroySystem())
-                .OneFrame<DestroyTag>();
+                .Add(new DestroySystem());
     }
 }

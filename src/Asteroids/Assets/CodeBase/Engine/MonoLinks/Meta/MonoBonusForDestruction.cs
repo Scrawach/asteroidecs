@@ -3,5 +3,7 @@ using CodeBase.Engine.MonoLinks.Base;
 
 namespace CodeBase.Engine.MonoLinks.Meta
 {
-    public class MonoBonusForDestruction : MonoLink<BonusForDestruction> { }
+    public class MonoBonusForDestruction : MonoLink<BonusForDestruction>
+    {
+    }
 }

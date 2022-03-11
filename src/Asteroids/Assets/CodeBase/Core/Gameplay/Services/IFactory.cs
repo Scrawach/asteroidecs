@@ -1,5 +1,5 @@
 using CodeBase.Core.Gameplay.Components;
-using Leopotam.Ecs;
+using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Services
 {

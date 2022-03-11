@@ -4,8 +4,8 @@ namespace CodeBase.Core.Gameplay.Services.Meta
 {
     public interface IWallet
     {
-        event Action Changed; 
         int Score { get; }
+        event Action Changed;
         void Add(int value);
         void Reset();
     }
