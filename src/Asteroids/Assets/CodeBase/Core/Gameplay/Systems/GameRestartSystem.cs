@@ -1,3 +1,4 @@
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 
@@ -14,7 +15,7 @@ namespace CodeBase.Core.Gameplay.Systems
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<RestartButtonPressedTag>().End();
+            var filter = world.Filter<RestartButtonPressedEvent>().End();
 
             if (filter.GetEntitiesCount() < 1)
                 return;

@@ -1,4 +1,5 @@
 using CodeBase.Core.Extensions;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
@@ -19,7 +20,10 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
             var filter = world.Filter<PlayerTag>().End();
 
             if (_input.IsFireButtonPressed())
-                world.NewEntityWith<FireButtonPressedTag>();
+                world.NewEntityWith<FireButtonPressedEvent>();
+            
+            if (_input.IsLaserButtonPressed())
+                world.NewEntityWith<LaserButtonPressedEvent>();
 
             var players = world.GetPool<Movement>();
 

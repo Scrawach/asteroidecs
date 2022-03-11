@@ -4,6 +4,7 @@ namespace CodeBase.Core.Common
     {
         Player = 0,
         PlayerBullet,
+        PlayerLaser,
         Asteroid
     }
 }

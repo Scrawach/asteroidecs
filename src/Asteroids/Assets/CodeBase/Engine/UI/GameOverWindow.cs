@@ -1,4 +1,5 @@
 using CodeBase.Core.Extensions;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -22,6 +23,6 @@ namespace CodeBase.Engine.UI
             _restart.onClick.RemoveListener(OnRestartClicked);
 
         private void OnRestartClicked() =>
-            _world.NewEntityWith<RestartButtonPressedTag>();
+            _world.NewEntityWith<RestartButtonPressedEvent>();
     }
 }

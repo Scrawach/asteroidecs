@@ -11,6 +11,7 @@ namespace CodeBase.Core.Infrastructure.Systems
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .DeleteHere<ShootPoint>()
-                .Add(new PlayerShoot());
+                .Add(new PlayerBulletShoot())
+                .Add(new PlayerLaserShoot());
     }
 }

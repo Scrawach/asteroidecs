@@ -37,5 +37,8 @@ namespace CodeBase.Engine.Services
 
         public bool IsFireButtonPressed() =>
             Input.GetKeyDown(KeyCode.Mouse0);
+
+        public bool IsLaserButtonPressed() => 
+            Input.GetKeyDown(KeyCode.Mouse1);
     }
 }

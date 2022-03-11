@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 800e4aaa9c572d848b5ba4bd6a743b44
+    m_Address: PlayerLaser
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: bc400a5b9173539349821a82c7b60af5
     m_Address: Player
     m_ReadOnly: 0

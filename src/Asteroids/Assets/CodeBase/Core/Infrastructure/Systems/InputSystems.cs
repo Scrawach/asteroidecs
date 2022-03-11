@@ -1,5 +1,5 @@
 using CodeBase.Core.Extensions;
-using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.InputSystems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
@@ -16,7 +16,8 @@ namespace CodeBase.Core.Infrastructure.Systems
 
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
-                .DeleteHere<FireButtonPressedTag>()
+                .DeleteHere<FireButtonPressedEvent>()
+                .DeleteHere<LaserButtonPressedEvent>()
                 .Add(new KeyboardInputSystem(_input))
                 .Add(new MouseInputSystem(_input));
     }
