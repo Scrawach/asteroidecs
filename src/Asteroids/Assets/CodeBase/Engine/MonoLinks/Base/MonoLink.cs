@@ -1,3 +1,4 @@
+using CodeBase.Core.Extensions;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -7,13 +8,7 @@ namespace CodeBase.Engine.MonoLinks.Base
     {
         [SerializeField] protected TEntity Value;
 
-        public override void Resolve(EcsWorld world, int entity)
-        {
-            var pool = world.GetPool<TEntity>();
-            pool.Add(entity);
-
-            ref var component = ref pool.Get(entity);
-            component = Value;
-        }
+        public override void Resolve(EcsWorld world, int entity) =>
+            world.AddComponent(entity, Value);
     }
 }

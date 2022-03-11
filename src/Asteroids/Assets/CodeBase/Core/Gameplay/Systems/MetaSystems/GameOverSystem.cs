@@ -8,9 +8,11 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
     {
         private readonly IUiFactory _uiFactory;
 
-        public GameOverSystem(IUiFactory uiFactory) => _uiFactory = uiFactory;
+        public GameOverSystem(IUiFactory uiFactory) =>
+            _uiFactory = uiFactory;
 
-        public void Destroy(EcsSystems systems) => _uiFactory.CloseGameOverWindow();
+        public void Destroy(EcsSystems systems) =>
+            _uiFactory.CloseGameOverWindow();
 
         public void Run(EcsSystems systems)
         {

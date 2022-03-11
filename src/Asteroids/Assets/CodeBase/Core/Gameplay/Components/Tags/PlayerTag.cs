@@ -1,6 +1,4 @@
 ﻿namespace CodeBase.Core.Gameplay.Components.Tags
 {
-    public struct PlayerTag
-    {
-    }
+    public struct PlayerTag { }
 }

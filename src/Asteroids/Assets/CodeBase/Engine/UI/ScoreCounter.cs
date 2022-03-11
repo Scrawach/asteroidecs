@@ -16,8 +16,10 @@ namespace CodeBase.Engine.UI
             _wallet.Changed += OnScoreChanged;
         }
 
-        public void UnSubscribe() => _wallet.Changed -= OnScoreChanged;
+        public void UnSubscribe() =>
+            _wallet.Changed -= OnScoreChanged;
 
-        private void OnScoreChanged() => _label.text = $"{_wallet.Score.ToString()}";
+        private void OnScoreChanged() =>
+            _label.text = $"{_wallet.Score.ToString()}";
     }
 }

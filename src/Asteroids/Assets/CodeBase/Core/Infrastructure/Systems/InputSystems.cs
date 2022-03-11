@@ -11,7 +11,8 @@ namespace CodeBase.Core.Infrastructure.Systems
     {
         private readonly IInput _input;
 
-        public InputSystems(IInput input) => _input = input;
+        public InputSystems(IInput input) =>
+            _input = input;
 
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems

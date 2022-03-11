@@ -12,6 +12,7 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
             //Inverse(ref enter.Trigger.Get<Movement>());
         }
 
-        private void Inverse(ref Movement movement) => movement.Direction *= -1f;
+        private void Inverse(ref Movement movement) =>
+            movement.Direction *= -1f;
     }
 }

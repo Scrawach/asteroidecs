@@ -3,7 +3,5 @@ using CodeBase.Engine.MonoLinks.Base;
 
 namespace CodeBase.Engine.MonoLinks.Tags
 {
-    public class MonoPlayerTag : MonoLink<PlayerTag>
-    {
-    }
+    public class MonoPlayerTag : MonoLink<PlayerTag> { }
 }

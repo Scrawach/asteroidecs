@@ -11,10 +11,10 @@ namespace CodeBase.Engine.Services
 
         private readonly Camera _camera;
 
-        public UnityInput(Camera camera) => _camera = camera;
+        public UnityInput(Camera camera) =>
+            _camera = camera;
 
-        public Vector2Data MousePosition =>
-            new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
+        public Vector2Data MousePosition => new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
 
         public Vector2Data WorldMousePosition
         {
@@ -35,6 +35,7 @@ namespace CodeBase.Engine.Services
             }
         }
 
-        public bool IsFireButtonPressed() => Input.GetKeyDown(KeyCode.Mouse0);
+        public bool IsFireButtonPressed() =>
+            Input.GetKeyDown(KeyCode.Mouse0);
     }
 }

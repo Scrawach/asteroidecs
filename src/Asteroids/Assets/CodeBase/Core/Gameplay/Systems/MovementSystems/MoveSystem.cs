@@ -8,7 +8,8 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
     {
         private readonly ITime _time;
 
-        public MoveSystem(ITime time) => _time = time;
+        public MoveSystem(ITime time) =>
+            _time = time;
 
         public void Run(EcsSystems systems)
         {

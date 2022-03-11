@@ -9,7 +9,8 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
     {
         private readonly IGameScreen _screen;
 
-        public KillOutOfBorderObjects(IGameScreen screen) => _screen = screen;
+        public KillOutOfBorderObjects(IGameScreen screen) =>
+            _screen = screen;
 
         public void Run(EcsSystems systems)
         {

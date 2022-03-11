@@ -10,7 +10,8 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
     {
         private readonly IInput _input;
 
-        public KeyboardInputSystem(IInput input) => _input = input;
+        public KeyboardInputSystem(IInput input) =>
+            _input = input;
 
         public void Run(EcsSystems systems)
         {

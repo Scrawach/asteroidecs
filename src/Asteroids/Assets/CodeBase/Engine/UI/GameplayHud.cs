@@ -7,8 +7,10 @@ namespace CodeBase.Engine.UI
     {
         [SerializeField] private ScoreCounter _scoreCounter;
 
-        private void OnDestroy() => _scoreCounter.UnSubscribe();
+        private void OnDestroy() =>
+            _scoreCounter.UnSubscribe();
 
-        public void Construct(IWallet wallet) => _scoreCounter.Subscribe(wallet);
+        public void Construct(IWallet wallet) =>
+            _scoreCounter.Subscribe(wallet);
     }
 }

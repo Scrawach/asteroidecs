@@ -11,7 +11,8 @@ namespace CodeBase.Engine.Services.AssetManagement
         private readonly Dictionary<string, AsyncOperationHandle> _cache =
             new Dictionary<string, AsyncOperationHandle>();
 
-        public async void Initialize() => await Addressables.InitializeAsync().Task;
+        public async void Initialize() =>
+            await Addressables.InitializeAsync().Task;
 
         public async Task<TAsset> Load<TAsset>(string address) where TAsset : Object
         {

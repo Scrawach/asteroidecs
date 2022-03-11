@@ -9,7 +9,8 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
     {
         private readonly IWallet _wallet;
 
-        public DestructionBonusSystem(IWallet wallet) => _wallet = wallet;
+        public DestructionBonusSystem(IWallet wallet) =>
+            _wallet = wallet;
 
         public void Run(EcsSystems systems)
         {

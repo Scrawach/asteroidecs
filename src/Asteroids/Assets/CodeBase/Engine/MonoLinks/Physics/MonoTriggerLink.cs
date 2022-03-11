@@ -9,7 +9,8 @@ namespace CodeBase.Engine.MonoLinks.Physics
     {
         private bool _alwaysRegistered;
 
-        private void FixedUpdate() => _alwaysRegistered = false;
+        private void FixedUpdate() =>
+            _alwaysRegistered = false;
 
         private void OnTriggerEnter2D(Collider2D other)
         {

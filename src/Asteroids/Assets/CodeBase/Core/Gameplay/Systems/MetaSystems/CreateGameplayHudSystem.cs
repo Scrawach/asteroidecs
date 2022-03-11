@@ -7,10 +7,13 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
     {
         private readonly IUiFactory _uiFactory;
 
-        public GameplayHudLifecycleSystem(IUiFactory uiFactory) => _uiFactory = uiFactory;
+        public GameplayHudLifecycleSystem(IUiFactory uiFactory) =>
+            _uiFactory = uiFactory;
 
-        public void Destroy(EcsSystems systems) => _uiFactory.CloseGameplayHud();
+        public void Destroy(EcsSystems systems) =>
+            _uiFactory.CloseGameplayHud();
 
-        public void Init(EcsSystems systems) => _uiFactory.OpenGameplayHud();
+        public void Init(EcsSystems systems) =>
+            _uiFactory.OpenGameplayHud();
     }
 }

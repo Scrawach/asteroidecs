@@ -8,7 +8,8 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
     {
         private readonly IFactory _factory;
 
-        public SpawnSystem(IFactory factory) => _factory = factory;
+        public SpawnSystem(IFactory factory) =>
+            _factory = factory;
 
         public void Run(EcsSystems systems)
         {

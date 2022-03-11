@@ -14,7 +14,8 @@ namespace CodeBase
     public static class EntryPoint
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        public static async void Main() => await GameLoop(NewGame(Camera.main));
+        public static async void Main() =>
+            await GameLoop(NewGame(Camera.main));
 
         private static async Task GameLoop(Game game)
         {

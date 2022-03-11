@@ -10,7 +10,8 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
     {
         private readonly IEnterTriggerStrategy _strategy;
 
-        public TriggerSystemBetween(IEnterTriggerStrategy strategy) => _strategy = strategy;
+        public TriggerSystemBetween(IEnterTriggerStrategy strategy) =>
+            _strategy = strategy;
 
         public void Run(EcsSystems systems)
         {

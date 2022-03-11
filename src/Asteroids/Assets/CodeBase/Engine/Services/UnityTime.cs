@@ -5,10 +5,8 @@ namespace CodeBase.Engine.Services
 {
     public class UnityTime : ITime
     {
-        public float Elapsed =>
-            Time.time;
+        public float Elapsed => Time.time;
 
-        public float DeltaFrame =>
-            Time.deltaTime;
+        public float DeltaFrame => Time.deltaTime;
     }
 }

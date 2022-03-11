@@ -16,6 +16,7 @@ namespace CodeBase.Core.Gameplay.Services.Meta
             Changed?.Invoke();
         }
 
-        public void Reset() => Score = 0;
+        public void Reset() =>
+            Score = 0;
     }
 }

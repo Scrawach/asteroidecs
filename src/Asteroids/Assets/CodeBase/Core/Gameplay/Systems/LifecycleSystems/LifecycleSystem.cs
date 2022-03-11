@@ -9,7 +9,8 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
     {
         private readonly ITime _time;
 
-        public LifecycleSystem(ITime time) => _time = time;
+        public LifecycleSystem(ITime time) =>
+            _time = time;
 
         public void Run(EcsSystems systems)
         {

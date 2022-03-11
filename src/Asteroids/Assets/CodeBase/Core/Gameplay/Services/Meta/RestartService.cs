@@ -1,3 +1,4 @@
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 
@@ -7,12 +8,10 @@ namespace CodeBase.Core.Gameplay.Services.Meta
     {
         private readonly EcsWorld _world;
 
-        public RestartService(EcsWorld world) => _world = world;
+        public RestartService(EcsWorld world) =>
+            _world = world;
 
-        public void Restart()
-        {
-            var pool = _world.GetPool<RestartButtonPressedTag>();
-            pool.Add(_world.NewEntity());
-        }
+        public void Restart() =>
+            _world.NewEntityWith<RestartButtonPressedTag>();
     }
 }

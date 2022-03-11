@@ -3,7 +3,5 @@ using CodeBase.Engine.MonoLinks.Base;
 
 namespace CodeBase.Engine.MonoLinks.Movement
 {
-    public class MonoForwardMovement : MonoLink<ForwardMovementTag>
-    {
-    }
+    public class MonoForwardMovement : MonoLink<ForwardMovementTag> { }
 }

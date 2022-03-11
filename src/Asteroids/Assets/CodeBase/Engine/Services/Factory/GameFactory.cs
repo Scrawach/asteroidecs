@@ -1,3 +1,4 @@
+using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Services;
@@ -13,7 +14,8 @@ namespace CodeBase.Engine.Services.Factory
     {
         private readonly IAssets _assets;
 
-        public GameFactory(IAssets assets) => _assets = assets;
+        public GameFactory(IAssets assets) =>
+            _assets = assets;
 
         public async void Create(SpawnInfo info, EcsWorld world)
         {
@@ -25,24 +27,14 @@ namespace CodeBase.Engine.Services.Factory
                 CreateEntity(info, world, monoEntity);
         }
 
-        private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) => (info.Id.ToString(),
-            info.Position.ToVector3(), info.Direction.ToQuaternion());
+        private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) =>
+            (info.Id.ToString(), info.Position.ToVector3(), info.Direction.ToQuaternion());
 
         private static void CreateEntity(SpawnInfo info, EcsWorld world, MonoLinkBase monoLink)
         {
             var entity = world.NewEntity();
-            var positions = world.GetPool<Position>();
-            var rotations = world.GetPool<Rotation>();
-
-            rotations.Add(entity);
-            positions.Add(entity);
-
-            ref var position = ref positions.Get(entity);
-            ref var rotation = ref rotations.Get(entity);
-
-            position.Value = info.Position;
-            rotation.Direction = info.Direction;
-
+            world.AddComponent(entity, new Position {Value = info.Position});
+            world.AddComponent(entity, new Rotation {Direction = info.Direction});
             monoLink.Resolve(world, entity);
         }
     }

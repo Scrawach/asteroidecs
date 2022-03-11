@@ -11,7 +11,8 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
         private float _borderX;
         private float _borderY;
 
-        public BlockPlayerMovementOutsideScreen(IGameScreen screen) => _screen = screen;
+        public BlockPlayerMovementOutsideScreen(IGameScreen screen) =>
+            _screen = screen;
 
         public void Init(EcsSystems systems)
         {

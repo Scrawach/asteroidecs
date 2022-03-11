@@ -8,7 +8,8 @@ namespace CodeBase.Core.Gameplay.Systems
         private readonly Game _game;
         private readonly EcsWorld _world;
 
-        public GameRestartSystem(Game game) => _game = game;
+        public GameRestartSystem(Game game) =>
+            _game = game;
 
         public void Run(EcsSystems systems)
         {

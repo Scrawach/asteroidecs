@@ -10,12 +10,16 @@ namespace CodeBase.Engine.UI
 
         private IRestartService _restartService;
 
-        private void OnEnable() => _restart.onClick.AddListener(OnRestartClicked);
+        private void OnEnable() =>
+            _restart.onClick.AddListener(OnRestartClicked);
 
-        private void OnDisable() => _restart.onClick.RemoveListener(OnRestartClicked);
+        private void OnDisable() =>
+            _restart.onClick.RemoveListener(OnRestartClicked);
 
-        public void Construct(IRestartService restartService) => _restartService = restartService;
+        public void Construct(IRestartService restartService) =>
+            _restartService = restartService;
 
-        private void OnRestartClicked() => _restartService.Restart();
+        private void OnRestartClicked() =>
+            _restartService.Restart();
     }
 }

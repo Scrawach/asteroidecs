@@ -31,7 +31,8 @@ namespace CodeBase.Engine.Services.Factory
             _gameplayHud.Construct(_wallet);
         }
 
-        public void CloseGameplayHud() => Object.Destroy(_gameplayHud.gameObject);
+        public void CloseGameplayHud() =>
+            Object.Destroy(_gameplayHud.gameObject);
 
         public async void OpenGameOverWindow()
         {
@@ -41,7 +42,8 @@ namespace CodeBase.Engine.Services.Factory
             _gameOverWindow.Construct(_restartService);
         }
 
-        public void CloseGameOverWindow() => Object.Destroy(_gameOverWindow.gameObject);
+        public void CloseGameOverWindow() =>
+            Object.Destroy(_gameOverWindow.gameObject);
 
         private async Task<GameObject> InstantiateAsync(string address)
         {
