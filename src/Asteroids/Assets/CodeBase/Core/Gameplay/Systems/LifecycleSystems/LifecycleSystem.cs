@@ -1,4 +1,5 @@
 using CodeBase.Core.Gameplay.Components;
+using CodeBase.Core.Gameplay.Components.Lifecycle;
 using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.EcsLite;

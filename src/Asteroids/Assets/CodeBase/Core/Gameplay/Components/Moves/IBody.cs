@@ -6,6 +6,5 @@ namespace CodeBase.Core.Gameplay.Components.Moves
     {
         void Move(Vector2Data movement);
         void Rotate(Vector2Data direction);
-        void Destroy();
     }
 }

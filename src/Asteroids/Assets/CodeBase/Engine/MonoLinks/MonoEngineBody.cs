@@ -18,9 +18,6 @@ namespace CodeBase.Engine.MonoLinks
         public void Rotate(Vector2Data direction) =>
             transform.rotation = direction.ToQuaternion();
 
-        public void Destroy() =>
-            Destroy(gameObject);
-
         public override void Resolve(EcsWorld world, int entity)
         {
             Value = new EngineBody {Body = this};

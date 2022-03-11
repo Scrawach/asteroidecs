@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Core.Gameplay.Components
+namespace CodeBase.Core.Gameplay.Components.Lifecycle
 {
     [Serializable]
     public struct Lifetime
