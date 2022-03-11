@@ -8,12 +8,11 @@ namespace CodeBase.Core
     {
         private readonly IConnectableSystem[] _externalSystems;
         private readonly EcsWorld _world;
-
         private EcsSystems _systems;
 
-        public Game(EcsWorld world, params IConnectableSystem[] externalSystems)
+        public Game(params IConnectableSystem[] externalSystems)
         {
-            _world = world;
+            _world = new EcsWorld();
             _externalSystems = externalSystems;
         }
 

@@ -1,4 +1,6 @@
-using CodeBase.Core.Gameplay.Services.Meta;
+using CodeBase.Core.Extensions;
+using CodeBase.Core.Gameplay.Components.Tags;
+using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +10,10 @@ namespace CodeBase.Engine.UI
     {
         [SerializeField] private Button _restart;
 
-        private IRestartService _restartService;
+        private EcsWorld _world;
+
+        public void Construct(EcsWorld world) =>
+            _world = world;
 
         private void OnEnable() =>
             _restart.onClick.AddListener(OnRestartClicked);
@@ -16,10 +21,7 @@ namespace CodeBase.Engine.UI
         private void OnDisable() =>
             _restart.onClick.RemoveListener(OnRestartClicked);
 
-        public void Construct(IRestartService restartService) =>
-            _restartService = restartService;
-
         private void OnRestartClicked() =>
-            _restartService.Restart();
+            _world.NewEntityWith<RestartButtonPressedTag>();
     }
 }

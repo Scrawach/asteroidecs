@@ -3,6 +3,7 @@ using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.UI;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CodeBase.Engine.Services.Factory
@@ -10,17 +11,15 @@ namespace CodeBase.Engine.Services.Factory
     public class UiFactory : IUiFactory
     {
         private readonly IAssets _assets;
-        private readonly IRestartService _restartService;
         private readonly IWallet _wallet;
         private GameOverWindow _gameOverWindow;
 
         private GameplayHud _gameplayHud;
 
-        public UiFactory(IAssets assets, IWallet wallet, IRestartService restartService)
+        public UiFactory(IAssets assets, IWallet wallet)
         {
             _assets = assets;
             _wallet = wallet;
-            _restartService = restartService;
         }
 
         public async void OpenGameplayHud()
@@ -34,12 +33,12 @@ namespace CodeBase.Engine.Services.Factory
         public void CloseGameplayHud() =>
             Object.Destroy(_gameplayHud.gameObject);
 
-        public async void OpenGameOverWindow()
+        public async void OpenGameOverWindow(EcsWorld world)
         {
             const string address = "GameOverWindow";
             var instance = await InstantiateAsync(address);
             _gameOverWindow = instance.GetComponent<GameOverWindow>();
-            _gameOverWindow.Construct(_restartService);
+            _gameOverWindow.Construct(world);
         }
 
         public void CloseGameOverWindow() =>

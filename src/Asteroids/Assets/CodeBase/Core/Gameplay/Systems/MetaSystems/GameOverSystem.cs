@@ -20,7 +20,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
             var filter = world.Filter<GameOverEvent>().End();
 
             if (filter.GetEntitiesCount() > 0)
-                _uiFactory.OpenGameOverWindow();
+                _uiFactory.OpenGameOverWindow(world);
 
             foreach (var index in filter)
                 world.DelEntity(index);

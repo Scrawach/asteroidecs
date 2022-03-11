@@ -30,7 +30,6 @@ namespace CodeBase
 
         private static Game NewGame(Camera mainCamera)
         {
-            var ecsWorld = new EcsWorld();
             var assets = new Assets();
             var wallet = new WalletService();
             var time = new UnityTime();
@@ -40,12 +39,10 @@ namespace CodeBase
             var gameScreen = new CameraGameScreen(mainCamera);
 
             var factory = new GameFactory(assets);
-            var restartService = new RestartService(ecsWorld);
-            var uiFactory = new UiFactory(assets, wallet, restartService);
+            var uiFactory = new UiFactory(assets, wallet);
 
             var game = new Game
             (
-                ecsWorld,
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),
                 new SpawnSystems(factory, gameScreen, time, random),
