@@ -5,6 +5,6 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
 {
     public interface IEnterTriggerStrategy
     {
-        void OnEnter(EcsWorld world, OnTriggerEnter enter);
+        void OnEnter(EcsWorld world, int sender, int trigger);
     }
 }

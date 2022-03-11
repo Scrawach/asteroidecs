@@ -1,5 +1,6 @@
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Events;
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CodeBase.Engine.MonoLinks.Physics
@@ -20,12 +21,11 @@ namespace CodeBase.Engine.MonoLinks.Physics
                     return;
 
                 _alwaysRegistered = true;
-
-
+                
                 World.NewEntityWith(new OnTriggerEnter
                 {
-                    Sender = Entity,
-                    Trigger = link.Entity
+                    Sender = World.PackEntity(Entity),
+                    Trigger = World.PackEntity(link.Entity)
                 });
             }
         }

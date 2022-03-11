@@ -1,8 +1,10 @@
+using Leopotam.EcsLite;
+
 namespace CodeBase.Core.Gameplay.Components.Events
 {
     public struct OnTriggerEnter
     {
-        public int Sender;
-        public int Trigger;
+        public EcsPackedEntity Sender;
+        public EcsPackedEntity Trigger;
     }
 }

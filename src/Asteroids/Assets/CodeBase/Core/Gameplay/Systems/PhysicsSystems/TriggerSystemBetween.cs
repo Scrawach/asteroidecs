@@ -22,20 +22,31 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
             foreach (var index in filter)
             {
                 ref var enter = ref events.Get(index);
-                if (IsCollideBetween<TSender, TTarget>(world, enter) ||
-                    IsCollideBetween<TTarget, TSender>(world, enter))
-                    _strategy.OnEnter(world, enter);
+
+                if (UnpackEvent(enter, world, out var sender, out var trigger))
+                {
+                    if (IsCollideBetween<TSender, TTarget>(world, sender, trigger) ||
+                        IsCollideBetween<TTarget, TSender>(world, sender, trigger))
+                        _strategy.OnEnter(world, sender, trigger);
+                }
             }
         }
 
-        private bool IsCollideBetween<TEnterSender, TEnterTrigger>(EcsWorld world, OnTriggerEnter enter)
+        private static bool UnpackEvent(OnTriggerEnter enter, EcsWorld world, out int sender, out int trigger)
+        {
+            var isUnpackSender = enter.Sender.Unpack(world, out sender);
+            var isUnpackTrigger = enter.Trigger.Unpack(world, out trigger);
+            return isUnpackSender && isUnpackTrigger;
+        }
+
+        private bool IsCollideBetween<TEnterSender, TEnterTrigger>(EcsWorld world, int sender, int trigger)
             where TEnterSender : struct where TEnterTrigger : struct
         {
             var senders = world.GetPool<TEnterSender>();
             var triggers = world.GetPool<TEnterTrigger>();
-
-            return senders.Has(enter.Sender) &&
-                   triggers.Has(enter.Trigger);
+            
+            return senders.Has(sender) && 
+                   triggers.Has(trigger);
         }
     }
 }

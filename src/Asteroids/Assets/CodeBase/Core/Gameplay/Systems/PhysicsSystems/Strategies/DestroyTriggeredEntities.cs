@@ -6,11 +6,11 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
 {
     public class DestroyTriggeredEntities : IEnterTriggerStrategy
     {
-        public void OnEnter(EcsWorld world, OnTriggerEnter enter)
+        public void OnEnter(EcsWorld world, int sender, int trigger)
         {
             var dead = world.GetPool<DestroyTag>();
-            dead.Add(enter.Sender);
-            dead.Add(enter.Trigger);
+            dead.Add(sender);
+            dead.Add(trigger);
         }
     }
 }
