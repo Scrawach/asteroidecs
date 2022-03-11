@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "127d6a8f02ec987ac724a7fc671b1d5d00b0ea56"
     },
+    "com.leopotam.ecslite": {
+      "version": "https://github.com/Leopotam/ecslite.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "df885a49940f229882c5e39fde45c0a40077c7e6"
+    },
     "com.unity.2d.animation": {
       "version": "3.2.3",
       "depth": 0,
