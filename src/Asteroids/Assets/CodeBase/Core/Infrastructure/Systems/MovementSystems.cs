@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class MovementSystems : ISystemConnect
+    public class MovementSystems : IConnectableSystem
     {
         private readonly IGameScreen _gameScreen;
         private readonly ITime _time;

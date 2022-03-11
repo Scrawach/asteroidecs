@@ -6,12 +6,12 @@ namespace CodeBase.Core
 {
     public class Game
     {
-        private readonly ISystemConnect[] _externalSystems;
+        private readonly IConnectableSystem[] _externalSystems;
         private readonly EcsWorld _world;
 
         private EcsSystems _systems;
 
-        public Game(EcsWorld world, params ISystemConnect[] externalSystems)
+        public Game(EcsWorld world, params IConnectableSystem[] externalSystems)
         {
             _world = world;
             _externalSystems = externalSystems;
@@ -21,7 +21,7 @@ namespace CodeBase.Core
 
         public void Start()
         {
-            InitWorld();
+            InitSystems();
             IsPlaying = true;
         }
 
@@ -34,10 +34,10 @@ namespace CodeBase.Core
         public void Restart()
         {
             _systems.Destroy();
-            InitWorld();
+            InitSystems();
         }
 
-        private void InitWorld()
+        private void InitSystems()
         {
             _systems = new EcsSystems(_world);
 

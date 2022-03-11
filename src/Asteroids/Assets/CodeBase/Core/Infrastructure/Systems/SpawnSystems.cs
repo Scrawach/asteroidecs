@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class SpawnSystems : ISystemConnect
+    public class SpawnSystems : IConnectableSystem
     {
         private readonly IFactory _factory;
         private readonly IGameScreen _gameScreen;

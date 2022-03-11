@@ -2,7 +2,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems.Abstract
 {
-    public interface ISystemConnect
+    public interface IConnectableSystem
     {
         EcsSystems ConnectTo(EcsSystems systems);
     }

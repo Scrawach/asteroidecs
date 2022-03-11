@@ -6,7 +6,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class ShootSystems : ISystemConnect
+    public class ShootSystems : IConnectableSystem
     {
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems

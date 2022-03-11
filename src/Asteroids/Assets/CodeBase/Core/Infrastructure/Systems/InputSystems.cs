@@ -7,7 +7,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class InputSystems : ISystemConnect
+    public class InputSystems : IConnectableSystem
     {
         private readonly IInput _input;
 

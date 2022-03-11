@@ -6,7 +6,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class MetaSystems : ISystemConnect
+    public class MetaSystems : IConnectableSystem
     {
         private readonly IUiFactory _uiFactory;
         private readonly IWallet _wallet;

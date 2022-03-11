@@ -8,7 +8,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Infrastructure.Systems
 {
-    public class PhysicSystems : ISystemConnect
+    public class PhysicSystems : IConnectableSystem
     {
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
