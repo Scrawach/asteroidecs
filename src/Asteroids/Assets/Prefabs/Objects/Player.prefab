@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   View: {fileID: 8280896753577623950}
-  ReloadedValue: 0.9
-  LeftPoint: -0.1151
+  ReloadedValueScale: 0.9
+  WhenEmptyPosition: -0.1151
 --- !u!1 &5589345601090368556
 GameObject:
   m_ObjectHideFlags: 0
