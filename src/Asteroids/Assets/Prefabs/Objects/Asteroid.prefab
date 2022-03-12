@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4362733579654351489}
-  - component: {fileID: 4362733579654351488}
+  - component: {fileID: 4362733579654351490}
   - component: {fileID: 4362733579654351519}
+  - component: {fileID: 4362733579654351488}
   - component: {fileID: 4362733579654351518}
   - component: {fileID: 4362733579654351517}
-  - component: {fileID: 4362733579654351490}
   - component: {fileID: 5247037196033349963}
   - component: {fileID: 4166473372570092038}
   - component: {fileID: 8629472745571385938}
@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 5266360344260674093}
   - component: {fileID: 7067346326073439102}
   - component: {fileID: 6240961736981366265}
+  - component: {fileID: 1357736015772118609}
+  - component: {fileID: -737674501764472767}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -43,18 +45,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4362733579654351488
-MonoBehaviour:
+--- !u!50 &4362733579654351490
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4362733579654351516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f951b587803f439e878bea6bc1c22e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &4362733579654351519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -71,6 +82,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4362733579654351488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362733579654351516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f951b587803f439e878bea6bc1c22e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4362733579654351518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,27 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdad1b9931c84ea19f9d99ba99a190ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &4362733579654351490
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4362733579654351516}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &5247037196033349963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +212,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 7331895170806319312, guid: f467e0c1954981942b3f417d77ae86eb,
     type: 3}
+--- !u!114 &1357736015772118609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362733579654351516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4507bc8bd8214a62bc3c742618f9c3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value: 1
+--- !u!114 &-737674501764472767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4362733579654351516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784c3b3670a44596b370dd828c1d6d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value: 1
 --- !u!1 &4362733579661455119
 GameObject:
   m_ObjectHideFlags: 0

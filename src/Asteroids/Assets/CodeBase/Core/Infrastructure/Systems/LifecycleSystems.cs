@@ -22,6 +22,8 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))
                 .Add(new PlayerDiedSystem())
+                .Add(new TakeDamageSystem())
+                .Add(new DeathSystem())
                 .Add(new DestroySystem());
     }
 }

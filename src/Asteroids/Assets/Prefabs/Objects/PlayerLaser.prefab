@@ -100,6 +100,8 @@ GameObject:
   - component: {fileID: 5559200782566293149}
   - component: {fileID: 6627758029383995731}
   - component: {fileID: 1777587375215954364}
+  - component: {fileID: 1040113148712815565}
+  - component: {fileID: 8788858699369849514}
   m_Layer: 0
   m_Name: PlayerLaser
   m_TagString: Untagged
@@ -254,3 +256,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 7331895170806319312, guid: 98c6b81baca76494e88e02941da4a464,
     type: 3}
+--- !u!114 &1040113148712815565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595916902188608993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4507bc8bd8214a62bc3c742618f9c3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value: 2
+--- !u!114 &8788858699369849514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595916902188608993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784c3b3670a44596b370dd828c1d6d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value: 2

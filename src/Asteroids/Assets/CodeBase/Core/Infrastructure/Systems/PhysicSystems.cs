@@ -12,8 +12,8 @@ namespace CodeBase.Core.Infrastructure.Systems
     {
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
+                .Add(new TriggerSystemBetween<BulletTag, AsteroidTag>(new ApplyDamageStrategy()))
                 .Add(new TriggerSystemBetween<PlayerTag, AsteroidTag>(new DestroyTriggeredEntities()))
-                .Add(new TriggerSystemBetween<AsteroidTag, BulletTag>(new PlayerDestroyTriggeredEntities()))
                 .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new SumAndInverseMovementDirection()))
                 .DeleteHere<OnTriggerEnter>();
     }
