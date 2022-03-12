@@ -3,5 +3,6 @@
     public struct LaserReload
     {
         public float Cooldown;
+        public float ElapsedCooldown;
     }
 }

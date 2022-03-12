@@ -43,7 +43,8 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
                 
                 world.AddComponent(index, new LaserReload
                 {
-                    Cooldown = 2f
+                    Cooldown = 2f,
+                    ElapsedCooldown = 2f
                 });
             }
         }

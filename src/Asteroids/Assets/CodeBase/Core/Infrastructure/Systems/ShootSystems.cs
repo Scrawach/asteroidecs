@@ -19,6 +19,7 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .DeleteHere<ShootPoint>()
                 .Add(new PlayerLaserReload(_time))
                 .Add(new PlayerBulletShoot())
-                .Add(new PlayerLaserShoot());
+                .Add(new PlayerLaserShoot())
+                .Add(new PlayerLaserReloadView());
     }
 }

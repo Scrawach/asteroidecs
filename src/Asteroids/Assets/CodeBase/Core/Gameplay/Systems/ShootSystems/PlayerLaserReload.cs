@@ -20,9 +20,9 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
             foreach (var index in filter)
             {
                 ref var reload = ref reloads.Get(index);
-                reload.Cooldown -= _time.DeltaFrame;
+                reload.ElapsedCooldown -= _time.DeltaFrame;
                 
-                if (reload.Cooldown <= 0)
+                if (reload.ElapsedCooldown <= 0)
                     reloads.Del(index);
             }
         }
