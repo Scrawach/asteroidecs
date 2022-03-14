@@ -13,6 +13,7 @@ namespace CodeBase.Core.Infrastructure.Systems
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .DeleteHere<KilledByPlayer>()
+                .DeleteHere<PhysicsAlreadyCalculatedTag>()
                 .Add(new TriggerSystemBetween<BulletTag, AsteroidTag>(new CombineStrategies(new ApplyDamageStrategy(),
                     new ApplyKilledByPlayer())))
                 .Add(new TriggerSystemBetween<BulletTag, AlienTag>(new CombineStrategies(new ApplyDamageStrategy(),

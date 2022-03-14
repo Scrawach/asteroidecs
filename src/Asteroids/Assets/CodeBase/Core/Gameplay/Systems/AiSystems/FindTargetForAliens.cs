@@ -3,7 +3,6 @@ using CodeBase.Core.Gameplay.Components.Ai;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace CodeBase.Core.Gameplay.Systems.AiSystems
 {
@@ -20,8 +19,6 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
 
             foreach (var index in filter)
             {
-                Debug.Log("ADD COMPONENT!");
-
                 world.AddComponent(index, new FollowTarget
                 {
                     Target = world.PackEntity(players.GetRawEntities()[0])

@@ -1,4 +1,5 @@
 using CodeBase.Core.Gameplay.Components.Events;
+using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies;
 using Leopotam.EcsLite;
 
@@ -19,6 +20,8 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
             var filter = world.Filter<OnTriggerEnter>().End();
 
             var events = world.GetPool<OnTriggerEnter>();
+            var calculated = world.GetPool<PhysicsAlreadyCalculatedTag>();
+            
             foreach (var index in filter)
             {
                 ref var enter = ref events.Get(index);
@@ -26,7 +29,14 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
                 if (UnpackEvent(enter, world, out var sender, out var trigger))
                     if (IsCollideBetween<TSender, TTarget>(world, sender, trigger) ||
                         IsCollideBetween<TTarget, TSender>(world, sender, trigger))
+                    {
+                        if (calculated.Has(sender) || calculated.Has(trigger))
+                            continue;
+                        
                         _strategy.OnEnter(world, sender, trigger);
+                        calculated.Add(sender);
+                        calculated.Add(trigger);
+                    }
             }
         }
 
