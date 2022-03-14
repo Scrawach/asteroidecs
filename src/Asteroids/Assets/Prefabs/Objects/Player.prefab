@@ -280,6 +280,8 @@ GameObject:
   - component: {fileID: 7651440759816118664}
   - component: {fileID: 2122651586568206890}
   - component: {fileID: 4163844101726640768}
+  - component: {fileID: 1973649100824094219}
+  - component: {fileID: 7544238360322995505}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -457,3 +459,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReloadView: {fileID: 1140202743146473411}
+--- !u!114 &1973649100824094219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589345601090368556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f8dfaa09614d8aa03049a36cdf633b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value:
+      X: 0
+      Y: 0
+--- !u!114 &7544238360322995505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589345601090368556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc07e10b85e2491b91c966574e6c1d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Modifier: 2

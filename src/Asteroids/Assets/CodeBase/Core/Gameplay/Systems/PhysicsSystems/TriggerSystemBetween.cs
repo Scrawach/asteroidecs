@@ -26,17 +26,19 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
             {
                 ref var enter = ref events.Get(index);
 
-                if (UnpackEvent(enter, world, out var sender, out var trigger))
-                    if (IsCollideBetween<TSender, TTarget>(world, sender, trigger) ||
-                        IsCollideBetween<TTarget, TSender>(world, sender, trigger))
-                    {
-                        if (calculated.Has(sender) || calculated.Has(trigger))
-                            continue;
+                if (!UnpackEvent(enter, world, out var sender, out var trigger))
+                    continue;
 
-                        _strategy.OnEnter(world, sender, trigger);
-                        calculated.Add(sender);
-                        calculated.Add(trigger);
-                    }
+                if (IsCollideBetween<TSender, TTarget>(world, sender, trigger) ||
+                    IsCollideBetween<TTarget, TSender>(world, sender, trigger))
+                {
+                    if (calculated.Has(sender) || calculated.Has(trigger))
+                        continue;
+
+                    _strategy.OnEnter(world, sender, trigger);
+                    calculated.Add(sender);
+                    calculated.Add(trigger);
+                }
             }
         }
 

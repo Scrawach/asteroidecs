@@ -3,7 +3,7 @@ using CodeBase.Core.Gameplay.Components.Tags;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.EcsLite;
 
-namespace CodeBase.Core.Gameplay.Systems.MovementSystems
+namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
     public class KillOutOfBorderObjects : IEcsRunSystem
     {

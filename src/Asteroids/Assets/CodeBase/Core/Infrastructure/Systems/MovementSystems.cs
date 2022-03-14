@@ -18,9 +18,11 @@ namespace CodeBase.Core.Infrastructure.Systems
 
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
-                .Add(new ForwardMovementSystem())
+                .Add(new SetForwardMovementSystem())
                 .Add(new BlockPlayerMovementOutsideScreen(_gameScreen))
-                .Add(new MoveSystem(_time))
+                .Add(new LinearMovementSystem(_time))
+                .Add(new AccelerationMovementSystem(_time))
+                .Add(new ChangePositionSystem())
                 .Add(new UpdateBodySystem());
     }
 }

@@ -14,6 +14,9 @@ namespace CodeBase.Core.Common
             Y = y;
         }
 
+        public override string ToString() =>
+            $"({X}, {Y})";
+
         public static Vector2Data operator +(Vector2Data left, Vector2Data right) =>
             new Vector2Data(left.X + right.X, left.Y + right.Y);
 

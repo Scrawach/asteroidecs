@@ -1,6 +1,5 @@
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
-using CodeBase.Core.Gameplay.Systems.MovementSystems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;
 

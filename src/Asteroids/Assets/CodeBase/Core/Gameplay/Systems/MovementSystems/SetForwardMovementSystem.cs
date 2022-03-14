@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
-    public class ForwardMovementSystem : IEcsRunSystem
+    public class SetForwardMovementSystem : IEcsRunSystem
     {
         public void Run(EcsSystems systems)
         {

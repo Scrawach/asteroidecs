@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 1777587375215954364}
   - component: {fileID: 1040113148712815565}
   - component: {fileID: 8788858699369849514}
+  - component: {fileID: 2738916368621562593}
   m_Layer: 0
   m_Name: PlayerLaser
   m_TagString: Untagged
@@ -306,3 +307,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value:
     Value: 2
+--- !u!114 &2738916368621562593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595916902188608993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f8dfaa09614d8aa03049a36cdf633b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Value:
+      X: 0
+      Y: 0
