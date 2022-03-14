@@ -3,7 +3,7 @@ using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Moves;
-using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Tags.Objects;
 using CodeBase.Core.Gameplay.Components.Weapon;
 using Leopotam.EcsLite;
 

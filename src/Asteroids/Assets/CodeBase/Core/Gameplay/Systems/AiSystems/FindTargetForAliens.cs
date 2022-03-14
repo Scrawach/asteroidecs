@@ -1,7 +1,7 @@
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Ai;
 using CodeBase.Core.Gameplay.Components.Moves;
-using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Tags.Objects;
 using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.AiSystems
@@ -18,12 +18,10 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
                 return;
 
             foreach (var index in filter)
-            {
                 world.AddComponent(index, new FollowTarget
                 {
                     Target = world.PackEntity(players.GetRawEntities()[0])
                 });
-            }
         }
     }
 }

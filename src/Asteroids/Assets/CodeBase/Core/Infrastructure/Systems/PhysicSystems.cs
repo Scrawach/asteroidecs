@@ -1,6 +1,7 @@
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Tags.Objects;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems;
 using CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
@@ -22,6 +23,6 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .Add(new TriggerSystemBetween<AlienTag, PlayerTag>(new DestroyTriggeredEntities()))
                 .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new SumAndInverseMovementDirection()))
                 .Add(new TriggerSystemBetween<AsteroidTag, PlayerTag>(new DestroyTriggeredEntities()))
-                .DeleteHere<OnTriggerEnter>();
+                .DeleteHere<OnTriggerEnterEvent>();
     }
 }

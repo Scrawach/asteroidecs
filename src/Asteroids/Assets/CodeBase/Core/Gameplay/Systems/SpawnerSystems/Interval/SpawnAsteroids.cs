@@ -2,7 +2,7 @@ using CodeBase.Core.Common;
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
-using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Tags.Objects;
 using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval

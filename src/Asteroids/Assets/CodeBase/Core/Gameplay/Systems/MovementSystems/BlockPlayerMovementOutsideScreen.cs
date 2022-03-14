@@ -1,5 +1,5 @@
 using CodeBase.Core.Gameplay.Components.Moves;
-using CodeBase.Core.Gameplay.Components.Tags;
+using CodeBase.Core.Gameplay.Components.Tags.Objects;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.EcsLite;
 
