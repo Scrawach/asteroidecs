@@ -4,42 +4,20 @@ using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Services;
 using Leopotam.EcsLite;
 
-namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
+namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
 {
-    public class SpawnAsteroids : IEcsInitSystem, IEcsRunSystem
+    public class SpawnAsteroids : ISpawnStrategy
     {
         private readonly IGameScreen _gameScreen;
         private readonly IRandom _random;
-
-        private readonly float _respawnTime = 0.2f;
-        private readonly ITime _time;
-        private float _elapsedTime;
-
-        public SpawnAsteroids(ITime time, IGameScreen gameScreen, IRandom random)
+        
+        public SpawnAsteroids(IGameScreen gameScreen, IRandom random)
         {
-            _time = time;
             _random = random;
             _gameScreen = gameScreen;
         }
 
-        public void Init(EcsSystems systems)
-        {
-            for (var i = 0; i < 10; i++)
-                SpawnAsteroid(systems.GetWorld());
-        }
-
-        public void Run(EcsSystems systems)
-        {
-            _elapsedTime += _time.DeltaFrame;
-
-            if (_respawnTime <= _elapsedTime)
-            {
-                SpawnAsteroid(systems.GetWorld());
-                _elapsedTime -= _respawnTime;
-            }
-        }
-
-        private void SpawnAsteroid(EcsWorld world)
+        public void Spawn(EcsWorld world)
         {
             var spawnPoint = RandomOnRectangle(_gameScreen.Size.X, _gameScreen.Size.Y) - _gameScreen.Size / 2f;
             var direction = TargetPoint(1f) - spawnPoint;

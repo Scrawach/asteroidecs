@@ -22,7 +22,6 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
                 ref var info = ref infos.Get(index);
                 _factory.Create(info, world);
                 world.DelEntity(index);
-                //infos.Del(index);
             }
         }
     }

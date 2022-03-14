@@ -1,5 +1,6 @@
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
+using CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;
 
@@ -23,8 +24,8 @@ namespace CodeBase.Core.Infrastructure.Systems
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
-                .Add(new SpawnAliens(_time))
-                .Add(new SpawnAsteroids(_time, _gameScreen, _random))
+                .Add(new IntervalSpawn(_time, 1f, new SpawnAliens()))
+                .Add(new IntervalSpawn(_time, 0.2f, new SpawnAsteroids(_gameScreen, _random)))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
     }
