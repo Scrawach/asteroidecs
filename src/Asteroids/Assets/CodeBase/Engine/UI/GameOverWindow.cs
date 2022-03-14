@@ -1,6 +1,5 @@
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Events;
-using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +12,14 @@ namespace CodeBase.Engine.UI
 
         private EcsWorld _world;
 
-        public void Construct(EcsWorld world) =>
-            _world = world;
-
         private void OnEnable() =>
             _restart.onClick.AddListener(OnRestartClicked);
 
         private void OnDisable() =>
             _restart.onClick.RemoveListener(OnRestartClicked);
+
+        public void Construct(EcsWorld world) =>
+            _world = world;
 
         private void OnRestartClicked() =>
             _world.NewEntityWith<RestartButtonPressedEvent>();

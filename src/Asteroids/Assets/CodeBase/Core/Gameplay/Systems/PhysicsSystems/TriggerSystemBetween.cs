@@ -24,11 +24,9 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
                 ref var enter = ref events.Get(index);
 
                 if (UnpackEvent(enter, world, out var sender, out var trigger))
-                {
                     if (IsCollideBetween<TSender, TTarget>(world, sender, trigger) ||
                         IsCollideBetween<TTarget, TSender>(world, sender, trigger))
                         _strategy.OnEnter(world, sender, trigger);
-                }
             }
         }
 
@@ -44,8 +42,8 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
         {
             var senders = world.GetPool<TEnterSender>();
             var triggers = world.GetPool<TEnterTrigger>();
-            
-            return senders.Has(sender) && 
+
+            return senders.Has(sender) &&
                    triggers.Has(trigger);
         }
     }

@@ -16,9 +16,9 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
             {
                 ref var health = ref healths.Get(index);
 
-                if (health.Value > 0) 
+                if (health.Value > 0)
                     continue;
-                
+
                 destroys.Add(index);
                 healths.Del(index);
             }

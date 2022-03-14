@@ -7,7 +7,7 @@ namespace CodeBase.Core.Extensions
         public static EcsSystems DeleteHere<TComponent>(this EcsSystems systems) where TComponent : struct =>
             systems.Add(new DeleteHereSystem<TComponent>());
 
-        private class DeleteHereSystem<TComponent> : IEcsRunSystem 
+        private class DeleteHereSystem<TComponent> : IEcsRunSystem
             where TComponent : struct
         {
             public void Run(EcsSystems systems)

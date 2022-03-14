@@ -17,21 +17,21 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
         public void Spawn(EcsWorld world)
         {
             var spawnPoint = _spawnPositionPolicy.SpawnPosition(world);
-            
-            if (IsPlayerExist(world, out var player)) 
+
+            if (IsPlayerExist(world, out var player))
                 return;
 
             var positions = world.GetPool<Position>();
             var firstPlayer = player.GetRawEntities()[0];
-            
+
             world.NewEntityWith
             (
                 new SpawnInfo
                 (
-                    ObjectId.Asteroid, 
-                    spawnPoint, 
+                    ObjectId.Asteroid,
+                    spawnPoint,
                     (positions.Get(firstPlayer).Value - spawnPoint).Normalize()
-                 )
+                )
             );
         }
 

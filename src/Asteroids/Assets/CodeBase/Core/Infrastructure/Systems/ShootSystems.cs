@@ -11,7 +11,7 @@ namespace CodeBase.Core.Infrastructure.Systems
     {
         private readonly ITime _time;
 
-        public ShootSystems(ITime time) => 
+        public ShootSystems(ITime time) =>
             _time = time;
 
         public EcsSystems ConnectTo(EcsSystems systems) =>

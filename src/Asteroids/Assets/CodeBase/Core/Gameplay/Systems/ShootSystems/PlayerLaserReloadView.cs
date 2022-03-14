@@ -15,7 +15,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
 
             var views = world.GetPool<ReloadView>();
             var reloads = world.GetPool<LaserReload>();
-            
+
             foreach (var index in filter)
             {
                 ref var view = ref views.Get(index);

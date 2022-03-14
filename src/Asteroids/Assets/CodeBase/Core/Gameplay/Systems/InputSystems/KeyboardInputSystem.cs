@@ -21,7 +21,7 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
 
             if (_input.IsFireButtonPressed())
                 world.NewEntityWith<FireButtonPressedEvent>();
-            
+
             if (_input.IsLaserButtonPressed())
                 world.NewEntityWith<LaserButtonPressedEvent>();
 

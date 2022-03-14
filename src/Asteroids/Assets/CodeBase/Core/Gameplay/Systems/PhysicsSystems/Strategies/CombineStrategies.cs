@@ -6,12 +6,12 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
     {
         private readonly IEnterTriggerStrategy[] _strategies;
 
-        public CombineStrategies(params IEnterTriggerStrategy[] strategies) => 
+        public CombineStrategies(params IEnterTriggerStrategy[] strategies) =>
             _strategies = strategies;
 
         public void OnEnter(EcsWorld world, int sender, int trigger)
         {
-            foreach (var strategy in _strategies) 
+            foreach (var strategy in _strategies)
                 strategy.OnEnter(world, sender, trigger);
         }
     }

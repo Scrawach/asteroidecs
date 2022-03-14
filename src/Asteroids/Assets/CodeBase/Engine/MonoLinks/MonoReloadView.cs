@@ -8,7 +8,7 @@ namespace CodeBase.Engine.MonoLinks
     public class MonoReloadView : MonoLink<ReloadView>
     {
         public LaserReloadView ReloadView;
-        
+
         public override void Resolve(EcsWorld world, int entity)
         {
             Value = new ReloadView {View = ReloadView};

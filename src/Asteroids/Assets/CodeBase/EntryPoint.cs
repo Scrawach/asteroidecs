@@ -6,7 +6,6 @@ using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
-using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CodeBase

@@ -9,7 +9,13 @@ namespace CodeBase.Engine.Components
         public Transform View;
         public float ReloadedValueScale = 0.9f;
         public float WhenEmptyPosition = -0.1151f;
-        
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+                StartCoroutine(Reloading());
+        }
+
         public void ApplyProgress(float percents)
         {
             var scale = View.localScale;
@@ -19,12 +25,6 @@ namespace CodeBase.Engine.Components
             var position = View.localPosition;
             position.x = Mathf.Lerp(WhenEmptyPosition, 0f, percents);
             View.localPosition = position;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-                StartCoroutine(Reloading());
         }
 
         private IEnumerator Reloading()

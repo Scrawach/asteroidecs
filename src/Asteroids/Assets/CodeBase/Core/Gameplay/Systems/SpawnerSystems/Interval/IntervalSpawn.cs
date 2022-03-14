@@ -5,10 +5,10 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
 {
     public class IntervalSpawn : IEcsRunSystem
     {
-        private readonly ITime _time;
         private readonly float _respawnTime;
         private readonly ISpawnStrategy _spawnStrategy;
-        
+        private readonly ITime _time;
+
         private float _elapsedTime;
 
         public IntervalSpawn(ITime time, float respawnTime, ISpawnStrategy spawnStrategy)
@@ -17,11 +17,11 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
             _respawnTime = respawnTime;
             _spawnStrategy = spawnStrategy;
         }
-        
+
         public void Run(EcsSystems systems)
         {
             UpdateCooldown();
-            
+
             if (IsCooldownDone())
             {
                 _spawnStrategy.Spawn(systems.GetWorld());

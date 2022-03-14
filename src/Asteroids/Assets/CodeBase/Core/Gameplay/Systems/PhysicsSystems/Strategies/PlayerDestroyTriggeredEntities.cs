@@ -14,7 +14,7 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
         private void Apply<TComponent>(EcsWorld world, int sender, int trigger) where TComponent : struct
         {
             var dead = world.GetPool<TComponent>();
-            
+
             if (dead.Has(sender) == false)
                 dead.Add(sender);
 

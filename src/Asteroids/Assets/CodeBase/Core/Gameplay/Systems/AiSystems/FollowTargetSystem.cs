@@ -17,7 +17,7 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
             foreach (var index in filter)
             {
                 ref var target = ref targets.Get(index);
-                
+
                 if (target.Target.Unpack(world, out var entity))
                 {
                     ref var targetPosition = ref positions.Get(entity);

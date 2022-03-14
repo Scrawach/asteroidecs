@@ -14,7 +14,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
             _gameScreen = gameScreen;
             _random = random;
         }
-        
+
         public Vector2Data SpawnPosition(EcsWorld world) =>
             RandomOnRectangle(_gameScreen.Size.X, _gameScreen.Size.Y) - _gameScreen.Size / 2f;
 

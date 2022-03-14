@@ -8,9 +8,9 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
     {
         private readonly ITime _time;
 
-        public PlayerLaserReload(ITime time) => 
+        public PlayerLaserReload(ITime time) =>
             _time = time;
-        
+
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
@@ -21,7 +21,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
             {
                 ref var reload = ref reloads.Get(index);
                 reload.ElapsedCooldown -= _time.DeltaFrame;
-                
+
                 if (reload.ElapsedCooldown <= 0)
                     reloads.Del(index);
             }

@@ -21,7 +21,7 @@ namespace CodeBase.Engine.MonoLinks.Physics
                     return;
 
                 _alwaysRegistered = true;
-                
+
                 World.NewEntityWith(new OnTriggerEnter
                 {
                     Sender = World.PackEntity(Entity),

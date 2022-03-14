@@ -25,7 +25,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
                 .Inc<Rotation>()
                 .Exc<LaserReload>()
                 .End();
-            
+
             var positions = world.GetPool<Position>();
             var rotations = world.GetPool<Rotation>();
 
@@ -33,14 +33,14 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
             {
                 ref var position = ref positions.Get(index);
                 ref var rotation = ref rotations.Get(index);
-                
+
                 world.NewEntityWith(new ShootPoint
                 {
                     Bullet = ObjectId.PlayerLaser,
                     Position = position.Value,
                     Direction = rotation.Direction
                 });
-                
+
                 world.AddComponent(index, new LaserReload
                 {
                     Cooldown = 2f,

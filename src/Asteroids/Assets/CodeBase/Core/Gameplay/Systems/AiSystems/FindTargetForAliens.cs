@@ -17,12 +17,12 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
 
             if (players.GetEntitiesCount() < 1)
                 return;
-            
+
             foreach (var index in filter)
             {
-                Debug.Log($"ADD COMPONENT!");
-                
-                world.AddComponent(index, new FollowTarget()
+                Debug.Log("ADD COMPONENT!");
+
+                world.AddComponent(index, new FollowTarget
                 {
                     Target = world.PackEntity(players.GetRawEntities()[0])
                 });

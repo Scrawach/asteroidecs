@@ -1,4 +1,3 @@
-using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 

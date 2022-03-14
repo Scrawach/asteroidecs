@@ -1,5 +1,4 @@
 using CodeBase.Core.Gameplay.Components.Lifecycle;
-using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 

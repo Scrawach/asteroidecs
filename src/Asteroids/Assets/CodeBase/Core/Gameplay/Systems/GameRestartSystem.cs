@@ -29,7 +29,7 @@ namespace CodeBase.Core.Gameplay.Systems
 
             foreach (var entity in entities)
                 dead.Add(entity);
-            
+
             _game.Restart();
         }
     }
