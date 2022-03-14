@@ -21,6 +21,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
         public void Run(EcsSystems systems)
         {
             UpdateCooldown();
+            
             if (IsCooldownDone())
             {
                 _spawnStrategy.Spawn(systems.GetWorld());

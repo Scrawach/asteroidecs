@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    Value: 1
+    Value: 3
 --- !u!114 &4353389514805062539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    Value: 1
+    Value: 5
 --- !u!114 &5266360344260674093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value:
-    Value: 1
+    Value: 2
 --- !u!114 &-737674501764472767
 MonoBehaviour:
   m_ObjectHideFlags: 0
