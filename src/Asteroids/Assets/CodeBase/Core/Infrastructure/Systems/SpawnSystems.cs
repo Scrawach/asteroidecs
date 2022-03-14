@@ -23,6 +23,7 @@ namespace CodeBase.Core.Infrastructure.Systems
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
+                .Add(new SpawnAliens(_time))
                 .Add(new SpawnAsteroids(_time, _gameScreen, _random))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));

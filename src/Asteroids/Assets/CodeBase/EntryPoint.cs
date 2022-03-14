@@ -46,6 +46,7 @@ namespace CodeBase
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),
                 new SpawnSystems(factory, gameScreen, time, random),
+                new AiSystems(),
                 new ShootSystems(time),
                 new PhysicSystems(),
                 new MetaSystems(wallet, uiFactory),

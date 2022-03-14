@@ -47,6 +47,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: da2ecdfec1e3ffde1be0a0e3bbd6047b
+    m_Address: Alien
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: dd466752ba9568ec18a622f258cb14f6
     m_Address: GameOverWindow
     m_ReadOnly: 0
