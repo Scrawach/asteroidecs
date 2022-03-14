@@ -6,6 +6,7 @@ using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
+using CodeBase.Engine.Systems;
 using UnityEngine;
 
 namespace CodeBase
@@ -49,7 +50,8 @@ namespace CodeBase
                 new ShootSystems(time),
                 new PhysicSystems(),
                 new MetaSystems(wallet, uiFactory),
-                new LifecycleSystems(time, gameScreen)
+                new LifecycleSystems(time, gameScreen),
+                new DebugSystems()
             );
 
             Application.quitting += () => game.Quit();
