@@ -24,8 +24,8 @@ namespace CodeBase.Core.Infrastructure.Systems
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
-                //.Add(new IntervalSpawn(_time, 3f, new SpawnAliens(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
-                //.Add(new IntervalSpawn(_time, 0.2f, new SpawnAsteroids(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
+                .Add(new IntervalSpawn(_time, 3f, new SpawnAliens(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
+                .Add(new IntervalSpawn(_time, 0.5f, new SpawnAsteroids(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
     }
