@@ -15,5 +15,8 @@ namespace CodeBase.Core.Extensions
                 ? new Vector2Data(self.X / magnitude, self.Y / magnitude)
                 : self;
         }
+
+        public static float Dot(this Vector2Data self, Vector2Data other) =>
+            self.X * other.Y + self.Y * other.X;
     }
 }

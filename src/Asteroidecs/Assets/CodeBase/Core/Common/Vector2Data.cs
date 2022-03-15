@@ -17,6 +17,9 @@ namespace CodeBase.Core.Common
         public override string ToString() =>
             $"({X}, {Y})";
 
+        public static Vector2Data Lerp(Vector2Data a, Vector2Data b, float t) =>
+            new Vector2Data(a.X + (b.X - a.X) * t, a.Y + (b.Y - a.Y) * t);
+
         public static Vector2Data operator +(Vector2Data left, Vector2Data right) =>
             new Vector2Data(left.X + right.X, left.Y + right.Y);
 

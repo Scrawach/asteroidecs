@@ -19,6 +19,6 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .DeleteHere<FireButtonPressedEvent>()
                 .DeleteHere<LaserButtonPressedEvent>()
                 .Add(new KeyboardInputSystem(_input))
-                .Add(new MouseInputSystem(_input));
+                .Add(new PlayerRotationSystem(_input));
     }
 }

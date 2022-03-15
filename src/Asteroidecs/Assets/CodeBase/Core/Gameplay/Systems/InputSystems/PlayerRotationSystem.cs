@@ -1,3 +1,4 @@
+using CodeBase.Core.Common;
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Core.Gameplay.Components.Tags.Objects;
@@ -6,11 +7,11 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.InputSystems
 {
-    public class MouseInputSystem : IEcsRunSystem
+    public class PlayerRotationSystem : IEcsRunSystem
     {
         private readonly IInput _input;
 
-        public MouseInputSystem(IInput input) =>
+        public PlayerRotationSystem(IInput input) =>
             _input = input;
 
         public void Run(EcsSystems systems)
@@ -29,7 +30,12 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
             {
                 ref var position = ref positions.Get(index);
                 ref var rotation = ref rotations.Get(index);
-                rotation.Direction = (_input.WorldMousePosition - position.Value).Normalize();
+
+                const float lerpSmooth = 0.25f;
+                var desiredRotation = (_input.WorldMousePosition - position.Value).Normalize();
+                var nextRotation = Vector2Data.Lerp(rotation.Direction, desiredRotation, lerpSmooth);
+
+                rotation.Direction = nextRotation.Normalize();
             }
         }
     }
