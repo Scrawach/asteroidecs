@@ -22,7 +22,6 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .Add(new KillOutOfBorderObjects(_gameScreen))
                 .Add(new PlayerDiedSystem())
                 .Add(new TakeDamageSystem())
-                .Add(new DeathSystem())
-                .Add(new DestroySystem());
+                .Add(new DeathSystem());
     }
 }

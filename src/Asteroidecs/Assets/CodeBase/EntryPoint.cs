@@ -49,8 +49,9 @@ namespace CodeBase
                 new AiSystems(),
                 new ShootSystems(time),
                 new PhysicSystems(),
-                new MetaSystems(wallet, uiFactory),
                 new LifecycleSystems(time, gameScreen),
+                new MetaSystems(wallet, uiFactory),
+                new CleanUpSystems(),
                 new DebugSystems()
             );
 

@@ -18,6 +18,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
             var filter = world
                 .Filter<BonusForDestruction>()
                 .Inc<KilledByPlayer>()
+                .Inc<DestroyTag>()
                 .End();
 
             var resultBonus = 0;
