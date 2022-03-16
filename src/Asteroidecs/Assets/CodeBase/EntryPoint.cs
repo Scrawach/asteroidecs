@@ -4,6 +4,7 @@ using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Infrastructure.Systems;
 using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
+using CodeBase.Engine.Services.AssetManagement.Pool;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
 using CodeBase.Engine.Systems;
@@ -30,7 +31,7 @@ namespace CodeBase
 
         private static Game NewGame(Camera mainCamera)
         {
-            var assets = new Assets();
+            var assets = new PoolAssets(new Assets());
             var wallet = new WalletService();
             var time = new UnityTime();
             var random = new UnityRandom(0);
