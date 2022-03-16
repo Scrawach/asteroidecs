@@ -9,23 +9,21 @@ namespace CodeBase.Core.Infrastructure.Systems
     public class SpawnSystems : IConnectableSystem
     {
         private readonly IFactory _factory;
-        private readonly IGameScreen _gameScreen;
-        private readonly IRandom _random;
         private readonly ITime _time;
+        private readonly ISpawnPositionPolicy _onScreenPerimeter;
 
         public SpawnSystems(IFactory factory, IGameScreen gameScreen, ITime time, IRandom random)
         {
             _factory = factory;
-            _gameScreen = gameScreen;
             _time = time;
-            _random = random;
+            _onScreenPerimeter = new RandomPointOnGameScreenPerimeter(gameScreen, random);
         }
 
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
-                .Add(new IntervalSpawn(_time, 3f, new SpawnAliens(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
-                .Add(new IntervalSpawn(_time, 0.5f, new SpawnAsteroids(new RandomPointOnGameScreenPerimeter(_gameScreen, _random))))
+                .Add(new IntervalSpawn(_time, 3f, new SpawnAliens(_onScreenPerimeter)))
+                .Add(new IntervalSpawn(_time, 0.5f, new SpawnAsteroids(_onScreenPerimeter)))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
     }
