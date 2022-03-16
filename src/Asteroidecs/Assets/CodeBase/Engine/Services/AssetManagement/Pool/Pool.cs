@@ -1,28 +1,27 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Engine.Services.AssetManagement.Pool
 {
-    public class GamePool
+    public class Pool
     {
-        private readonly Transform _container;
         private readonly Queue<GameObject> _objects;
-
-        public GamePool(Transform container)
+        private readonly Lazy<Scene> _rootScene;
+        
+        public Pool(string name)
         {
-            _container = container;
             _objects = new Queue<GameObject>();
+            _rootScene = new Lazy<Scene>(() => SceneManager.CreateScene($"[Pool] {name}"));
         }
 
-        public bool HasObjects => 
-            _objects.Count > 0;
+        public bool HasObjects => _objects.Count > 0;
 
         public void Push(GameObject gameObject)
         {
             gameObject.SetActive(false);
-            gameObject.transform.parent = _container;
+            SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
             _objects.Enqueue(gameObject);
         }
 
@@ -30,20 +29,15 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
         {
             if (HasObjects == false)
                 throw new InvalidOperationException("Not contains any object!");
-            
+
             var gameObject = _objects.Dequeue();
-            gameObject.transform.parent = null;
             gameObject.SetActive(true);
             return gameObject;
         }
 
         public void Cleanup()
         {
-            while (HasObjects)
-            {
-                var gameObject = _objects.Dequeue();
-                Object.Destroy(gameObject);
-            }
+            SceneManager.UnloadSceneAsync(_rootScene.Value);
             _objects.Clear();
         }
     }

@@ -7,12 +7,12 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
     public class PoolAssets : IAssets
     {
         private readonly IAssets _assets;
-        private readonly Dictionary<string, GamePool> _pools;
+        private readonly Dictionary<string, Pool> _pools;
 
         public PoolAssets(IAssets assets)
         {
             _assets = assets;
-            _pools = new Dictionary<string, GamePool>();
+            _pools = new Dictionary<string, Pool>();
         }
 
         public void Initialize() =>
@@ -25,13 +25,13 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
         {
             if (_pools.TryGetValue(address, out var pool) == false)
             {
-                pool = CreatePool(address);
+                pool = new Pool(address);
                 _pools.Add(address, pool);
             }
-            
-            if (pool.HasObjects) 
+
+            if (pool.HasObjects)
                 return pool.Pull();
-            
+
             return await CreateObject(address, position, rotation);
         }
 
@@ -39,13 +39,10 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
         {
             _assets.Cleanup();
 
-            foreach (var pool in _pools) 
+            foreach (var pool in _pools)
                 pool.Value.Cleanup();
             _pools.Clear();
         }
-
-        private static GamePool CreatePool(string objectId) =>
-            new GamePool(new GameObject($"[POOL] {objectId}").transform);
 
         private async Task<GameObject> CreateObject(string address, Vector3 position, Quaternion rotation)
         {

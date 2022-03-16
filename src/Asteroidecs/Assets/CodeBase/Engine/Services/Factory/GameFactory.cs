@@ -14,7 +14,7 @@ namespace CodeBase.Engine.Services.Factory
     public class GameFactory : IFactory
     {
         private readonly IAssets _assets;
-        
+
         public GameFactory(IAssets assets) =>
             _assets = assets;
 

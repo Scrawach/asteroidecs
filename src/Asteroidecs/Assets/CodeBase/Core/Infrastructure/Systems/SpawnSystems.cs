@@ -9,8 +9,8 @@ namespace CodeBase.Core.Infrastructure.Systems
     public class SpawnSystems : IConnectableSystem
     {
         private readonly IFactory _factory;
-        private readonly ITime _time;
         private readonly ISpawnPositionPolicy _onScreenPerimeter;
+        private readonly ITime _time;
 
         public SpawnSystems(IFactory factory, IGameScreen gameScreen, ITime time, IRandom random)
         {
