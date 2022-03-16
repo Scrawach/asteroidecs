@@ -22,7 +22,7 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .Add(new BlockPlayerMovementOutsideScreen(_gameScreen))
                 .Add(new LinearMovementSystem(_time))
                 .Add(new AccelerationMovementSystem(_time))
-                .Add(new ChangePositionSystem())
+                .Add(new UpdatePositionSystem())
                 .Add(new UpdateBodySystem());
     }
 }

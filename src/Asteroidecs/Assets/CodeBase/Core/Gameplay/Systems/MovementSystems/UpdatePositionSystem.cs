@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
-    public class ChangePositionSystem : IEcsRunSystem
+    public class UpdatePositionSystem : IEcsRunSystem
     {
         public void Run(EcsSystems systems)
         {
