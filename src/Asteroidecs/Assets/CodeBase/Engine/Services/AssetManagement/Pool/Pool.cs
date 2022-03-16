@@ -9,6 +9,7 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
     {
         private readonly Queue<GameObject> _objects;
         private readonly Lazy<Scene> _rootScene;
+        private readonly Vector3 _outGamePoint = new Vector3(-25, -25, -25);
         
         public Pool(string name)
         {
@@ -21,6 +22,7 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
         public void Push(GameObject gameObject)
         {
             gameObject.SetActive(false);
+            gameObject.transform.position = _outGamePoint;
             SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
             _objects.Enqueue(gameObject);
         }

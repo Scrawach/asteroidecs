@@ -13,7 +13,6 @@ namespace CodeBase.Engine.MonoLinks
         public void Destroy()
         {
             Destroyed?.Invoke();
-            //Destroy(gameObject);
             _pool.Push(gameObject);
         }
 
