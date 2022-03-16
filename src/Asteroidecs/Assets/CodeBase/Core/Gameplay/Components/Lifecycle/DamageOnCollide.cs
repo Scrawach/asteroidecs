@@ -3,7 +3,7 @@
 namespace CodeBase.Core.Gameplay.Components.Lifecycle
 {
     [Serializable]
-    public struct Damage
+    public struct DamageOnCollide
     {
         public int Value;
     }
