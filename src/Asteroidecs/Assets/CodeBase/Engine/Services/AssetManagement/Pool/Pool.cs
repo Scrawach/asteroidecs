@@ -8,9 +8,9 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
     public class Pool
     {
         private readonly Queue<GameObject> _objects;
-        private readonly Lazy<Scene> _rootScene;
         private readonly Vector3 _outGamePoint = new Vector3(-25, -25, -25);
-        
+        private readonly Lazy<Scene> _rootScene;
+
         public Pool(string name)
         {
             _objects = new Queue<GameObject>();

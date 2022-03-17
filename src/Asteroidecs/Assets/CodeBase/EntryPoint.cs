@@ -21,7 +21,6 @@ namespace CodeBase
         private static async Task GameLoop(Game game)
         {
             game.Start();
-
             while (game.IsPlaying)
             {
                 game.Update();
@@ -44,6 +43,7 @@ namespace CodeBase
 
             var game = new Game
             (
+                //new UpdateTimeSystems(time),
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),
                 new SpawnSystems(factory, gameScreen, time, random),
@@ -57,7 +57,6 @@ namespace CodeBase
             );
 
             Application.quitting += () => game.Quit();
-
             return game;
         }
     }

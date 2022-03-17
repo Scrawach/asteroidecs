@@ -1,4 +1,4 @@
-namespace CodeBase.Core.Gameplay.Services
+namespace CodeBase.Core.Gameplay.Services.Time
 {
     public interface ITime
     {

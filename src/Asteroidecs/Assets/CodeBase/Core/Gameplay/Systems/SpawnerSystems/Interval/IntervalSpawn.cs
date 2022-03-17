@@ -1,4 +1,4 @@
-using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Time;
 using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval

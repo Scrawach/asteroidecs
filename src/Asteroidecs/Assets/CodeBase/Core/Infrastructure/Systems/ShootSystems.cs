@@ -1,6 +1,6 @@
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
-using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Gameplay.Systems.ShootSystems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;

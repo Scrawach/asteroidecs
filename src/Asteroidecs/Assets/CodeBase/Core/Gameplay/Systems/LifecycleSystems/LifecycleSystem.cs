@@ -1,6 +1,6 @@
 using CodeBase.Core.Gameplay.Components.Lifecycle;
 using CodeBase.Core.Gameplay.Components.Tags;
-using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Time;
 using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems

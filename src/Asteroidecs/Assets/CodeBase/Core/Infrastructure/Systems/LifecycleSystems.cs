@@ -1,4 +1,5 @@
 using CodeBase.Core.Gameplay.Services;
+using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Gameplay.Systems.LifecycleSystems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;
