@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core;
+using CodeBase.Core.Data;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Infrastructure.Systems;
@@ -42,12 +43,14 @@ namespace CodeBase
             var factory = new GameFactory(assets);
             var uiFactory = new UiFactory(assets, wallet);
 
+            var config = new GameConfig();
+
             var game = new Game
             (
                 new UpdateTimeSystems(time),
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),
-                new SpawnSystems(factory, gameScreen, time, random),
+                new SpawnSystems(factory, gameScreen, time, random, config),
                 new AiSystems(),
                 new ShootSystems(time),
                 new PhysicSystems(),

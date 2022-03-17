@@ -1,3 +1,4 @@
+using CodeBase.Core.Data;
 using CodeBase.Core.Gameplay.Services;
 using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Gameplay.Systems.SpawnerSystems;
@@ -10,21 +11,23 @@ namespace CodeBase.Core.Infrastructure.Systems
     public class SpawnSystems : IConnectableSystem
     {
         private readonly IFactory _factory;
-        private readonly ISpawnPositionPolicy _onScreenPerimeter;
         private readonly ITime _time;
+        private readonly ISpawnConfig _config;
+        private readonly ISpawnPositionPolicy _onScreenPerimeter;
 
-        public SpawnSystems(IFactory factory, IGameScreen gameScreen, ITime time, IRandom random)
+        public SpawnSystems(IFactory factory, IGameScreen gameScreen, ITime time, IRandom random, ISpawnConfig config)
         {
             _factory = factory;
             _time = time;
+            _config = config;
             _onScreenPerimeter = new RandomPointOnGameScreenPerimeter(gameScreen, random);
         }
 
         public EcsSystems ConnectTo(EcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
-                .Add(new IntervalSpawn(_time, 3f, new SpawnAliens(_onScreenPerimeter)))
-                .Add(new IntervalSpawn(_time, 0.5f, new SpawnAsteroids(_onScreenPerimeter)))
+                .Add(new IntervalSpawn(_time, _config.AsteroidCooldown, new SpawnAliens(_onScreenPerimeter)))
+                .Add(new IntervalSpawn(_time, _config.AlienCooldown, new SpawnAsteroids(_onScreenPerimeter)))
                 .Add(new SpawnBullet())
                 .Add(new SpawnSystem(_factory));
     }
