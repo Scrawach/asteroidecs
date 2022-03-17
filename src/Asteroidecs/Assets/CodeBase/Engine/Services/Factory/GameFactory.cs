@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using CodeBase.Core.Data;
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
@@ -18,13 +20,14 @@ namespace CodeBase.Engine.Services.Factory
         public GameFactory(IAssets assets) =>
             _assets = assets;
 
-        public async void Create(SpawnInfo info, EcsWorld world)
+        public async Task<int> Create(SpawnInfo info, EcsWorld world)
         {
             var (address, position, rotation) = Parse(info);
             var instance = await CreateGameObject(address, position, rotation);
 
             if (instance.TryGetComponent<MonoEntity>(out var monoEntity))
-                CreateEntity(info, world, monoEntity);
+                return CreateEntity(info, world, monoEntity);
+            throw new Exception("Object don't contain mono entity component!");
         }
 
         private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) =>
@@ -33,12 +36,13 @@ namespace CodeBase.Engine.Services.Factory
         private async Task<GameObject> CreateGameObject(string address, Vector3 position, Quaternion rotation) =>
             await _assets.InstantiateAsync(address, position, rotation);
 
-        private static void CreateEntity(SpawnInfo info, EcsWorld world, MonoLinkBase monoLink)
+        private static int CreateEntity(SpawnInfo info, EcsWorld world, MonoLinkBase monoLink)
         {
             var entity = world.NewEntity();
             world.AddComponent(entity, new Position {Value = info.Position});
             world.AddComponent(entity, new Rotation {Direction = info.Direction});
             monoLink.Resolve(world, entity);
+            return entity;
         }
     }
 }
