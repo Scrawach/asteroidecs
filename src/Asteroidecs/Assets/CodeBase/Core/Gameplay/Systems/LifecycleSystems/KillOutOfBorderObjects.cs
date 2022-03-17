@@ -15,7 +15,7 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<Position>().End();
+            var filter = world.Filter<Position>().Exc<DestroyTag>().End();
 
             var positions = world.GetPool<Position>();
             var dead = world.GetPool<DestroyTag>();

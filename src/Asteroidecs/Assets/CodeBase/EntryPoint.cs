@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core;
 using CodeBase.Core.Gameplay.Services.Meta;
+using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Infrastructure.Systems;
 using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
@@ -32,7 +33,7 @@ namespace CodeBase
         {
             var assets = new PoolAssets(new Assets());
             var wallet = new WalletService();
-            var time = new UnityTime();
+            var time = new WatchTime();
             var random = new UnityRandom(0);
 
             var input = new UnityInput(mainCamera);
@@ -43,7 +44,7 @@ namespace CodeBase
 
             var game = new Game
             (
-                //new UpdateTimeSystems(time),
+                new UpdateTimeSystems(time),
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),
                 new SpawnSystems(factory, gameScreen, time, random),

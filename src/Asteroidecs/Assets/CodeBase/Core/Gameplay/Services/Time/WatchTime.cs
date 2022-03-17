@@ -25,7 +25,11 @@ namespace CodeBase.Core.Gameplay.Services.Time
         public void Stop() =>
             _watch.Stop();
 
-        public void Reset() =>
+        public void Reset()
+        {
             _watch.Reset();
+            Elapsed = 0;
+            DeltaFrame = 0;
+        }
     }
 }
