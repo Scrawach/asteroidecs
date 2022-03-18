@@ -1,4 +1,4 @@
-namespace CodeBase.Core.Data
+namespace CodeBase.Core.Data.Systems
 {
     public class GameConfig : ISpawnConfig
     {
