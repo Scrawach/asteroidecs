@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CodeBase.Core;
-using CodeBase.Core.Common;
 using CodeBase.Core.Data;
 using CodeBase.Core.Data.Factory;
-using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Infrastructure.Systems;
@@ -14,7 +11,6 @@ using CodeBase.Engine.Services.AssetManagement.Pool;
 using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Factory;
 using CodeBase.Engine.Systems;
-using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace CodeBase
@@ -24,25 +20,6 @@ namespace CodeBase
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static async void Main() =>
             await GameLoop(NewGame(Camera.main));
-        //Test();
-
-        private static void Test()
-        {
-            Debug.Log("START TEST");
-            var assets = new Assets();
-            var factory = new GameFactory(assets);
-
-            var configs = new ConfigService(new Dictionary<ObjectId, ObjectConfig>
-            {
-                [ObjectId.Player] = new ObjectConfig {MovementSpeed = 10}
-            });
-
-            var initFactory = new InitializationFactory(factory, configs);
-
-            initFactory.Create(
-                new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0), new Vector2Data(0, 0)),
-                new EcsWorld());
-        }
 
         private static async Task GameLoop(Game game)
         {
