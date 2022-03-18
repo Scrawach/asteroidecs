@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using CodeBase.Core.Data;
 using CodeBase.Core.Extensions;
 using CodeBase.Core.Gameplay.Components;
 using CodeBase.Core.Gameplay.Components.Moves;
@@ -24,7 +23,6 @@ namespace CodeBase.Engine.Services.Factory
         {
             var (address, position, rotation) = Parse(info);
             var instance = await CreateGameObject(address, position, rotation);
-
             if (instance.TryGetComponent<MonoEntity>(out var monoEntity))
                 return CreateEntity(info, world, monoEntity);
             throw new Exception("Object don't contain mono entity component!");

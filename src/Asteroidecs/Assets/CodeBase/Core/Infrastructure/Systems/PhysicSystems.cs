@@ -22,7 +22,7 @@ namespace CodeBase.Core.Infrastructure.Systems
                 .Add(new TriggerSystemBetween<AlienTag, AsteroidTag>(new ApplyDamageStrategy()))
                 .Add(new TriggerSystemBetween<AlienTag, PlayerTag>(new DestroyTriggeredEntities()))
                 .Add(new TriggerSystemBetween<AsteroidTag, AsteroidTag>(new SumAndInverseMovementDirection()))
-                .Add(new TriggerSystemBetween<AsteroidTag, PlayerTag>(new DestroyTriggeredEntities()))
+                .Add(new TriggerSystemBetween<AsteroidTag, PlayerTag>(new ApplyDamageStrategy()))
                 .DeleteHere<OnTriggerEnterEvent>();
     }
 }
