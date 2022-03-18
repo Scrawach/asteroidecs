@@ -64,7 +64,7 @@ namespace CodeBase
             var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
 
-            var configs = new ConfigService(DefaultConfig());
+            var configs = new ConstantConfigService();
 
             var factory = new InitializationFactory(new GameFactory(assets), configs);
             var uiFactory = new UiFactory(assets, wallet);
@@ -89,28 +89,5 @@ namespace CodeBase
             Application.quitting += () => game.Quit();
             return game;
         }
-
-        private static Dictionary<ObjectId, ObjectConfig> DefaultConfig() =>
-            new Dictionary<ObjectId, ObjectConfig>
-            {
-                [ObjectId.Player] = new ObjectConfig
-                {
-                    Health = 10,
-                    MovementSpeed = 5,
-                    Acceleration = 2
-                },
-                [ObjectId.Asteroid] = new ObjectConfig
-                {
-                    MovementSpeed = 1,
-                    BonusForDestruction = 1,
-                    DamageOnCollide = 2
-                },
-                [ObjectId.Alien] = new ObjectConfig
-                {
-                    MovementSpeed = 4,
-                    BonusForDestruction = 5,
-                    DamageOnCollide = 2
-                }
-            };
     }
 }
