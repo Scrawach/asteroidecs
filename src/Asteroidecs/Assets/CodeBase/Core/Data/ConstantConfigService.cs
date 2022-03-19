@@ -20,7 +20,7 @@ namespace CodeBase.Core.Data
                 {
                     MovementSpeed = 1,
                     BonusForDestruction = 1,
-                    DamageOnCollide = 2
+                    DamageOnCollide = 1
                 },
                 [ObjectId.Alien] = new ObjectConfig
                 {
