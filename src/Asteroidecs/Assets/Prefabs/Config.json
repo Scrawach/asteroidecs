@@ -1,0 +1,17 @@
+{
+  "Player": {
+    "Health": 10,
+    "MovementSpeed": 6.0,
+    "Acceleration": 2.0
+  },
+  "Asteroid": {
+    "DamageOnCollide": 1,
+    "BonusForDestruction": 1,
+    "MovementSpeed": 1.0
+  },
+  "Alien": {
+    "DamageOnCollide": 2,
+    "BonusForDestruction": 5,
+    "MovementSpeed": 4.0
+  }
+}

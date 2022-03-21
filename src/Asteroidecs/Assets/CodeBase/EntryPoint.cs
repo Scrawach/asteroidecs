@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core;
-using CodeBase.Core.Data;
 using CodeBase.Core.Data.Factory;
 using CodeBase.Core.Data.Systems;
 using CodeBase.Core.Gameplay.Services.Meta;
@@ -10,6 +9,7 @@ using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.AssetManagement.Pool;
 using CodeBase.Engine.Services.CameraLogic;
+using CodeBase.Engine.Services.Configs;
 using CodeBase.Engine.Services.Factory;
 using CodeBase.Engine.Systems;
 using UnityEngine;
@@ -42,7 +42,8 @@ namespace CodeBase
             var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
 
-            var configs = new ConstantConfigService();
+            var configs = new JsonConfigService(assets);
+            configs.Load();
 
             var factory = new InitializationFactory(new GameFactory(assets), configs);
             var uiFactory = new UiFactory(assets, wallet);
