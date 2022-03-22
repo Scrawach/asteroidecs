@@ -31,7 +31,7 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
 
             if (pool.HasObjects)
                 return pool.Pull();
-
+            
             return await CreateObject(address, position, rotation);
         }
 

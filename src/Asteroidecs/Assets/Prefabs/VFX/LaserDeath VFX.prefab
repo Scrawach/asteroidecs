@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 4910668544337667946}
   - component: {fileID: 945115593301336353}
   - component: {fileID: 363525422877435339}
-  - component: {fileID: 5287590059294539145}
+  - component: {fileID: 8954515024053371627}
+  - component: {fileID: 7287231450991321458}
+  - component: {fileID: 3471703778807488115}
+  - component: {fileID: 5751898156400098477}
   m_Layer: 0
   m_Name: LaserDeath VFX
   m_TagString: Untagged
@@ -4813,7 +4816,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5287590059294539145
+--- !u!114 &8954515024053371627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4822,7 +4825,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 7331895170806319312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2085e5e0dc5b47aa9e7038bf9ad24b34, type: 3}
+  m_Script: {fileID: 11500000, guid: f951b587803f439e878bea6bc1c22e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeInSeconds: 1
+--- !u!114 &7287231450991321458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331895170806319312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9386840dd2475f856eac1d6ccf053e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3471703778807488115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331895170806319312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da307e3ad5046cb8d7811d7ed8d501c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5751898156400098477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331895170806319312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e8ca5edbb24297bc025bcd78f98b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value:
+    Time: 1
