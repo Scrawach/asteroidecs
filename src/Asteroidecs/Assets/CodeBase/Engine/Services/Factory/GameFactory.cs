@@ -28,7 +28,8 @@ namespace CodeBase.Engine.Services.Factory
             return await Create(address, position, rotation, world);
         }
 
-        public async Task<int> Create(AssetReferenceGameObject reference, Vector3 position, Quaternion rotation, EcsWorld world) =>
+        public async Task<int> Create(AssetReferenceGameObject reference, Vector3 position, Quaternion rotation,
+            EcsWorld world) =>
             await Create(reference.AssetGUID, position, rotation, world);
 
         private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) =>
@@ -51,7 +52,8 @@ namespace CodeBase.Engine.Services.Factory
             return gameObject;
         }
 
-        private static int CreateEntity(Vector2Data position, Vector2Data direction, EcsWorld world, MonoLinkBase monoLink)
+        private static int CreateEntity(Vector2Data position, Vector2Data direction, EcsWorld world,
+            MonoLinkBase monoLink)
         {
             var entity = world.NewEntity();
             world.AddComponent(entity, new Position {Value = position});

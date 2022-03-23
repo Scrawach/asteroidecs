@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using CodeBase.Core;
 using CodeBase.Core.Common;
 using CodeBase.Core.Data;
 using CodeBase.Core.Data.Systems;
@@ -19,9 +18,6 @@ namespace CodeBase.Engine.Services.Configs
         public JsonConfig(IAssets assets) =>
             _assets = assets;
 
-        public float AsteroidCooldown { get; private set; } = float.MaxValue;
-        public float AlienCooldown { get; private set; } = float.MaxValue;
-
         public async Task Load()
         {
             var asset = await _assets.Load<TextAsset>(Address);
@@ -29,7 +25,7 @@ namespace CodeBase.Engine.Services.Configs
 
             if (_gameConfig == null)
                 throw new NullReferenceException("Game config can not loaded!");
-            
+
             AsteroidCooldown = _gameConfig.AsteroidCooldown;
             AlienCooldown = _gameConfig.AlienCooldown;
         }
@@ -39,5 +35,8 @@ namespace CodeBase.Engine.Services.Configs
 
         public ObjectConfig Get(ObjectId id) =>
             _gameConfig.Objects[id];
+
+        public float AsteroidCooldown { get; private set; } = float.MaxValue;
+        public float AlienCooldown { get; private set; } = float.MaxValue;
     }
 }

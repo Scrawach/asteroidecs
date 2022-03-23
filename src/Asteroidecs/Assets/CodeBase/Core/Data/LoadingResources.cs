@@ -9,7 +9,7 @@ namespace CodeBase.Core.Data
 
         public LoadingResources(params ILoadingResource[] resources) =>
             _resources = resources;
-        
+
         public async Task Load()
         {
             var tasks = _resources.Select(resource => resource.Load());

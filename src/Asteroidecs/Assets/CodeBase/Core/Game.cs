@@ -8,8 +8,8 @@ namespace CodeBase.Core
 {
     public class Game
     {
-        private readonly ILoadingResource _resource;
         private readonly IConnectableSystem[] _externalSystems;
+        private readonly ILoadingResource _resource;
         private readonly EcsWorld _world;
         private EcsSystems _systems;
 

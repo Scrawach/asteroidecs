@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CodeBase.Core;
-using CodeBase.Core.Common;
-using CodeBase.Core.Data;
 using CodeBase.Core.Data.Factory;
-using CodeBase.Core.Data.Systems;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Infrastructure.Systems;
@@ -16,7 +11,6 @@ using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Configs;
 using CodeBase.Engine.Services.Factory;
 using CodeBase.Engine.Systems;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace CodeBase
@@ -46,7 +40,7 @@ namespace CodeBase
 
             var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
-            
+
             var config = new JsonConfig(assets);
 
             var factory = new InitializationFactory(new GameFactory(assets), config);
