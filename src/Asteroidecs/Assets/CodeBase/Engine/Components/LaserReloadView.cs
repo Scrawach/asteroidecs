@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using CodeBase.Core.Gameplay.Components.Weapon;
 using UnityEngine;
 

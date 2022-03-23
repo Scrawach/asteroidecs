@@ -10,16 +10,16 @@ namespace CodeBase.Engine.MonoLinks
     {
         private Pool _pool;
 
+        public event Action Destroyed;
+
+        public void Register(Pool pool) =>
+            _pool = pool;
+
         public void Destroy()
         {
             Destroyed?.Invoke();
             _pool.Push(gameObject);
         }
-
-        public void Register(Pool pool) =>
-            _pool = pool;
-
-        public event Action Destroyed;
 
         public override void Resolve(EcsWorld world, int entity)
         {

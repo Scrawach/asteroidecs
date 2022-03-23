@@ -3,7 +3,7 @@
   "AlienCooldown": 3.0,
   "Objects": {
     "Player": {
-        "Health": 10,
+        "Health": 1,
         "MovementSpeed": 6.0,
         "Acceleration": 2.0
     },
