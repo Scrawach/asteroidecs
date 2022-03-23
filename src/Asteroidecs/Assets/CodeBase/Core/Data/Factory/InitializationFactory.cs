@@ -11,10 +11,10 @@ namespace CodeBase.Core.Data.Factory
     public class InitializationFactory : IFactory
     {
         private readonly IApplyConfigValue[] _assumptionsApplies;
-        private readonly IConfigService _configs;
+        private readonly IObjectConfigs _configs;
         private readonly IFactory _instFactory;
 
-        public InitializationFactory(IFactory instFactory, IConfigService configs)
+        public InitializationFactory(IFactory instFactory, IObjectConfigs configs)
         {
             _instFactory = instFactory;
             _configs = configs;

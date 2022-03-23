@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using CodeBase.Core;
+using CodeBase.Core.Common;
+using CodeBase.Core.Data;
 using CodeBase.Core.Data.Factory;
 using CodeBase.Core.Data.Systems;
 using CodeBase.Core.Gameplay.Services.Meta;
@@ -12,6 +16,7 @@ using CodeBase.Engine.Services.CameraLogic;
 using CodeBase.Engine.Services.Configs;
 using CodeBase.Engine.Services.Factory;
 using CodeBase.Engine.Systems;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace CodeBase
@@ -24,7 +29,7 @@ namespace CodeBase
 
         private static async Task GameLoop(Game game)
         {
-            game.Start();
+            await game.Start();
             while (game.IsPlaying)
             {
                 game.Update();
@@ -41,17 +46,15 @@ namespace CodeBase
 
             var input = new UnityInput(mainCamera);
             var gameScreen = new CameraGameScreen(mainCamera);
+            
+            var config = new JsonConfig(assets);
 
-            var configs = new JsonConfigService(assets);
-            configs.Load();
-
-            var factory = new InitializationFactory(new GameFactory(assets), configs);
+            var factory = new InitializationFactory(new GameFactory(assets), config);
             var uiFactory = new UiFactory(assets, wallet);
-
-            var config = new GameConfig();
 
             var game = new Game
             (
+                config,
                 new UpdateTimeSystems(time),
                 new InputSystems(input),
                 new MovementSystems(gameScreen, time),

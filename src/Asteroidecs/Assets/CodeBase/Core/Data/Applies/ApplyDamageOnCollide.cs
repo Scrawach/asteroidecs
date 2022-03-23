@@ -5,7 +5,7 @@ namespace CodeBase.Core.Data.Applies
 {
     public class ApplyDamageOnCollide : ApplyConfigValue<DamageOnCollide>
     {
-        public ApplyDamageOnCollide(IConfigService configs) : base(configs) { }
+        public ApplyDamageOnCollide(IObjectConfigs configs) : base(configs) { }
 
         protected override bool OnHasValue(ObjectConfig config) =>
             config.DamageOnCollide.HasValue;

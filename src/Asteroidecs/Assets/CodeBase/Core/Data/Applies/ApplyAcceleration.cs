@@ -5,7 +5,7 @@ namespace CodeBase.Core.Data.Applies
 {
     public class ApplyAcceleration : ApplyConfigValue<Acceleration>
     {
-        public ApplyAcceleration(IConfigService configs) : base(configs) { }
+        public ApplyAcceleration(IObjectConfigs configs) : base(configs) { }
 
         protected override bool OnHasValue(ObjectConfig config) =>
             config.Acceleration.HasValue;

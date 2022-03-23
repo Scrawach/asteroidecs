@@ -5,7 +5,7 @@ namespace CodeBase.Core.Data.Applies
 {
     public class ApplyMovementSpeed : ApplyConfigValue<MovementSpeed>
     {
-        public ApplyMovementSpeed(IConfigService configs) : base(configs) { }
+        public ApplyMovementSpeed(IObjectConfigs configs) : base(configs) { }
 
         protected override bool OnHasValue(ObjectConfig config) =>
             config.MovementSpeed.HasValue;

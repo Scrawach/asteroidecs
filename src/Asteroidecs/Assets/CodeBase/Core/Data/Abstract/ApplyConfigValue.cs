@@ -6,9 +6,9 @@ namespace CodeBase.Core.Data.Abstract
     public abstract class ApplyConfigValue<TConfigComponent> : IApplyConfigValue
         where TConfigComponent : struct
     {
-        private readonly IConfigService _configs;
+        private readonly IObjectConfigs _configs;
 
-        protected ApplyConfigValue(IConfigService configs) =>
+        protected ApplyConfigValue(IObjectConfigs configs) =>
             _configs = configs;
 
         public bool TryApply(int entity, EcsWorld world, ObjectId objectId)

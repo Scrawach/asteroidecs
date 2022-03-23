@@ -5,7 +5,7 @@ namespace CodeBase.Core.Data.Applies
 {
     public class ApplyHealth : ApplyConfigValue<Health>
     {
-        public ApplyHealth(IConfigService configs) : base(configs) { }
+        public ApplyHealth(IObjectConfigs configs) : base(configs) { }
 
         protected override bool OnHasValue(ObjectConfig config) =>
             config.Health.HasValue;

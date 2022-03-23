@@ -1,4 +1,6 @@
-﻿using CodeBase.Core.Gameplay.Systems;
+﻿using System.Threading.Tasks;
+using CodeBase.Core.Data;
+using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;
 
@@ -6,20 +8,23 @@ namespace CodeBase.Core
 {
     public class Game
     {
+        private readonly ILoadingResource _resource;
         private readonly IConnectableSystem[] _externalSystems;
         private readonly EcsWorld _world;
         private EcsSystems _systems;
 
-        public Game(params IConnectableSystem[] externalSystems)
+        public Game(ILoadingResource resource, params IConnectableSystem[] externalSystems)
         {
             _world = new EcsWorld();
+            _resource = resource;
             _externalSystems = externalSystems;
         }
 
         public bool IsPlaying { get; private set; }
 
-        public void Start()
+        public async Task Start()
         {
+            await _resource.Load();
             InitSystems();
             IsPlaying = true;
         }
