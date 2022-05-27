@@ -1,12 +1,13 @@
+using System.Threading.Tasks;
 using Leopotam.EcsLite;
 
 namespace CodeBase.Core.Gameplay.Services
 {
     public interface IUiFactory
     {
-        void OpenGameplayHud();
+        Task OpenGameplayHud();
+        Task OpenGameOverWindow(EcsWorld world);
         void CloseGameplayHud();
-        void OpenGameOverWindow(EcsWorld world);
         void CloseGameOverWindow();
     }
 }

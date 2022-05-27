@@ -22,20 +22,20 @@ namespace CodeBase.Engine.Services.Factory
             _wallet = wallet;
         }
 
-        public async void OpenGameplayHud()
+        public async Task OpenGameplayHud()
         {
             _gameplayHud = await OpenAsync<GameplayHud>(nameof(GameplayHud));
             _gameplayHud.Construct(_wallet);
         }
 
-        public void CloseGameplayHud() =>
-            Object.Destroy(_gameplayHud.gameObject);
-
-        public async void OpenGameOverWindow(EcsWorld world)
+        public async Task OpenGameOverWindow(EcsWorld world)
         {
             _gameOverWindow = await OpenAsync<GameOverWindow>(nameof(GameOverWindow));
             _gameOverWindow.Construct(world);
         }
+
+        public void CloseGameplayHud() =>
+            Object.Destroy(_gameplayHud.gameObject);
 
         public void CloseGameOverWindow() =>
             Object.Destroy(_gameOverWindow.gameObject);
