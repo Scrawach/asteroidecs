@@ -34,12 +34,18 @@ namespace CodeBase.Engine.Services.Factory
             _gameOverWindow.Construct(world);
         }
 
-        public void CloseGameplayHud() =>
+        public void CloseGameplayHud()
+        {
             Object.Destroy(_gameplayHud.gameObject);
+            _gameplayHud = null;
+        }
 
-        public void CloseGameOverWindow() =>
+        public void CloseGameOverWindow()
+        {
             Object.Destroy(_gameOverWindow.gameObject);
-        
+            _gameOverWindow = null;
+        }
+
         private async Task<TWindow> OpenAsync<TWindow>(string address) where TWindow : MonoBehaviour
         {
             var prefab = await _assets.Load<GameObject>(address);
