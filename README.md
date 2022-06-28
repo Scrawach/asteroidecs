@@ -4,7 +4,7 @@ Simple example of asteroids game using Entity Component System implementation by
 Project [entry point](/src/Asteroidecs/Assets/CodeBase/EntryPoint.cs).
 
 <p align="center">
-  <img src="https://github.com/Scrawach/Asteroidecs/blob/main/doc/arch.svg">
+  <img width="600" src="doc/arch.svg" alt="Simple Architecture">
 </p>
 
 # Gameplay
