@@ -1,5 +1,5 @@
 # Asteroidecs
-A simple example of [asteroids game](https://en.wikipedia.org/wiki/Asteroids_(video_game)) using Entity Component System implementation by [LeoEcs Lite](https://github.com/Leopotam/ecslite) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
+A simple example of [asteroids game](https://en.wikipedia.org/wiki/Asteroids_(video_game)) using [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [LeoEcs Lite](https://github.com/Leopotam/ecslite) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
 
 # Gameplay
 
