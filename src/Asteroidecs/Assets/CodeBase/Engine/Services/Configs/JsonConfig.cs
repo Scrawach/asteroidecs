@@ -18,6 +18,16 @@ namespace CodeBase.Engine.Services.Configs
         public JsonConfig(IAssets assets) =>
             _assets = assets;
 
+        public float AsteroidCooldown { get; private set; } = float.MaxValue;
+
+        public float AlienCooldown { get; private set; } = float.MaxValue;
+
+        public bool Has(ObjectId id) =>
+            _gameConfig.Objects.ContainsKey(id);
+
+        public ObjectConfig Get(ObjectId id) =>
+            _gameConfig.Objects[id];
+
         public async Task Load()
         {
             var asset = await _assets.Load<TextAsset>(Address);
@@ -29,14 +39,5 @@ namespace CodeBase.Engine.Services.Configs
             AsteroidCooldown = _gameConfig.AsteroidCooldown;
             AlienCooldown = _gameConfig.AlienCooldown;
         }
-
-        public bool HasConfig(ObjectId id) =>
-            _gameConfig.Objects.ContainsKey(id);
-
-        public ObjectConfig Get(ObjectId id) =>
-            _gameConfig.Objects[id];
-
-        public float AsteroidCooldown { get; private set; } = float.MaxValue;
-        public float AlienCooldown { get; private set; } = float.MaxValue;
     }
 }

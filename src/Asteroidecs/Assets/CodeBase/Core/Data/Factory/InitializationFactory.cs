@@ -31,7 +31,7 @@ namespace CodeBase.Core.Data.Factory
         public async Task<int> Create(SpawnInfo info, EcsWorld world)
         {
             var instance = await _instFactory.Create(info, world);
-            if (_configs.HasConfig(info.Id))
+            if (_configs.Has(info.Id))
                 SetConfigValues(instance, info.Id, world);
             return instance;
         }

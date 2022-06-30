@@ -4,7 +4,7 @@ namespace CodeBase.Core.Data
 {
     public interface IObjectConfigs
     {
-        bool HasConfig(ObjectId id);
+        bool Has(ObjectId id);
         ObjectConfig Get(ObjectId id);
     }
 }
