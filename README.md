@@ -2,6 +2,11 @@
 Simple example of asteroids game using Entity Component System implementation by [LeoEcs Lite](https://github.com/Leopotam/ecslite). 
 
 Project [entry point](/src/Asteroidecs/Assets/CodeBase/EntryPoint.cs).
+
+<p align="center">
+  <img width="600" src="doc/arch.svg" alt="Simple Architecture">
+</p>
+
 # Gameplay
 <p align="center">
   <img width="600" src="doc/gameplay.gif" alt="Gameplay">
