@@ -16,8 +16,8 @@ The game has only one difficulty level. However, it can be configured in the [js
 ### Control
 - **WASD** - spaceship movement direction.
 - **Mouse Position** - spaceship firing direction.
-- **Left Click** - a simple laser that is destroyed when it collides with something. Deals 1 damage.
-- **Right Click** - a red laser that is not destroyed by asteroid collisions, but aliens can destroy it.
+- **Left Click** - a simple laser that is destroyed when it collides with something. This laser bullet deals 1 damage and has 1 health point.
+- **Right Click** - a red laser, that has 2 health point and can destroy 2 asteroids or 1 alien ship before self destroying by collision.
 
 All control logic is encapsulated in a class [UnityInput](/src/Asteroidecs/Assets/CodeBase/Engine/Services/UnityInput.cs).
 
