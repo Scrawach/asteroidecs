@@ -8,16 +8,16 @@ namespace CodeBase.Core
 {
     public class Game
     {
-        private readonly IConnectableSystem[] _externalSystems;
+        private readonly IConnectableSystem _externalSystem;
         private readonly ILoadingResource _resource;
         private readonly EcsWorld _world;
         private EcsSystems _systems;
 
-        public Game(ILoadingResource resource, params IConnectableSystem[] externalSystems)
+        public Game(ILoadingResource resource, IConnectableSystem externalSystem)
         {
             _world = new EcsWorld();
             _resource = resource;
-            _externalSystems = externalSystems;
+            _externalSystem = externalSystem;
         }
 
         public bool IsPlaying { get; private set; }
@@ -32,22 +32,19 @@ namespace CodeBase.Core
         public void Update() =>
             _systems.Run();
 
-        public void Quit() =>
-            IsPlaying = false;
-
         public void Restart()
         {
             _systems.Destroy();
             InitSystems();
         }
 
+        public void Quit() =>
+            IsPlaying = false;
+
         private void InitSystems()
         {
             _systems = new EcsSystems(_world);
-
-            foreach (var system in _externalSystems)
-                system.ConnectTo(_systems);
-
+            _externalSystem.ConnectTo(_systems);
             _systems.Add(new GameRestartSystem(this));
             _systems.Init();
         }
