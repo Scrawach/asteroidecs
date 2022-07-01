@@ -4,6 +4,7 @@ using CodeBase.Core.Data.Factory;
 using CodeBase.Core.Gameplay.Services.Meta;
 using CodeBase.Core.Gameplay.Services.Time;
 using CodeBase.Core.Infrastructure.Systems;
+using CodeBase.Core.Infrastructure.Systems.Abstract;
 using CodeBase.Engine.Services;
 using CodeBase.Engine.Services.AssetManagement;
 using CodeBase.Engine.Services.AssetManagement.Pool;
@@ -49,17 +50,20 @@ namespace CodeBase
             var game = new Game
             (
                 config,
-                new UpdateTimeSystems(time),
-                new InputSystems(input),
-                new MovementSystems(gameScreen, time),
-                new SpawnSystems(factory, gameScreen, time, random, config),
-                new AiSystems(),
-                new ShootSystems(time),
-                new PhysicSystems(),
-                new LifecycleSystems(time, gameScreen),
-                new MetaSystems(wallet, uiFactory),
-                new CleanUpSystems(),
-                new DebugSystems()
+                new ConnectableSystems
+                (
+                    new UpdateTimeSystems(time),
+                    new InputSystems(input),
+                    new MovementSystems(gameScreen, time),
+                    new SpawnSystems(factory, gameScreen, time, random, config),
+                    new AiSystems(),
+                    new ShootSystems(time),
+                    new PhysicSystems(),
+                    new LifecycleSystems(time, gameScreen),
+                    new MetaSystems(wallet, uiFactory),
+                    new CleanUpSystems(),
+                    new DebugSystems()
+                )
             );
 
             Application.quitting += () => game.Quit();
