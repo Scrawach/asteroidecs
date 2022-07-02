@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CodeBase.Core.Data;
+using CodeBase.Core.Extensions;
+using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Systems;
 using CodeBase.Core.Infrastructure.Systems.Abstract;
 using Leopotam.EcsLite;
@@ -45,7 +47,7 @@ namespace CodeBase.Core
         {
             _systems = new EcsSystems(_world);
             _externalSystem.ConnectTo(_systems);
-            _systems.Add(new GameRestartSystem(this));
+            _systems.Add(new GameRestartSystem(Restart));
             _systems.Init();
         }
     }
