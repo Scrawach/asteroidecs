@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Core.Gameplay.Components.Events;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
@@ -6,31 +7,38 @@ namespace CodeBase.Core.Gameplay.Systems
 {
     public class GameRestartSystem : IEcsRunSystem
     {
-        private readonly Game _game;
-        private readonly EcsWorld _world;
+        private readonly Action _onRestart;
 
-        public GameRestartSystem(Game game) =>
-            _game = game;
+        public GameRestartSystem(Action onRestart) => 
+            _onRestart = onRestart;
 
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<RestartButtonPressedEvent>().End();
-
-            if (filter.GetEntitiesCount() < 1)
+            
+            if (!IsRestartButtonPressed(world)) 
                 return;
+            
+            DestroyEntities(world);
+            _onRestart();
+        }
 
-            foreach (var index in filter)
+        private static bool IsRestartButtonPressed(EcsWorld world)
+        {
+            var filter = world.Filter<RestartButtonPressedEvent>().End();
+            var hasRequest = filter.GetEntitiesCount() > 0;
+            foreach (var index in filter) 
                 world.DelEntity(index);
+            return hasRequest;
+        }
 
+        private static void DestroyEntities(EcsWorld world)
+        {
             var entities = new int[0];
-            world.GetAllEntities(ref entities);
             var dead = world.GetPool<DestroyTag>();
-
-            foreach (var entity in entities)
+            world.GetAllEntities(ref entities);
+            foreach (var entity in entities) 
                 dead.Add(entity);
-
-            _game.Restart();
         }
     }
 }
