@@ -25,7 +25,7 @@ namespace CodeBase.Core.Gameplay.Systems
 
         private static bool IsRestartButtonPressed(EcsWorld world)
         {
-            var filter = world.Filter<RestartButtonPressedEvent>().End();
+            var filter = world.Filter<RestartButtonPressedRequest>().End();
             var hasRequest = filter.GetEntitiesCount() > 0;
             foreach (var index in filter) 
                 world.DelEntity(index);
