@@ -25,30 +25,32 @@ namespace CodeBase.Engine.Services.Factory
         public async Task<int> Create(SpawnInfo info, EcsWorld world)
         {
             var (address, position, rotation) = Parse(info);
-            return await Create(address, position, rotation, world);
+            return await CreateObject(address, position, rotation, world);
         }
 
         public async Task<int> Create(AssetReferenceGameObject reference, Vector3 position, Quaternion rotation, EcsWorld world) =>
-            await Create(reference.AssetGUID, position, rotation, world);
+            await CreateObject(reference.AssetGUID, position, rotation, world);
 
         private (string address, Vector3 position, Quaternion rotation) Parse(SpawnInfo info) =>
             (info.Id.ToString(), info.Position.ToVector3(), info.Direction.ToQuaternion());
 
-        private async Task<int> Create(string address, Vector3 position, Quaternion rotation, EcsWorld world)
+        private async Task<int> CreateObject(string address, Vector3 position, Quaternion rotation, EcsWorld world)
         {
             var direction = rotation * Vector3.right;
             var instance = await CreateGameObject(address, position, rotation);
             if (instance.TryGetComponent<SpawnAfterDestroy>(out var spawn))
                 spawn.Construct(this, world);
+            return CreateLinkedEntity(position, world, instance, direction);
+        }
+
+        private async Task<GameObject> CreateGameObject(string address, Vector3 position, Quaternion rotation) =>
+            await _assets.InstantiateAsync(address, position, rotation);
+
+        private static int CreateLinkedEntity(Vector3 position, EcsWorld world, GameObject instance, Vector3 direction)
+        {
             if (instance.TryGetComponent<MonoEntity>(out var mono))
                 return CreateEntity(position.ToVector2Data(), direction.ToVector2Data(), world, mono);
             throw new Exception("Object don't contain mono entity component!");
-        }
-
-        private async Task<GameObject> CreateGameObject(string address, Vector3 position, Quaternion rotation)
-        {
-            var gameObject = await _assets.InstantiateAsync(address, position, rotation);
-            return gameObject;
         }
 
         private static int CreateEntity(Vector2Data position, Vector2Data direction, EcsWorld world, MonoLinkBase monoLink)
