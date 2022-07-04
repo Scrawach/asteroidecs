@@ -22,6 +22,6 @@ namespace CodeBase.Engine.UI
             _world = world;
 
         private void OnRestartClicked() =>
-            _world.NewEntityWith<RestartButtonPressedRequest>();
+            _world.NewEntityWith<RestartRequest>();
     }
 }

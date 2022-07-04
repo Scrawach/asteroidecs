@@ -1,4 +1,4 @@
 namespace CodeBase.Core.Gameplay.Components.Events
 {
-    public struct RestartButtonPressedRequest { }
+    public struct RestartRequest { }
 }
