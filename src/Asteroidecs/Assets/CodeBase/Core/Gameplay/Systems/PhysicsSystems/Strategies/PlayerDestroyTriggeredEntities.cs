@@ -7,7 +7,7 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
     {
         public void OnEnter(EcsWorld world, int sender, int trigger)
         {
-            Apply<KilledByPlayer>(world, sender, trigger);
+            Apply<KilledByPlayerTag>(world, sender, trigger);
             Apply<DestroyTag>(world, sender, trigger);
         }
 

@@ -17,7 +17,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
             var world = systems.GetWorld();
             var filter = world
                 .Filter<BonusForDestruction>()
-                .Inc<KilledByPlayer>()
+                .Inc<KilledByPlayerTag>()
                 .Inc<DestroyTag>()
                 .End();
 

@@ -8,8 +8,8 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems.Strategies
     {
         public void OnEnter(EcsWorld world, int sender, int trigger)
         {
-            world.AddComponent(sender, new KilledByPlayer());
-            world.AddComponent(trigger, new KilledByPlayer());
+            world.AddComponent(sender, new KilledByPlayerTag());
+            world.AddComponent(trigger, new KilledByPlayerTag());
         }
     }
 }
