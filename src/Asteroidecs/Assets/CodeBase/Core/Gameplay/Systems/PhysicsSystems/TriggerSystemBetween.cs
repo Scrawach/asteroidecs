@@ -17,9 +17,9 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<OnTriggerEnterEvent>().End();
+            var filter = world.Filter<OnTriggerEnterRequest>().End();
 
-            var events = world.GetPool<OnTriggerEnterEvent>();
+            var events = world.GetPool<OnTriggerEnterRequest>();
             var calculated = world.GetPool<PhysicsAlreadyCalculatedTag>();
 
             foreach (var index in filter)
@@ -42,10 +42,10 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
             }
         }
 
-        private static bool UnpackEvent(OnTriggerEnterEvent enterEvent, EcsWorld world, out int sender, out int trigger)
+        private static bool UnpackEvent(OnTriggerEnterRequest enterRequest, EcsWorld world, out int sender, out int trigger)
         {
-            var isUnpackSender = enterEvent.Sender.Unpack(world, out sender);
-            var isUnpackTrigger = enterEvent.Trigger.Unpack(world, out trigger);
+            var isUnpackSender = enterRequest.Sender.Unpack(world, out sender);
+            var isUnpackTrigger = enterRequest.Trigger.Unpack(world, out trigger);
             return isUnpackSender && isUnpackTrigger;
         }
 

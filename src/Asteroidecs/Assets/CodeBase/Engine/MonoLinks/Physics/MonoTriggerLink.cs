@@ -11,7 +11,7 @@ namespace CodeBase.Engine.MonoLinks.Physics
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out MonoTriggerLink link))
-                World.NewEntityWith(new OnTriggerEnterEvent
+                World.NewEntityWith(new OnTriggerEnterRequest
                 {
                     Sender = World.PackEntity(Entity),
                     Trigger = World.PackEntity(link.Entity)
