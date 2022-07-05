@@ -27,13 +27,15 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
             _objects.Enqueue(gameObject);
         }
 
-        public GameObject Pull()
+        public GameObject Pull(Vector3 at, Quaternion with)
         {
             if (HasObjects == false)
                 throw new InvalidOperationException("Not contains any object!");
 
             var gameObject = _objects.Dequeue();
             gameObject.SetActive(true);
+            gameObject.transform.position = at;
+            gameObject.transform.rotation = with;
             return gameObject;
         }
 
