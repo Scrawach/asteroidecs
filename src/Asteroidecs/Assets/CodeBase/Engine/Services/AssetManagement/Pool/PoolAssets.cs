@@ -30,7 +30,11 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
             }
 
             if (pool.HasObjects)
-                return pool.Pull();
+            {
+                var pooled = pool.Pull();
+                pooled.transform.position = position;
+                return pooled;
+            }
 
             return await CreateObject(address, position, rotation);
         }
