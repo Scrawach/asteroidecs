@@ -1,27 +1,33 @@
-using CodeBase.Core.Common;
 using CodeBase.Core.Gameplay.Components.Moves;
 using CodeBase.Engine.Common;
 using CodeBase.Engine.MonoLinks.Base;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace CodeBase.Engine.MonoLinks
 {
-    public class MonoEngineBody : MonoLink<EngineBody>, IBody
+    public class MonoEngineBody : MonoLinkBase
     {
-        public void Move(Vector2Data movement)
-        {
-            var worldPoint = new Vector3(movement.X, movement.Y, 0f);
-            transform.position = worldPoint;
-        }
+        private EcsPackedEntityWithWorld _entityWithWorld;
 
-        public void Rotate(Vector2Data direction) =>
-            transform.rotation = direction.ToQuaternion();
+        public override void Resolve(EcsWorld world, int entity) =>
+            _entityWithWorld = world.PackEntityWithWorld(entity);
 
-        public override void Resolve(EcsWorld world, int entity)
+        private void Update() =>
+            UpdateTransform();
+
+        private void UpdateTransform()
         {
-            Value = new EngineBody {Body = this};
-            base.Resolve(world, entity);
+            if (_entityWithWorld.Unpack(out var world, out var entity))
+            {
+                var movementPool = world.GetPool<Position>();
+                var rotationPool = world.GetPool<Rotation>();
+
+                if (movementPool.Has(entity))
+                    transform.position = movementPool.Get(entity).Value.ToVector3();
+
+                if (rotationPool.Has(entity))
+                    transform.rotation = rotationPool.Get(entity).Direction.ToQuaternion();
+            }
         }
     }
 }
