@@ -1,4 +1,3 @@
-using CodeBase.Core.Gameplay.Components.Lifecycle;
 using CodeBase.Core.Gameplay.Components.Tags;
 using Leopotam.EcsLite;
 
@@ -9,19 +8,10 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
         public void Run(EcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world
-                .Filter<DestroyTag>()
-                .Inc<Destroyable>()
-                .End();
+            var filter = world.Filter<DestroyTag>().End();
 
-            var bodies = world.GetPool<Destroyable>();
-
-            foreach (var index in filter)
-            {
-                ref var body = ref bodies.Get(index);
-                body.Link.Destroy();
+            foreach (var index in filter) 
                 world.DelEntity(index);
-            }
         }
     }
 }
