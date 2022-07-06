@@ -14,7 +14,8 @@ namespace CodeBase.Engine.Services
         public UnityInput(Camera camera) =>
             _camera = camera;
 
-        public Vector2Data MousePosition => new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
+        public Vector2Data MousePosition => 
+            new Vector2Data(Input.mousePosition.x, Input.mousePosition.y);
 
         public Vector2Data WorldMousePosition
         {
