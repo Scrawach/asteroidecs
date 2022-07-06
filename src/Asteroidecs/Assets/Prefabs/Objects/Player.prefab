@@ -173,7 +173,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8280896753577623950}
   - component: {fileID: 2276904169766906641}
-  - component: {fileID: 1140202743146473411}
   m_Layer: 0
   m_Name: Laser Bar
   m_TagString: Untagged
@@ -245,21 +244,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1140202743146473411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3077056039652627334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43cebe71daf3467fbd767a1a009d1c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  View: {fileID: 8280896753577623950}
-  ReloadedValueScale: 0.9
-  WhenEmptyPosition: -0.1151
 --- !u!1 &5589345601090368556
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +268,6 @@ GameObject:
   - component: {fileID: 7544238360322995505}
   - component: {fileID: 3876774270602263906}
   - component: {fileID: 7422584420217375223}
-  - component: {fileID: 5532627623984729315}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -461,7 +444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4774fe7e2e9c4f87a847b40f29c45127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReloadView: {fileID: 1140202743146473411}
+  View: {fileID: 8280896753577623950}
+  ReloadedValueScale: 0.9
+  WhenEmptyPosition: -0.1151
 --- !u!114 &1973649100824094219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,16 +506,3 @@ MonoBehaviour:
   _reference:
     m_AssetGUID: 98c6b81baca76494e88e02941da4a464
     m_SubObjectName: 
---- !u!114 &5532627623984729315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5589345601090368556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27285d42bfd4fd0a23a7c847e15e16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _laserReloadView: {fileID: 1140202743146473411}
