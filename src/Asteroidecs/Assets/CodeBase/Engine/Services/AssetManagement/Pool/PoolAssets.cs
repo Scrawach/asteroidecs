@@ -14,10 +14,7 @@ namespace CodeBase.Engine.Services.AssetManagement.Pool
             _assets = assets;
             _pools = new Dictionary<string, Pool>();
         }
-
-        public void Initialize() =>
-            _assets.Initialize();
-
+        
         public Task<TAsset> Load<TAsset>(string address) where TAsset : Object =>
             _assets.Load<TAsset>(address);
 
