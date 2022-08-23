@@ -12,7 +12,7 @@ namespace CodeBase.Engine.Systems
         public UpdateTimeSystems(WatchTime watchTime) =>
             _watchTime = watchTime;
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems.Add(new UpdateTimeImplementation(_watchTime));
 
         private class UpdateTimeImplementation : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
@@ -39,13 +39,13 @@ namespace CodeBase.Engine.Systems
 #endif
             }
 
-            public void Destroy(EcsSystems systems) =>
+            public void Destroy(IEcsSystems systems) =>
                 _watchTime.Reset();
 
-            public void Init(EcsSystems systems) =>
+            public void Init(IEcsSystems systems) =>
                 _watchTime.Start();
 
-            public void Run(EcsSystems systems) =>
+            public void Run(IEcsSystems systems) =>
                 _watchTime.Update();
         }
     }

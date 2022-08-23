@@ -10,10 +10,10 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
         public GameplayHudLifecycleSystem(IUiFactory uiFactory) =>
             _uiFactory = uiFactory;
 
-        public void Destroy(EcsSystems systems) =>
+        public void Destroy(IEcsSystems systems) =>
             _uiFactory.CloseGameplayHud();
 
-        public void Init(EcsSystems systems) =>
+        public void Init(IEcsSystems systems) =>
             _uiFactory.OpenGameplayHud();
     }
 }

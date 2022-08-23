@@ -8,7 +8,7 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
 {
     public class FindTargetForAliens : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<AlienTag>().Exc<FollowTarget>().End();

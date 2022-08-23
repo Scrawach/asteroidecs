@@ -7,7 +7,7 @@ namespace CodeBase.Core.Gameplay.Systems.AiSystems
 {
     public class FollowTargetSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<FollowTarget>().Inc<Movement>().End();

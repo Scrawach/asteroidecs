@@ -6,7 +6,7 @@ namespace CodeBase.Core.Infrastructure.Systems
 {
     public class AiSystems : IConnectableSystem
     {
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .Add(new FindTargetForAliens())
                 .Add(new FollowTargetSystem());

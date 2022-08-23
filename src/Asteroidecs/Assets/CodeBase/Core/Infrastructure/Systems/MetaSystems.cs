@@ -17,7 +17,7 @@ namespace CodeBase.Core.Infrastructure.Systems
             _uiFactory = uiFactory;
         }
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .Add(new EraseWalletOnStartSystem(_wallet))
                 .Add(new GameplayHudLifecycleSystem(_uiFactory))

@@ -9,7 +9,7 @@ namespace CodeBase.Core.Infrastructure.Systems.Abstract
         public ConnectableSystems(params IConnectableSystem[] connectableSystems) =>
             _connectableSystems = connectableSystems;
 
-        public EcsSystems ConnectTo(EcsSystems systems)
+        public IEcsSystems ConnectTo(IEcsSystems systems)
         {
             foreach (var system in _connectableSystems) 
                 system.ConnectTo(systems);

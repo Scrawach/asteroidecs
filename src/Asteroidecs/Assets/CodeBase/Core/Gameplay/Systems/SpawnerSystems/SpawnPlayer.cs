@@ -7,7 +7,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnPlayer : IEcsInitSystem
     {
-        public void Init(EcsSystems systems)
+        public void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             world.NewEntityWith(new SpawnInfo(ObjectId.Player, new Vector2Data(0, 0), new Vector2Data(0, 1)));

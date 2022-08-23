@@ -12,7 +12,7 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
         public KillOutOfBorderObjects(IGameScreen screen) =>
             _screen = screen;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<Position>().Exc<DestroyTag>().End();

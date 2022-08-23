@@ -11,7 +11,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
 {
     public class PlayerLaserShoot : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var pressed = world.Filter<LaserButtonPressedEvent>().End();

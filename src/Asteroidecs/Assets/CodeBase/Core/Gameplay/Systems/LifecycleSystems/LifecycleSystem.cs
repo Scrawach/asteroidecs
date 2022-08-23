@@ -12,7 +12,7 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
         public LifecycleSystem(ITime time) =>
             _time = time;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<Lifetime>().End();

@@ -12,7 +12,7 @@ namespace CodeBase.Core.Gameplay.Systems
         public GameRestartSystem(Action onRestart) => 
             _onRestart = onRestart;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             

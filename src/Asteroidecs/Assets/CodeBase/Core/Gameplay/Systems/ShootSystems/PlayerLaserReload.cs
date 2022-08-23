@@ -11,7 +11,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
         public PlayerLaserReload(ITime time) =>
             _time = time;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<LaserReload>().End();

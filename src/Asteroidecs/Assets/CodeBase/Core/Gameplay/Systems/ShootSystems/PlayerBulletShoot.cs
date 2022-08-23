@@ -10,7 +10,7 @@ namespace CodeBase.Core.Gameplay.Systems.ShootSystems
 {
     public class PlayerBulletShoot : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var buttonPressed = world.Filter<FireButtonPressedEvent>().End();

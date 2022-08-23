@@ -5,7 +5,7 @@ namespace CodeBase.Core.Gameplay.Systems.LifecycleSystems
 {
     public class DestroySystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<DestroyTag>().End();

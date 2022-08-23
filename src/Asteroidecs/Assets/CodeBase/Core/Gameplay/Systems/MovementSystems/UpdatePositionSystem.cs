@@ -5,7 +5,7 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class UpdatePositionSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world

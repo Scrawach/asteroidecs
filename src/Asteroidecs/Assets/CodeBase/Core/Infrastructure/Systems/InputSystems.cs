@@ -14,7 +14,7 @@ namespace CodeBase.Core.Infrastructure.Systems
         public InputSystems(IInput input) =>
             _input = input;
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .DeleteHere<FireButtonPressedEvent>()
                 .DeleteHere<LaserButtonPressedEvent>()

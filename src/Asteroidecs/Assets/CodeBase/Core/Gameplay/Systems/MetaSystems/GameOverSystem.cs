@@ -11,10 +11,10 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
         public GameOverSystem(IUiFactory uiFactory) =>
             _uiFactory = uiFactory;
 
-        public void Destroy(EcsSystems systems) =>
+        public void Destroy(IEcsSystems systems) =>
             _uiFactory.CloseGameOverWindow();
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<GameOverEvent>().End();

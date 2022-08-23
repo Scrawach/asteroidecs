@@ -6,7 +6,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems
 {
     public class SpawnBullet : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<ShootPoint>().End();

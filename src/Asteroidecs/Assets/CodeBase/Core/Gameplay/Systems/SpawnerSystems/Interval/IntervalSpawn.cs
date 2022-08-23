@@ -18,7 +18,7 @@ namespace CodeBase.Core.Gameplay.Systems.SpawnerSystems.Interval
             _spawnStrategy = spawnStrategy;
         }
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             UpdateCooldown();
 

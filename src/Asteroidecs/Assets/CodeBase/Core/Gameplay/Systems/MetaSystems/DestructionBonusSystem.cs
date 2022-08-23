@@ -12,7 +12,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
         public DestructionBonusSystem(IWallet wallet) =>
             _wallet = wallet;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world

@@ -23,7 +23,7 @@ namespace CodeBase.Core.Infrastructure.Systems
             _onScreenPerimeter = new RandomPointOnGameScreenPerimeter(gameScreen, random);
         }
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .Add(new SpawnPlayer())
                 .Add(new IntervalSpawn(_time, _config.AlienCooldown, new SpawnAliens(_onScreenPerimeter)))

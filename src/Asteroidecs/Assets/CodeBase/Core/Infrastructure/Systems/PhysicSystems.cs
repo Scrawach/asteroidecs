@@ -11,7 +11,7 @@ namespace CodeBase.Core.Infrastructure.Systems
 {
     public class PhysicSystems : IConnectableSystem
     {
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .DeleteHere<KilledByPlayerTag>()
                 .DeleteHere<PhysicsAlreadyCalculatedTag>()

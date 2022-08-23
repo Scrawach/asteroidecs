@@ -17,7 +17,7 @@ namespace CodeBase.Core.Infrastructure.Systems
             _gameScreen = gameScreen;
         }
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .Add(new LifecycleSystem(_time))
                 .Add(new KillOutOfBorderObjects(_gameScreen))

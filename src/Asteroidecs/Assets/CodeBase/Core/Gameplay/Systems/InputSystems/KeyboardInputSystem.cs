@@ -14,7 +14,7 @@ namespace CodeBase.Core.Gameplay.Systems.InputSystems
         public KeyboardInputSystem(IInput input) =>
             _input = input;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<PlayerTag>().End();

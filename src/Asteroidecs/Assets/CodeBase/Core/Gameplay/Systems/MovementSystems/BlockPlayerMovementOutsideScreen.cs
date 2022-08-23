@@ -14,13 +14,13 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
         public BlockPlayerMovementOutsideScreen(IGameScreen screen) =>
             _screen = screen;
 
-        public void Init(EcsSystems systems)
+        public void Init(IEcsSystems systems)
         {
             _borderX = _screen.Size.X / 2f;
             _borderY = _screen.Size.Y / 2f;
         }
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world

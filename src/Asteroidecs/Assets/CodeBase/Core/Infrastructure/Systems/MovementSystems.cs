@@ -17,7 +17,7 @@ namespace CodeBase.Core.Infrastructure.Systems
             _time = time;
         }
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .Add(new SetForwardMovementSystem())
                 .Add(new BlockPlayerMovementOutsideScreen(_gameScreen))

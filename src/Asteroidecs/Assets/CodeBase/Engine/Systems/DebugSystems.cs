@@ -6,7 +6,7 @@ namespace CodeBase.Engine.Systems
 {
     public class DebugSystems : IConnectableSystem
     {
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems.Add(new EcsWorldDebugSystem());
     }
 }

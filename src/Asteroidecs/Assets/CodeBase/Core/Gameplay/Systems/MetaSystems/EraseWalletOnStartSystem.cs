@@ -10,7 +10,7 @@ namespace CodeBase.Core.Gameplay.Systems.MetaSystems
         public EraseWalletOnStartSystem(IWallet wallet) =>
             _wallet = wallet;
 
-        public void Init(EcsSystems systems) =>
+        public void Init(IEcsSystems systems) =>
             _wallet.Reset();
     }
 }

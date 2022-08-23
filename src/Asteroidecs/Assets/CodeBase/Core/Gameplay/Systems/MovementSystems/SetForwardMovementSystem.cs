@@ -6,7 +6,7 @@ namespace CodeBase.Core.Gameplay.Systems.MovementSystems
 {
     public class SetForwardMovementSystem : IEcsRunSystem
     {
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world

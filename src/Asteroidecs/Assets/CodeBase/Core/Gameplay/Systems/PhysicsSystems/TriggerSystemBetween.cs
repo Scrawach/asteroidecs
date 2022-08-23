@@ -14,7 +14,7 @@ namespace CodeBase.Core.Gameplay.Systems.PhysicsSystems
         public TriggerSystemBetween(IEnterTriggerStrategy strategy) =>
             _strategy = strategy;
 
-        public void Run(EcsSystems systems)
+        public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<OnTriggerEnterRequest>().End();

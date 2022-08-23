@@ -6,7 +6,7 @@ namespace CodeBase.Core.Infrastructure.Systems
 {
     public class CleanUpSystems : IConnectableSystem
     {
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems.Add(new DestroySystem());
     }
 }

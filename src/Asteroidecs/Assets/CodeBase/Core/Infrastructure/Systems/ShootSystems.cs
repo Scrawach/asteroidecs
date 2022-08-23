@@ -14,7 +14,7 @@ namespace CodeBase.Core.Infrastructure.Systems
         public ShootSystems(ITime time) =>
             _time = time;
 
-        public EcsSystems ConnectTo(EcsSystems systems) =>
+        public IEcsSystems ConnectTo(IEcsSystems systems) =>
             systems
                 .DeleteHere<ShootPoint>()
                 .Add(new PlayerLaserReload(_time))

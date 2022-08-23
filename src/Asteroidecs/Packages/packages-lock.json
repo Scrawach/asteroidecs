@@ -5,14 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "df885a49940f229882c5e39fde45c0a40077c7e6"
+      "hash": "4ce5a38125c8786a02813020f2d9c296f8a9110e"
     },
     "com.leopotam.ecslite.unityeditor": {
       "version": "https://github.com/Leopotam/ecslite-unityeditor.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "e32deeb27c4057a2acff20d3a483911037b564e4"
+      "hash": "2fb5e220311202a2864492e07e373701e27a08bc"
     },
     "com.unity.2d.animation": {
       "version": "3.2.3",
